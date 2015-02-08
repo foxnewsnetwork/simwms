@@ -1,0 +1,12 @@
+@import "compass/css3";
+@import "components";
+
+html {
+  background-color: #eee;
+}
+
+.debug {
+  @include display-flex;
+  @include justify-content(center);
+  @include align-items(center);
+}

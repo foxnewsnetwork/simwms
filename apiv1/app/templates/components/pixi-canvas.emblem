@@ -1,0 +1,3 @@
+.pixi-canvas-element-container
+.pixi-contents.hidden
+  == yield
