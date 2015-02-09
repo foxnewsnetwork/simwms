@@ -34,6 +34,16 @@ app.import("bower_components/pixi.js/bin/pixi.dev.js", {
     "PIXI": ["PIXI"]
   }
 });
+app.import("vendor/youtube/iframe-api.js", {
+  exports: {
+    "YT": ["YT"]
+  }
+});
+app.import('vendor/video-js/video.js', {
+  exports: {
+    "videojs": ["videojs"]
+  }
+});
 app.import("bower_components/fontawesome/css/font-awesome.css");
 app.import("bower_components/fontawesome/fonts/fontawesome-webfont.eot", { destDir: "fonts" });
 app.import("bower_components/fontawesome/fonts/fontawesome-webfont.svg", { destDir: "fonts" });

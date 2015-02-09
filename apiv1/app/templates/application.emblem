@@ -20,6 +20,7 @@
               pixi-barn position=position camera=camera
             each position in warehousePositions
               pixi-warehouse position=position camera=camera
+
   .row
     .col-lg-12
       .debug
@@ -30,3 +31,6 @@
         span y - px
 
 == outlet
+#modal-background
+  .modal-container
+    == outlet "modal"

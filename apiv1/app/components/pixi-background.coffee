@@ -39,4 +39,5 @@ PixiBackgroundComponent = Ember.Component.extend PixiBaseMixin,
     return if Ember.isBlank @get "src"
     PIXI.Texture.fromImage @get "src"
 
+
 `export default PixiBackgroundComponent`

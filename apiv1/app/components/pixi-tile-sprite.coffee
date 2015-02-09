@@ -6,7 +6,7 @@ PixiTileSpriteComponent = Ember.Component.extend PixiBaseMixin,
   initialSize:
     width: 1
     height: 1
-
+  init: -> @_super()
   manageCamera: Ember.observer "camera.x", "camera.y", "camera.zoom", "position.tileX", "position.tileY", ->
     {x: x, y: y} = @get("camera").tile2px @get "position"
     @set "sprite.position.x", x + @get("camera.zoom") * @get("defaultShift.x")

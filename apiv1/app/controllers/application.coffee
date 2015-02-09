@@ -9,17 +9,19 @@ product = (xs,ys) ->
   unwrap xs.map (x) -> ys.map (y) -> [x,y]
 
 barns = [2..12].map (k) -> PixiPosition.create(tileX: -1, tileY: k)
-roads = [2..12].map (k) -> PixiPosition.create(tileX: 0, tileY: k)
+roads = [1..12].map (k) -> PixiPosition.create(tileX: 0, tileY: k)
 moreRoads = [1..8].map (k) -> PixiPosition.create(tileX: k, tileY: 12)
+outRoads = [2..12].map (k) -> PixiPosition.create(tileX: 8, tileY: k)
 rightBarns = [6..11].map (k) -> PixiPosition.create(tileX: 1, tileY: k)
 warehouses = product([2..4], [4..11]).map ([x,y]) -> PixiPosition.create tileX: x, tileY: y
+moreWarehouses = [2..12].map (k) -> PixiPosition.create(tileX: -2, tileY: k)
 
 ApplicationController = Ember.Controller.extend
   camera: PixiCamera.create(x: 250, y: 280, zoom: 0.8)
   barnPositions: barns
-  roadPositions: moreRoads.reverse().concat roads
+  roadPositions: moreRoads.concat roads.concat outRoads
   otherBarnPositions: rightBarns
-  warehousePositions: warehouses
+  warehousePositions: warehouses.concat moreWarehouses
 
   actions:
     goLeft: ->
