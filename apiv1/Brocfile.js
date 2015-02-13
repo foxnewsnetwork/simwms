@@ -44,6 +44,11 @@ app.import('vendor/video-js/video.js', {
     "videojs": ["videojs"]
   }
 });
+app.import("bower_components/js-priority-queue/priority-queue.js", {
+  exports: {
+    "PriorityQueue": ["PriorityQueue"]
+  }
+});
 app.import("bower_components/fontawesome/css/font-awesome.css");
 app.import("bower_components/fontawesome/fonts/fontawesome-webfont.eot", { destDir: "fonts" });
 app.import("bower_components/fontawesome/fonts/fontawesome-webfont.svg", { destDir: "fonts" });

@@ -15,7 +15,7 @@ PixiWarehouseComponent = PixiTileSpriteComponent.extend
     return if Ember.isBlank @get "texture"
     warehouse = new PIXI.TilingSprite @get("texture"), 140, 85
     warehouse.tilePosition.x = 0
-    warehouse.tilePosition.y = 170
+    warehouse.tilePosition.y = -285
     warehouse.scale.x = @get("defaultScale.x")
     warehouse.scale.y = @get("defaultScale.y")
     warehouse

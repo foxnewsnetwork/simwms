@@ -2,8 +2,9 @@
 `import FunEx from '../utils/fun-ex'`
 
 PixiPosition = Ember.Object.extend
-  order: FunEx.computed "tileX", "tileY", ->
+  order: FunEx.computed "tileX", "tileY", "constant", ->
     return unless @get("tileX")? and @get("tileY")?
-    @get("tileY") - @get("tileX")
+    c = @get("constant") or 0
+    @get("tileY") - @get("tileX") + c
 
 `export default PixiPosition`

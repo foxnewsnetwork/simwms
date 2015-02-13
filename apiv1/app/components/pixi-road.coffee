@@ -15,7 +15,7 @@ PixiRoadComponent = PixiTileSpriteComponent.extend
     return if Ember.isBlank @get "texture"
     road = new PIXI.TilingSprite @get("texture"), 140, 85
     road.tilePosition.x = 0
-    road.tilePosition.y = 85
+    road.tilePosition.y = -370
     road.scale.x = @get("defaultScale.x")
     road.scale.y = @get("defaultScale.y")
     road
