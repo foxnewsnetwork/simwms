@@ -38,14 +38,23 @@ PixiTileSpriteComponent = Ember.Component.extend PixiBaseMixin,
     return if Ember.isBlank @get("path.positions")
     msPerTile = 1000 / @get("path.speed")
     msPerTile = 1000 unless _.isFinite msPerTile
-    waitReduce @get("path.positions"), null, msPerTile, (interval, position) =>
-      window.clearInterval interval if interval?
+    waitReduce @get("path.positions"), {last: null, interval: null}, msPerTile, ({last:pos, interval:interval}, position) =>
+      if interval?
+        window.clearInterval interval 
+      if pos? and Ember.get(pos, "x")? and Ember.get(pos, "y")?
+        console.log pos
+        @set "position.x", Ember.get(pos, "x")
+        @set "position.y", Ember.get(pos, "y")
       @get("parentView").refreshOnStage @get "sprite"
       [dx, dy] = distancePerFrame start: @get("position"), finish: position, tilePerSecond: @get("path.speed")
-      repeatEvery MSPF, =>
+      last: position
+      interval: repeatEvery MSPF, =>
         @incrementProperty "position.x", dx
         @incrementProperty "position.y", dy
-    .then (interval) -> 
+    .then (last: pos, interval: interval) => 
+      console.log pos
+      @set "position.x", Ember.get(pos, "x")
+      @set "position.y", Ember.get(pos, "y")
       window.clearInterval interval
 
   didFinishPreloading: ->
