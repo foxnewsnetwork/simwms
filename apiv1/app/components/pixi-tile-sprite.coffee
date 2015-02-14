@@ -34,6 +34,9 @@ PixiTileSpriteComponent = Ember.Component.extend PixiBaseMixin,
     @set "sprite.scale.x", @get("defaultScale.x") * @get("camera.zoom")
     @set "sprite.scale.y", @get("defaultScale.y") * @get("camera.zoom")
 
+  # Yes, I know this is shit-tier sphagetti code, I'm sorry.
+  # If you're not me and you're reading this, please fix it.
+  # If you are me and reading it, please stop being a faggot
   manageKinetics: Ember.observer "path.positions.@each", ->
     return if Ember.isBlank @get("path.positions")
     msPerTile = 1000 / @get("path.speed")
@@ -42,7 +45,6 @@ PixiTileSpriteComponent = Ember.Component.extend PixiBaseMixin,
       if interval?
         window.clearInterval interval 
       if pos? and Ember.get(pos, "x")? and Ember.get(pos, "y")?
-        console.log pos
         @set "position.x", Ember.get(pos, "x")
         @set "position.y", Ember.get(pos, "y")
       @get("parentView").refreshOnStage @get "sprite"
@@ -52,7 +54,6 @@ PixiTileSpriteComponent = Ember.Component.extend PixiBaseMixin,
         @incrementProperty "position.x", dx
         @incrementProperty "position.y", dy
     .then (last: pos, interval: interval) => 
-      console.log pos
       @set "position.x", Ember.get(pos, "x")
       @set "position.y", Ember.get(pos, "y")
       window.clearInterval interval

@@ -2,6 +2,8 @@
 `import FunEx from '../utils/fun-ex'`
 `import PixiTileSpriteComponent from './pixi-tile-sprite'`
 
+circle = new PIXI.Circle(75,75,75)
+
 PixiMarkerComponent = PixiTileSpriteComponent.extend
   action: "openModal"
   src: "images/markers.png"
@@ -18,7 +20,7 @@ PixiMarkerComponent = PixiTileSpriteComponent.extend
   unglowSprite: ->
     @set "sprite.tint", 0xffffff
   requestModal: ->
-    @sendAction 'action', "barn", @get("sprite")
+    @sendAction 'action', "marker", @get("sprite")
 
   sprite: FunEx.computed "texture", ->
     return if Ember.isBlank @get "texture"
@@ -32,6 +34,7 @@ PixiMarkerComponent = PixiTileSpriteComponent.extend
     marker.tilePosition.y = 0
     marker.scale.x = @get("defaultScale.x")
     marker.scale.y = @get("defaultScale.y")
+    marker.hitArea = circle
     marker
 
 `export default PixiMarkerComponent`
