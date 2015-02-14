@@ -1,27 +1,21 @@
 `import graphSearch from '../../../utils/graph-search'`
+`import DebugEx from '../../../utils/debug-ex'`
 
 module 'graphSearch'
 
-makeRectangle = (x,y,w,l) ->
-  [x..(x+w)]
-    .map (xi) -> [y..(y+l)].map (yi) -> [xi,yi]
-    .reject ([xi,yi]) -> 0 < xi or xi < 5 and 0 < yi or yi < 5
+defaultChildren = ([x0, y0]) ->
+  [
+    {x: x0+1, y: y0}
+    {x: x0-1, y: y0}
+    {x: x0, y: y0+1}
+    {x: x0, y: y0-1}
+  ]
 
-somePaths = makeRectangle(0,0,5,6)
-  .concat makeRectangle -3, 1, 7, 5
-  .concat makeRectangle -1, -1, 5, 10
-somePaths = _.flatten somePaths, true
-somePaths = _.unique somePaths, false, (coord) -> coord.join(",")
-
-successor = (x: x0, y: y0) ->
-  boys = somePaths.filter ([x1, y1]) -> 
-    x0 + 1 is x1 and y0 is y1 or
-    x0 - 1 is x1 and y0 is y1
-  girls = somePaths.filter ([x1, y1]) -> 
-    x0 is x1 and y0 + 1 is y1 or
-    x0 is x1 and y0 - 1 is y1
-  boys.concat girls
-    .map ([x,y]) -> x: x, y: y
+successor = (nowAt, wasAt) ->
+  {x: x0, y: y0} = nowAt
+  {x: x1, y: y1} = wasAt if wasAt?
+  defaultChildren([x0, y0]).reject (x:x, y:y) -> 
+    x is x1 and y is y1
 
 stringify = (xs) ->
   xs
@@ -59,7 +53,7 @@ test 'the graphSearch should find the solution', ->
     { x: 2, y: -1 }
     { x: 3, y: -1 }
     { x: 4, y: -1 }
-    { x: 4, y: 0 }
+    { x: 5, y: -1 }
     { x: 5, y: 0 }
     { x: 5, y: 1 }
     { x: 5, y: 2 }

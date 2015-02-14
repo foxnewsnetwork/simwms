@@ -12,7 +12,7 @@
       pixi-canvas
         pixi-stage name="game-stage"
           pixi-background camera=camera
-            pixi-marker path=path camera=camera position=markerPosition
+            pixi-marker camera=camera path=path
             each position in grid.roads
               pixi-road position=position camera=camera
             each position in grid.barns

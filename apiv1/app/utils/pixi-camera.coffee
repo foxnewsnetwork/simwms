@@ -1,6 +1,7 @@
 `import Ember from 'ember'`
 `import FunEx from './fun-ex'`
 `import Arrows from './arrows'`
+`import normalizePoint from './normalize-point'`
 
 cos = (deg) -> Math.cos deg * Math.PI / 180
 sin = (deg) -> Math.sin deg * Math.PI / 180
@@ -13,10 +14,13 @@ PixiCamera = Ember.Object.extend
   zoom: 1
   init: ->
     @_super()
-    @transformProcess = @makeUnitTile2tile().compose @tile2AbsPx.compose @makeAbsPx2camPx()
+    @transformProcess = Arrows.lift normalizePoint
+      .compose @makeUnitTile2tile()
+      .compose @tile2AbsPx
+      .compose @makeAbsPx2camPx()
 
   makeUnitTile2tile: ->
-    Arrows.lift ({tileX: x, tileY: y}) =>
+    Arrows.lift ([x,y]) =>
       tileX: x * @get("zoom") * 74
       tileY: y * @get("zoom") * 74
 

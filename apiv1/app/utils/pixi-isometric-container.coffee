@@ -26,11 +26,22 @@ class PixiIsometricContainer
       throw new CantEvenIntoOrderError(sprite) unless getTileOrder(sprite)?
       sprite
 
+  _removeFromContainer = (self) ->
+    Arrows.lift (sprite) -> 
+      self.container.removeChild sprite
+
+  _removeFromLocalQueue = (self) ->
+    Arrows.lift (sprite) ->
+      self.localContainer.removeObject sprite
+
   constructor: ->
     @localContainer = []
-    @addChildProcess = _validateSprite(@)
-      .compose _decideContainerReadyStatus(@)
+    baseProcess = _validateSprite(@).compose _decideContainerReadyStatus(@)
+    @addChildProcess = baseProcess
       .compose _add2container(@).fork _add2localQueue(@)
+
+    @removeChildProcess = baseProcess
+      .compose _removeFromContainer(@).fork _removeFromLocalQueue(@)
 
   isContainerReady: ->
     return true if @container and @container.addChildAt

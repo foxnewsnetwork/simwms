@@ -1,23 +1,61 @@
 `import Ember from 'ember'`
 `import FunEx from '../utils/fun-ex'`
+`import DebugEx from '../utils/debug-ex'`
 `import PixiBaseMixin from '../mixins/pixi-base'`
+`import normalizePoint from '../utils/normalize-point'`
+`import waitReduce from '../utils/wait-reduce'`
+`import PixiPosition from '../utils/pixi-position'`
 
+repeatEvery = FunEx.flip window.setInterval
+FPS = 60
+MSPF = 1000 / FPS
+
+signFloorRound = (x) -> Math.sign Math.floor Math.round(x * 100000) / 100000
+
+distancePerFrame = (start: start, finish: finish, tilePerSecond: tilePerSecond) ->
+  [xi, yi] = normalizePoint start
+  [xf, yf] = normalizePoint finish
+  kx = signFloorRound xf - xi
+  ky = signFloorRound yf - yi
+  tilePerSecond ||= 0
+  d = tilePerSecond / FPS
+  [kx * d, ky * d]
+  
 PixiTileSpriteComponent = Ember.Component.extend PixiBaseMixin,
   initialSize:
     width: 1
     height: 1
+  
   init: -> @_super()
-  manageCamera: Ember.observer "camera.x", "camera.y", "camera.zoom", "position.tileX", "position.tileY", ->
+  manageCamera: Ember.observer "camera.x", "camera.y", "camera.zoom", "position.x", "position.y", ->
     {x: x, y: y} = @get("camera").tile2px @get "position"
     @set "sprite.position.x", x + @get("camera.zoom") * @get("defaultShift.x")
     @set "sprite.position.y", y + @get("camera.zoom") * @get("defaultShift.y")
     @set "sprite.scale.x", @get("defaultScale.x") * @get("camera.zoom")
     @set "sprite.scale.y", @get("defaultScale.y") * @get("camera.zoom")
 
+  manageKinetics: Ember.observer "path.positions.@each", ->
+    return if Ember.isBlank @get("path.positions")
+    msPerTile = 1000 / @get("path.speed")
+    msPerTile = 1000 unless _.isFinite msPerTile
+    waitReduce @get("path.positions"), null, msPerTile, (interval, position) =>
+      window.clearInterval interval if interval?
+      @get("parentView").refreshOnStage @get "sprite"
+      [dx, dy] = distancePerFrame start: @get("position"), finish: position, tilePerSecond: @get("path.speed")
+      repeatEvery MSPF, =>
+        @incrementProperty "position.x", dx
+        @incrementProperty "position.y", dy
+    .then (interval) -> 
+      window.clearInterval interval
+
   didFinishPreloading: ->
+    if @get("path.positions.firstObject")?
+      position = PixiPosition.create x: @get("path.positions.firstObject.x"), y: @get("path.positions.firstObject.y")
+      @set "position", position
     @set "sprite.isometricTilePosition", @get("position")
     @get("parentView").appendToStage @get "sprite"
     @manageCamera()
+    @manageKinetics()
 
   willDestroyElement: ->
     @get("parentView").removeFromStage @get "sprite"

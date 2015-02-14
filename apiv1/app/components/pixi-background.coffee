@@ -21,6 +21,10 @@ PixiBackgroundComponent = Ember.Component.extend PixiBaseMixin,
   removeFromStage: (sprite) ->
     @spriteIsometricContainer.removeChild sprite
 
+  refreshOnStage: (sprite) ->
+    @removeFromStage sprite
+    @appendToStage sprite
+
   didInsertElement: ->
     @spriteIsometricContainer.setContainer @get "sprite"
     @get("parentView").appendToStage @get "sprite"

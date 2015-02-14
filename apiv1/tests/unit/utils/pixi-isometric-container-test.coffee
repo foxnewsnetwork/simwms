@@ -6,7 +6,7 @@ unwrap = (xs) -> _.flatten xs, true
 positions = [] 
 for y in [0..5]
   for x in [-2..2]
-    positions.push PixiPosition.create tileX: x, tileY: y
+    positions.push PixiPosition.create x: x, y: y
 
 sprites = positions.map (p) -> isometricTilePosition: p
 
@@ -27,7 +27,7 @@ test 'it works', ->
   ok PixiIsometricContainer
 
 test 'pixi positions, when properly initialized, should have order', ->
-  p = PixiPosition.create tileY: 3, tileX: -3
+  p = PixiPosition.create y: 3, x: -3
   equal p.get("order"), 6
 
 test "the sprites should have isometricTilePosition", ->
@@ -36,8 +36,8 @@ test "the sprites should have isometricTilePosition", ->
 test "the positions should have order", ->
   ok position.get("order")? for position in positions
 
-test "the positions should have tileX", ->
-  ok position.get("tileX")? for position in positions
+test "the positions should have x", ->
+  ok position.get("x")? for position in positions
 
 test "the sprites should have order", ->
   ok sprite.isometricTilePosition.get("order")? for sprite in sprites
