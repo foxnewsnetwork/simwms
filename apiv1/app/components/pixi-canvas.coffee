@@ -13,7 +13,7 @@ PixiCanvasComponent = Ember.Component.extend
     @animators[key] = animate
     key
 
-  windowWidth: -> 0.9 * window.screen.availWidth
+  windowWidth: -> 0.95 * window.screen.availWidth
   windowHeight: -> 0.825 * window.screen.availHeight
   didInsertElement: ->
     @set "renderer", PIXI.autoDetectRenderer @windowWidth(), @windowHeight()    

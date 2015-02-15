@@ -1,18 +1,11 @@
 .container-fluid
   .row
     .col-lg-12
-      .debug
-        button.btn.btn-success click=goLeft
-          i.fa.fa-chevron-left
-        == input type="number" value=camera.y step=10
-        button.btn.btn-success click=goRight
-          i.fa.fa-chevron-right
-  .row
-    .col-lg-12
       pixi-canvas
         pixi-stage name="game-stage"
           pixi-background camera=camera
             pixi-marker camera=camera path=path
+            
             each position in grid.roads
               pixi-road position=position camera=camera
             each position in grid.barns
@@ -20,14 +13,37 @@
             each position in grid.warehouses
               pixi-warehouse position=position camera=camera
 
-  .row
-    .col-lg-12
-      .debug
-        == input type="number" value=camera.zoom step="0.05"
-        span.db-text= camera.x
-        span x - px
-        span.db-text= camera.y
-        span y - px
+section#sidebar
+  .btn-group-vertical.btn-group-lg.side-nav
+    button.btn.btn-default.square
+      span.fa.menu-title contracts
+    button.btn.btn-default.square
+      span.fa.menu-title employees
+    button.btn.btn-default.square
+      span.fa.menu-title finances
+
+section#corner
+  i.fa.fa-2x.fa-home
+
+footer#footer.footer
+  .container-fluid
+    .row
+      .col-lg-10
+        .row
+          .col-lg-12.news-ticker
+            span.feed.fa Acme Co. truck is here
+        .row
+          .col-lg-3.info-box
+            span.fa.info-title trucks
+            span.fa.info-data 2
+          .col-lg-3.info-box
+            span.fa.info-title total
+            span.fa.info-data 440,000 tons
+          .col-lg-3.info-box
+            span.fa.info-title contracts
+            span.fa.info-data 24
+          .col-lg-3.info-box
+            span.fa.info-data Sat Feb 14, 11:04 AM
 
 == outlet
 #modal-background

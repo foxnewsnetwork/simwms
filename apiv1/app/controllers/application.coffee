@@ -10,13 +10,13 @@ unwrap = (xs) -> _.flatten xs, true
 product = (xs,ys) ->
   unwrap xs.map (x) -> ys.map (y) -> [x,y]
 
-barns = [2..12].map (k) -> PixiPosition.create(x: -1, y: k)
+barns = [2..12].map (k) -> PixiPosition.create(x: -2, y: k)
 roads = [1..12].map (k) -> PixiPosition.create(x: 0, y: k, constant: -0.25)
 moreRoads = [1..8].map (k) -> PixiPosition.create(x: k, y: 12, constant: -0.25)
 outRoads = [2..12].map (k) -> PixiPosition.create(x: 8, y: k, constant: -0.25)
-rightBarns = [6..11].map (k) -> PixiPosition.create(x: 1, y: k)
-warehouses = product([2..4], [4..11]).map ([x,y]) -> PixiPosition.create x: x, y: y
-moreWarehouses = [2..12].map (k) -> PixiPosition.create(x: -2, y: k)
+rightBarns = [6..11].map (k) -> PixiPosition.create(x: 2, y: k)
+warehouses = product([3..5], [4..11]).map ([x,y]) -> PixiPosition.create x: x, y: y
+moreWarehouses = [2..12].map (k) -> PixiPosition.create(x: -3, y: k)
 roadNetwork = moreRoads.concat(roads).concat outRoads
 
 grid = PixiGrid.create

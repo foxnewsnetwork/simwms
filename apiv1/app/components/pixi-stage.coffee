@@ -5,7 +5,7 @@ PixiStageComponent = Ember.Component.extend PixiBaseMixin,
   defaultColor: 0x668899
 
   willInsertElement: ->
-    @set "width", 0.9 * window.screen.availWidth
+    @set "width", 0.95 * window.screen.availWidth
     @set "height", 0.85 * window.screen.availHeight
     @set "stage", new PIXI.Stage @get("defaultColor")
   didInsertElement: ->
