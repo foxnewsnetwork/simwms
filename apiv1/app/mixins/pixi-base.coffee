@@ -4,7 +4,9 @@
 AssetUrls = [
   "images/light-bg.jpg",
   "images/tiles.png",
-  "images/road.png"
+  "images/road.png",
+  "images/markers.png",
+  "images/game.png"
 ]
 
 assetPreloader = new PIXI.AssetLoader AssetUrls

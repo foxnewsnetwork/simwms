@@ -5,7 +5,10 @@
         pixi-stage name="game-stage"
           pixi-background camera=camera
             pixi-marker camera=camera path=path
-            
+            each position in grid.stations
+              pixi-weight-station camera=camera position=position
+            each position in grid.scales
+              pixi-scale camera=camera position=position
             each position in grid.roads
               pixi-road position=position camera=camera
             each position in grid.barns
@@ -21,6 +24,8 @@ section#sidebar
       span.fa.menu-title employees
     button.btn.btn-default.square
       span.fa.menu-title finances
+    button.btn.btn-default.square
+      span.fa.menu-title status
 
 section#corner
   i.fa.fa-2x.fa-home
