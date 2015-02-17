@@ -37,6 +37,9 @@ PixiWeightStationComponent = PixiTileSpriteComponent.extend
     station.hitArea = polygon
     station
 
+  signalStatus: FunEx.computed ->
+    _.sample ["okay", "in use", "problem"]
+    
   requestModal: ->
     @sendAction 'action', "weight-station", @get("sprite")
   glowSprite: ->

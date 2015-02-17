@@ -36,6 +36,9 @@ PixiBarnComponent = PixiTileSpriteComponent.extend
     barn.hitArea = polygon
     barn
 
+  signalStatus: FunEx.computed ->
+    _.sample ["okay", "in use", "problem"]
+
   requestModal: ->
     @sendAction 'action', "barn", @get("sprite")
   glowSprite: ->

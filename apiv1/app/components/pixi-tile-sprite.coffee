@@ -70,6 +70,12 @@ PixiTileSpriteComponent = Ember.Component.extend PixiBaseMixin,
   willDestroyElement: ->
     @get("parentView").removeFromStage @get "sprite"
 
+  appendToStage: (sprite) ->
+    @get("sprite").addChild sprite
+
+  removeFromStage: (sprite) ->
+    @get("sprite").removeChild sprite
+
   texture: FunEx.computed "src", ->
     return if Ember.isBlank @get "src"
     PIXI.Texture.fromImage @get "src"

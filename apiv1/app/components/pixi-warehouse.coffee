@@ -22,13 +22,7 @@ PixiWarehouseComponent = PixiTileSpriteComponent.extend
 
   init: ->
     @_super()
-    @hasMaterial = shouldHaveMaterial() 
-
-  appendToStage: (sprite) ->
-    @get("sprite").addChild sprite
-
-  removeFromStage: (sprite) ->
-    @get("sprite").removeChild sprite
+    @hasMaterial = shouldHaveMaterial()
 
   sprite: FunEx.computed "texture", ->
     return if Ember.isBlank @get "texture"
