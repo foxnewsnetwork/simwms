@@ -19,16 +19,16 @@
 section#sidebar
   .btn-group-vertical.btn-group-lg.side-nav
     button.btn.btn-default.square
-      span.fa.menu-title contracts
+      img.icon-nav src="images/contracts.png" alt="contracts"
     button.btn.btn-default.square
-      span.fa.menu-title employees
+      img.icon-nav src="images/worker.png" alt="employees"
     button.btn.btn-default.square
-      span.fa.menu-title finances
+      img.icon-nav src="images/inventory.png" alt="inventory"
     button.btn.btn-default.square
-      span.fa.menu-title status
+      img.icon-nav src="images/status.png" alt="status"
 
 section#corner
-  i.fa.fa-2x.fa-home
+  img.icon-nav src="images/camera.png" alt="cameras"
 
 footer#footer.footer
   .container-fluid
@@ -39,13 +39,16 @@ footer#footer.footer
             span.feed.fa Acme Co. truck is here
         .row
           .col-lg-3.info-box
-            span.fa.info-title trucks
+            span.info-title
+              i.fa.fa-truck
             span.fa.info-data 2
           .col-lg-3.info-box
-            span.fa.info-title total
+            span.fa.info-title
+              i.fa.fa-cubes
             span.fa.info-data 440,000 tons
           .col-lg-3.info-box
-            span.fa.info-title contracts
+            span.fa.info-title
+              i.fa.fa-exchange
             span.fa.info-data 24
           .col-lg-3.info-box
             span.fa.info-data Sat Feb 14, 11:04 AM

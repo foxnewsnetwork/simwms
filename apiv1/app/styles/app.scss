@@ -28,9 +28,13 @@ $material-blue: #BBDEFB;
   .side-nav {
     
   }
+  img.icon-nav {
+    height: 100%;
+  }
   .square {
-    height: 75px;
+    height: 100px;
     text-transform: capitalize;
+    @include box-shadow(lighten(#333, 25%) 3px 2px 5px);
   }
 }
 
@@ -48,6 +52,9 @@ $material-blue: #BBDEFB;
   @include display-flex;
   @include justify-content(center);
   @include align-items(center); 
+  img.icon-nav {
+    height: 175px;
+  }
 }
 
 #footer {

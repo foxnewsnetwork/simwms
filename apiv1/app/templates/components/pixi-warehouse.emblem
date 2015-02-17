@@ -1,0 +1,2 @@
+if hasMaterial
+  pixi-pallet camera=camera

@@ -1,6 +1,15 @@
 `import Ember from 'ember'`
 `import FunEx from '../utils/fun-ex'`
+`import PixiPosition from '../utils/pixi-position'`
 `import PixiTileSpriteComponent from './pixi-tile-sprite'`
+
+dogFood = true
+shouldHaveMaterial = ->
+  if dogFood
+    dogFood = false
+    return true
+  else
+    return false
 
 PixiWarehouseComponent = PixiTileSpriteComponent.extend
   src: "images/road.png"
@@ -10,6 +19,16 @@ PixiWarehouseComponent = PixiTileSpriteComponent.extend
   defaultShift:
     x: 0
     y: 30
+
+  init: ->
+    @_super()
+    @hasMaterial = shouldHaveMaterial() 
+
+  appendToStage: (sprite) ->
+    @get("sprite").addChild sprite
+
+  removeFromStage: (sprite) ->
+    @get("sprite").removeChild sprite
 
   sprite: FunEx.computed "texture", ->
     return if Ember.isBlank @get "texture"
