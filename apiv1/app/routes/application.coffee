@@ -1,23 +1,15 @@
 `import Ember from 'ember'`
 
 ApplicationRoute = Ember.Route.extend
-  disconnectModal: ->
-    $("#modal-background").hide()
-    @disconnectOutlet
-      outlet: 'modal'
-      parentView: 'application'
-
   actions:
     openModal: (modalName, model) ->
-      console.log "attempting modal"
-      $("#modal-background").show()
-      @render "modals/#{modalName}",
-        into: 'application'
-        outlet: 'modal'
-        model: model
+      if model?
+        id = Ember.get(model, "id")
+        id ||= model
+        @transitionTo modalName, id
+      else
+        @transitionTo modalName
     closeModal: ->
-      @disconnectModal()
-    willTransition: ->
-      @disconnectModal()
+      @transitionTo "index"
 
 `export default ApplicationRoute`

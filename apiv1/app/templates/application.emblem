@@ -18,13 +18,13 @@
 
 section#sidebar
   .btn-group-vertical.btn-group-lg.side-nav
-    button.btn.btn-default.square
+    link-to "contracts" class="btn btn-default square"
       img.icon-nav src="images/contracts.png" alt="contracts"
-    button.btn.btn-default.square
+    link-to "employees" class="btn btn-default square"
       img.icon-nav src="images/worker.png" alt="employees"
-    button.btn.btn-default.square
+    link-to "inventories" class="btn btn-default square"
       img.icon-nav src="images/inventory.png" alt="inventory"
-    button.btn.btn-default.square
+    link-to "statuses" class="btn btn-default square"
       img.icon-nav src="images/status.png" alt="status"
 
 section#corner
@@ -53,7 +53,5 @@ footer#footer.footer
           .col-lg-3.info-box
             span.fa.info-data Sat Feb 14, 11:04 AM
 
+
 == outlet
-#modal-background
-  .modal-container
-    == outlet "modal"

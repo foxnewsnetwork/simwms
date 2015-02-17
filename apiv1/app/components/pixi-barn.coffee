@@ -40,7 +40,7 @@ PixiBarnComponent = PixiTileSpriteComponent.extend
     _.sample ["okay", "in use", "problem"]
 
   requestModal: ->
-    @sendAction 'action', "barn", @get("sprite")
+    @sendAction 'action', "barn", 3 # @get("sprite")
   glowSprite: ->
     @set "sprite.tint", 0xffcccc
   unglowSprite: ->
