@@ -1,0 +1,52 @@
+h2.modal-title
+  span.fa employees overview
+ul.media-list
+  li.media
+    .media-left
+      img.media-object.thumbnail.employee-mugshot src="images/doge.jpg"
+    .media-body
+      h4.media-heading Jose Doge
+      .media-content
+        span.bold.colon job
+        span.prespace weight-master
+      .media-content
+        span.bold.colon location
+        span.prespace weight-station#1
+      .media-content
+        span.bold.colon
+          i.fa.fa-phone
+        span.prespace 555 - 123 - 1234
+  li.media
+    .media-left
+      img.media-object.thumbnail.employee-mugshot src="images/doge2.jpg"
+    .media-body
+      h4.media-heading Doge Phillips
+      .media-content
+        span.bold.colon job
+        span.prespace forklift driver
+      .media-content
+        span.bold.colon location
+        span.prespace dock#1
+      .media-content
+        span.bold.colon
+          i.fa.fa-phone
+        span.prespace 555 - 123 - 4321
+  li.media
+    .media-left
+      img.media-object.thumbnail.employee-mugshot src="images/doge3.jpg"
+    .media-body
+      h4.media-heading Doge Rodriguez
+      .media-content
+        span.bold.colon job
+        span.prespace warehouse manager
+      .media-content
+        span.bold.colon location
+        span.prespace dock#3
+      .media-content
+        span.bold.colon
+          i.fa.fa-phone
+        span.prespace 555 - 444 - 4444
+.actions
+  button.btn.btn-primary.close-button click="closeModal"
+    i.fa.fa-times
+    span.prespace.upcase dismiss
