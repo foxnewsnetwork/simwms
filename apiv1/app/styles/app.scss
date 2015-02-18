@@ -48,8 +48,14 @@ $material-blue: #BBDEFB;
   height: 200px;
   z-index: 3;
   background-color: $material-blue;
+  &:hover {
+    background-color: darken($material-blue, 10%);
+  }
   border-top: 2px solid #EFEBE9;
   border-left: 2px solid #EFEBE9;
+  @include transition-property(background-color);
+  @include transition-duration(200ms);
+  @include transition-timing-function(ease-in);
   @include box-shadow(lighten(#333, 25%) -2px -2px 5px);
   @include display-flex;
   @include justify-content(center);

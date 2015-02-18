@@ -28,7 +28,8 @@ section#sidebar
       img.icon-nav src="images/status.png" alt="status"
 
 section#corner
-  img.icon-nav src="images/camera.png" alt="cameras"
+  link-to "cameras"
+    img.icon-nav src="images/camera.png" alt="cameras"
 
 footer#footer.footer
   .container-fluid
