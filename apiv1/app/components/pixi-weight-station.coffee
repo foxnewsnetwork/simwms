@@ -41,7 +41,7 @@ PixiWeightStationComponent = PixiTileSpriteComponent.extend
     _.sample ["okay", "in use", "problem"]
     
   requestModal: ->
-    @sendAction 'action', "weight-station", @get("sprite")
+    @sendAction 'action', "scale", 1
   glowSprite: ->
     @set "sprite.tint", 0xffcccc
   unglowSprite: ->

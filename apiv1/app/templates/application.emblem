@@ -4,7 +4,8 @@
       pixi-canvas
         pixi-stage name="game-stage"
           pixi-background camera=camera
-            pixi-marker camera=camera path=path
+            pixi-truck camera=camera path=path
+            
             each position in grid.stations
               pixi-weight-station camera=camera position=position
             each position in grid.scales

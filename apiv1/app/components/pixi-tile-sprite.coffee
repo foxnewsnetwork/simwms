@@ -11,7 +11,11 @@ FPS = 60
 MSPF = 1000 / FPS
 
 signFloorRound = (x) -> Math.sign Math.floor Math.round(x * 100000) / 100000
-
+decideDirection = (x,y) ->
+  return "north" if x is 0 and y > 0
+  return "south" if x is 0 and y < 0
+  return "east" if x > 0 and y is 0
+  return "west" if x < 0 and y is 0
 distancePerFrame = (start: start, finish: finish, tilePerSecond: tilePerSecond) ->
   [xi, yi] = normalizePoint start
   [xf, yf] = normalizePoint finish
@@ -19,7 +23,7 @@ distancePerFrame = (start: start, finish: finish, tilePerSecond: tilePerSecond) 
   ky = signFloorRound yf - yi
   tilePerSecond ||= 0
   d = tilePerSecond / FPS
-  [kx * d, ky * d]
+  [kx * d, ky * d, decideDirection(kx, ky)]
   
 PixiTileSpriteComponent = Ember.Component.extend PixiBaseMixin,
   initialSize:
@@ -48,7 +52,8 @@ PixiTileSpriteComponent = Ember.Component.extend PixiBaseMixin,
         @set "position.x", Ember.get(pos, "x")
         @set "position.y", Ember.get(pos, "y")
       @get("parentView").refreshOnStage @get "sprite"
-      [dx, dy] = distancePerFrame start: @get("position"), finish: position, tilePerSecond: @get("path.speed")
+      [dx, dy, direction] = distancePerFrame start: @get("position"), finish: position, tilePerSecond: @get("path.speed")
+      @set "direction", direction
       last: position
       interval: repeatEvery MSPF, =>
         @incrementProperty "position.x", dx
@@ -60,7 +65,7 @@ PixiTileSpriteComponent = Ember.Component.extend PixiBaseMixin,
 
   didFinishPreloading: ->
     if @get("path.positions.firstObject")?
-      position = PixiPosition.create x: @get("path.positions.firstObject.x"), y: @get("path.positions.firstObject.y")
+      position = PixiPosition.create x: @get("path.positions.firstObject.x"), y: @get("path.positions.firstObject.y"), constant: 1
       @set "position", position
     @set "sprite.isometricTilePosition", @get("position")
     @get("parentView").appendToStage @get "sprite"

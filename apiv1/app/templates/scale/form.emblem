@@ -1,0 +1,11 @@
+form submit="newTruck"
+  .form-group
+    label.capitalize.bold appointment number
+    == input type="email" class="form-control"
+  .form-group
+    label.capitalize.bold weight
+    == input type="number" class="form-control"
+  .actions
+    button.btn.btn-success.close-button click="newTruck"
+      i.fa.fa-check
+      span.capitalize submit

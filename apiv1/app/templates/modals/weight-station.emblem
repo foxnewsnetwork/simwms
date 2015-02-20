@@ -21,6 +21,13 @@
               dd Jose, Phillip
               dt.capitalize.bold truck
               dd none
+        form
+          .form-group
+            label.capitalize.bold appointment number
+            == input type="email" class="form-control"
+          .form-group
+            label.capitalize.bold weight
+            == input type="number" class="form-control"
         .actions
           button.btn.btn-primary.close-button click="closeModal"
             i.fa.fa-times

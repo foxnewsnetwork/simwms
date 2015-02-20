@@ -1,0 +1,83 @@
+.col-lg-6.col-md-6.col-sm-12.col-xs-12.fa.workflow-column
+  .list-group.forward-group
+    .list-group-item.process-group-item
+      .media
+        .media-body
+          h4.media-heading make agreement
+          .info-tile
+            span.bold.colon who
+            span.prespace sales / purchase rep
+        .media-right.media-middle
+          img.media-object src="images/employees.png"
+
+    .list-group-item.process-group-item
+      .media
+        .media-body
+          h4.media-heading schedule appointment
+          .info-tile
+            span.bold.colon who
+            span.prespace logistics staff
+        .media-right.media-middle
+          img.media-object src="images/appointment.png"
+
+    .list-group-item.process-group-item
+      .media
+        .media-body
+          h4.media-heading truck arrives
+          .info-tile
+            span.bold.colon who
+            span.prespace truck driver
+        .media-right.media-middle
+          img.media-object src="images/truck.png"
+
+    .list-group-item.process-group-item
+      .media
+        .media-body
+          h4.media-heading get weight
+          .info-tile
+            span.bold.colon who
+            span.prespace weight-master
+        .media-right.media-middle
+          img.media-object src="images/scale.png"
+
+.col-lg-6.col-md-6.col-sm-12.col-xs-12.fa.workflow-column
+  .list-group.reverse-group
+    .list-group-item.process-group-item
+      .media
+        .media-left.media-middle
+          img.media-object src="images/trafficlights.png"
+        .media-body
+          h4.media-heading go to dock
+          .info-tile
+            span.bold.colon who
+            span.prespace truck driver
+
+    .list-group-item.process-group-item
+      .media
+        .media-left.media-middle
+          img.media-object src="images/forklift2.png"
+        .media-body
+          h4.media-heading load / unload truck
+          .info-tile
+            span.bold.colon who
+            span.prespace dock workers
+
+    .list-group-item.process-group-item
+      .media
+        .media-left.media-middle
+          img.media-object src="images/scale.png"
+        .media-body
+          h4.media-heading get exit weight
+          .info-tile
+            span.bold.colon who
+            span.prespace weight-master
+
+    .list-group-item.process-group-item
+      .media
+        .media-left.media-middle
+          img.media-object src="images/contracts.png"
+        .media-body
+          h4.media-heading finish and report
+          .info-tile
+            span.bold.colon who
+            span.prespace system

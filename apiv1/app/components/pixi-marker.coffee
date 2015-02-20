@@ -20,7 +20,7 @@ PixiMarkerComponent = PixiTileSpriteComponent.extend
   unglowSprite: ->
     @set "sprite.tint", 0xffffff
   requestModal: ->
-    @sendAction 'action', "marker", @get("sprite")
+    @sendAction 'action', "truck", 1 # @get("sprite")
 
   sprite: FunEx.computed "texture", ->
     return if Ember.isBlank @get "texture"

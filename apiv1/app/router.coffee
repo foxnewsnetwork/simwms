@@ -12,6 +12,8 @@ Router.map ->
   @resource "cameras", path: "/cameras", ->
   @resource "truck", path: "/truck/:truck_id", ->
   @resource "scale", path: "/scale/:scale_id", ->
+    @route "form"
   @resource "barn", path: "/barn/:barn_id", ->
+    @route "form"
 
 `export default Router`
