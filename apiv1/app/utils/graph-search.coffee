@@ -43,7 +43,7 @@ graphSearchCore = (queue: queue, successor: successor, start: start, wasAt: wasA
   queue.queue child for child in children
   if queue.length > 0
     next = queue.dequeue()
-    [].concat(start).concat graphSearchCore
+    [start].concat graphSearchCore
       queue: queue
       start: next
       wasAt: start

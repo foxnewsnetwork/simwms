@@ -2,7 +2,9 @@
 `import FunEx from './fun-ex'`
 `import normalizePoint from './normalize-point'`
 
-foldLeft = (xs, init, reducer) -> _.reduce xs, reducer, init
+foldLeft = (xs, init, reducer) -> 
+  xs = xs.toArray() if xs.toArray?
+  _.reduce xs, reducer, init
 
 PixiGrid = Ember.Object.extend
   knownTiles: ["grass", "barn", "warehouse", "road"]

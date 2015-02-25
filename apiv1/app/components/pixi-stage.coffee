@@ -9,6 +9,7 @@ PixiStageComponent = Ember.Component.extend PixiBaseMixin,
     @set "height", 0.85 * window.screen.availHeight
     @set "stage", new PIXI.Stage @get("defaultColor")
   didInsertElement: ->
+    @_super()
     @set "animeKey", @get("parentView").hireAnimator _.bind(@animate, @)
 
   willDestroyElement: ->

@@ -29,46 +29,47 @@ PixiTileSpriteComponent = Ember.Component.extend PixiBaseMixin,
   initialSize:
     width: 1
     height: 1
-  
-  init: -> @_super()
-  manageCamera: Ember.observer "camera.x", "camera.y", "camera.zoom", "position.x", "position.y", ->
-    {x: x, y: y} = @get("camera").tile2px @get "position"
+
+  manageCamera: Ember.observer "camera.x", "camera.y", "camera.zoom", "model.x", "model.y", ->
+    {x: x, y: y} = @get("camera").tile2px @get "model"
     @set "sprite.position.x", x + @get("camera.zoom") * @get("defaultShift.x")
     @set "sprite.position.y", y + @get("camera.zoom") * @get("defaultShift.y")
     @set "sprite.scale.x", @get("defaultScale.x") * @get("camera.zoom")
     @set "sprite.scale.y", @get("defaultScale.y") * @get("camera.zoom")
 
-  # Yes, I know this is shit-tier sphagetti code, I'm sorry.
-  # If you're not me and you're reading this, please fix it.
-  # If you are me and reading it, please stop being a faggot
-  manageKinetics: Ember.observer "path.positions.@each", ->
-    return if Ember.isBlank @get("path.positions")
-    msPerTile = 1000 / @get("path.speed")
+  manageKinetics: ->
+    return if Ember.isBlank @get("truck.path.positions")
+    msPerTile = 1000 / @get("truck.path.speed")
     msPerTile = 1000 unless _.isFinite msPerTile
-    waitReduce @get("path.positions"), {last: null, interval: null}, msPerTile, ({last:pos, interval:interval}, position) =>
-      if interval?
-        window.clearInterval interval 
-      if pos? and Ember.get(pos, "x")? and Ember.get(pos, "y")?
-        @set "position.x", Ember.get(pos, "x")
-        @set "position.y", Ember.get(pos, "y")
-      @get("parentView").refreshOnStage @get "sprite"
-      [dx, dy, direction] = distancePerFrame start: @get("position"), finish: position, tilePerSecond: @get("path.speed")
-      @set "direction", direction
-      last: position
-      interval: repeatEvery MSPF, =>
-        @incrementProperty "position.x", dx
-        @incrementProperty "position.y", dy
-    .then (last: pos, interval: interval) => 
-      @set "position.x", Ember.get(pos, "x")
-      @set "position.y", Ember.get(pos, "y")
+    waitReduce @get("truck.path.positions"), @packageAggregate(), msPerTile, ({last:pos, interval:interval}, position) =>
+      window.clearInterval interval if interval?
+      @updatePosition pos
+      @didExperienceMotion position, last: pos if @didExperienceMotion?
+      @packageAggregate position
+    .then (last: pos, interval: interval) =>
+      @updatePosition pos
       window.clearInterval interval
+      @didFinishMotion pos if @didFinishMotion?
 
-  didFinishPreloading: ->
-    if @get("path.positions.firstObject")?
-      position = PixiPosition.create x: @get("path.positions.firstObject.x"), y: @get("path.positions.firstObject.y"), constant: 1
-      @set "position", position
-    @set "sprite.isometricTilePosition", @get("position")
-    @get("parentView").appendToStage @get "sprite"
+  packageAggregate: (position) ->
+    return last: null, interval: null unless position?
+    [dx, dy, direction] = distancePerFrame start: @get("model"), finish: position, tilePerSecond: @get("truck.path.speed")
+    @set "direction", direction
+    last: position
+    interval: repeatEvery MSPF, =>
+      @incrementProperty "model.x", dx
+      @incrementProperty "model.y", dy
+
+  updatePosition: (pos) ->
+    if pos? and Ember.get(pos, "x")? and Ember.get(pos, "y")?
+      @get("parentView").refreshOnStage @get "sprite"
+      @set "model.x", Ember.get(pos, "x")
+      @set "model.y", Ember.get(pos, "y")
+
+  didReadyEverything: ->
+    @set "sprite.isometricTilePosition", @get("model")
+    if @get("model")?
+      @get("parentView").appendToStage @get "sprite"
     @manageCamera()
     @manageKinetics()
 
@@ -85,9 +86,9 @@ PixiTileSpriteComponent = Ember.Component.extend PixiBaseMixin,
     return if Ember.isBlank @get "src"
     PIXI.Texture.fromImage @get "src"
 
-  sprite: FunEx.computed "texture", "position", ->
+  sprite: FunEx.computed "texture", "model", ->
     return if Ember.isBlank @get "texture"
-    return if Ember.isBlank @get "position"
+    return if Ember.isBlank @get "model"
     sprite = new PIXI.TilingSprite @get("texture"), @initialSize.width, @initialSize.height
     sprite
 

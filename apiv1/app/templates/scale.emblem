@@ -7,12 +7,13 @@
             .close-button-top.pointer.close-button click="closeModal"
               i.fa.fa-times
             h2.modal-title
-              span.fa Weight Station #1
+              span.fa Weight Station #
+              span.fa= model.id
             ul.nav.nav-pills
               li
-                link-to "scale" 1 class="active"
+                link-to "scale" model.id class="active"
                   span.capitalize home
               li
-                link-to "scale.form" 1
+                link-to "scale.form" model.id
                   span.capitalize form
             == outlet

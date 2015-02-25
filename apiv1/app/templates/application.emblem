@@ -4,18 +4,18 @@
       pixi-canvas
         pixi-stage name="game-stage"
           pixi-background camera=camera
-            pixi-truck camera=camera path=path
-            
-            each position in grid.stations
-              pixi-weight-station camera=camera position=position
-            each position in grid.scales
-              pixi-scale camera=camera position=position
-            each position in grid.roads
-              pixi-road position=position camera=camera
-            each position in grid.barns
-              pixi-barn position=position camera=camera
-            each position in grid.warehouses
-              pixi-warehouse position=position camera=camera
+            each truck in trucks
+              pixi-truck camera=camera truck=truck
+            each station in grid.stations
+              pixi-weight-station camera=camera model=station
+            each scale in grid.scales
+              pixi-scale camera=camera model=scale
+            each road in grid.roads
+              pixi-road camera=camera model=road
+            each barn in grid.barns
+              pixi-barn camera=camera model=barn
+            each warehouse in grid.warehouses
+              pixi-warehouse camera=camera model=warehouse
 
 section#sidebar
   .btn-group-vertical.btn-group-lg.side-nav

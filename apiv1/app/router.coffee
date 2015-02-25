@@ -9,6 +9,7 @@ Router.map ->
   @resource "employees", path: "/employees", ->
   @resource "inventories", path: "/inventories", ->
   @resource "statuses", path: "/statuses", ->
+    @route "debug"
   @resource "cameras", path: "/cameras", ->
   @resource "truck", path: "/truck/:truck_id", ->
   @resource "scale", path: "/scale/:scale_id", ->

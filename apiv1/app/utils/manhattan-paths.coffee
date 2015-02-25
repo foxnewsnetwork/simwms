@@ -1,3 +1,4 @@
+
 manhattanPaths = (pt0, pt1) ->
   return [] unless pt0? and pt1?
   [x0, y0] = pt0

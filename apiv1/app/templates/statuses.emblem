@@ -8,4 +8,20 @@
               i.fa.fa-times
             h2.modal-title
               span.fa status overview
-            == outlet
+            .row
+              .col-xs-12
+                ul.nav.nav-tabs
+                  li.active
+                    link-to "statuses.index"
+                      span.capitalize.bold workflows
+                  li
+                    link-to "statuses.debug"
+                      span.capitalize debug
+            .row
+              == outlet
+
+            .row
+              .col-xs-12.actions
+                link-to "index" class="btn btn-primary close-button"
+                  i.fa.fa-times
+                  span.prespace.upcase dismiss

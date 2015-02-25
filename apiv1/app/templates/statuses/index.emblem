@@ -1,24 +1,8 @@
-.row
-  .col-xs-12
-    ul.nav.nav-tabs
-      li.active
-        a href="dogs"
-          span.capitalize.bold workflows
-      li
-        a href="dogs"
-          span.capitalize other stuff
-.row
-  .col-lg-10
-    .row
-      == partial "scale/workflow"
-  .col-lg-2
-    ul.nav.nav-pills.nav-stacked
-      li.active 
-        a href="dogs"
-          span.capitalize transload
-
-.row
-  .col-xs-12.actions
-    link-to "index" class="btn btn-primary close-button"
-      i.fa.fa-times
-      span.prespace.upcase dismiss
+.col-lg-10
+  .row
+    == partial "statuses/workflow"
+.col-lg-2
+  ul.nav.nav-pills.nav-stacked
+    li.active 
+      a href="dogs"
+        span.capitalize transload

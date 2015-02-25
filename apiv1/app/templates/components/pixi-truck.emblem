@@ -1,0 +1,4 @@
+== yield
+.hidden
+  each position in path.positions
+    span= position

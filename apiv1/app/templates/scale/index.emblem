@@ -8,7 +8,7 @@
       dt.capitalize.bold camera
       dd live
       dt.capitalize.bold station no.
-      dd 1
+      dd= model.id
       dt.capitalize.bold workers
       dd Jose, Phillip
       dt.capitalize.bold truck
