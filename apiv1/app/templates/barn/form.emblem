@@ -1,11 +1,14 @@
-form submit="newTruck"
-  .form-group
-    label.capitalize.bold appointment number
-    == input type="email" class="form-control"
-  .form-group
-    label.capitalize.bold weight
-    == input type="number" class="form-control"
+form-for submit="truckDepart" errors=truckErrors
+  .form-group.input-section attr-name="material"
+    label.capitalize.bold material
+    == input type="text" class="form-control" name="material"
+  .form-group.input-section attr-name="amount"
+    label.capitalize.bold amount
+    == input type="text" class="form-control" name="amount"
+  .form-group.input-section attr-name="amount"
+    label.capitalize.bold storage cell
+    == input type="text" class="form-control" name="cellno"
   .actions
-    button.btn.btn-success.close-button click="newTruck"
+    button.btn.btn-success.close-button type="submit"
       i.fa.fa-check
       span.capitalize submit

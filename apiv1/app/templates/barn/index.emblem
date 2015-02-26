@@ -4,11 +4,11 @@
   .media-body
     dl
       dt.capitalize.bold status
-      dd available
+      dd= model.status
       dt.capitalize.bold camera
       dd live
       dt.capitalize.bold dock no.
-      dd 3
+      dd= model.id
       dt.capitalize.bold workers
       dd Jose, Phillip
       dt.capitalize.bold truck

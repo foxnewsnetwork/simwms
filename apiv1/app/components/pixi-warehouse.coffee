@@ -3,14 +3,6 @@
 `import PixiPosition from '../utils/pixi-position'`
 `import PixiTileSpriteComponent from './pixi-tile-sprite'`
 
-dogFood = true
-shouldHaveMaterial = ->
-  if dogFood
-    dogFood = false
-    return true
-  else
-    return false
-
 PixiWarehouseComponent = PixiTileSpriteComponent.extend
   src: "images/road.png"
   defaultScale:
@@ -22,7 +14,9 @@ PixiWarehouseComponent = PixiTileSpriteComponent.extend
 
   init: ->
     @_super()
-    @hasMaterial = shouldHaveMaterial()
+
+  hasMaterial: FunEx.computed "model.status", ->
+    @get("model.status") is "full"
 
   sprite: FunEx.computed "texture", ->
     return if Ember.isBlank @get "texture"

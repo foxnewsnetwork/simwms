@@ -6,6 +6,11 @@ Warehouse = DS.Model.extend
   x: DS.attr "number"
   y: DS.attr "number"
   z: DS.attr "number"
+  status: DS.attr "string"
+
+  loadWithMaterial: ->
+    @set "status", "full"
+    @save()
 
   order: FunEx.computed "position.order", ->
     @get("position.order")

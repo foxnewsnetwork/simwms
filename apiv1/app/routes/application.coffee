@@ -4,15 +4,6 @@
 ApplicationRoute = Ember.Route.extend
   model: ->
     camera: PixiCamera.create(x: 250, y: 280, zoom: 0.8)
-    truck: @debugTruck()
-  debugTruck: ->
-    @store.createRecord "truck",
-      speed: 1
-      grid: @iogrid
-      origination: 1
-      origintype: "scale"
-      destination: 8
-      destinytype: "barn"
 
   actions:
     openModal: (modalName, model) ->

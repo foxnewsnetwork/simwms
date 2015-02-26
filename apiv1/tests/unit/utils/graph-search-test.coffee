@@ -5,21 +5,20 @@ module 'graphSearch'
 
 defaultChildren = ([x0, y0]) ->
   [
-    {x: x0+1, y: y0}
-    {x: x0-1, y: y0}
-    {x: x0, y: y0+1}
-    {x: x0, y: y0-1}
+    [x0+1, y0]
+    [x0-1, y0]
+    [x0, y0+1]
+    [x0, y0-1]
   ]
 
 successor = (nowAt, wasAt) ->
-  {x: x0, y: y0} = nowAt
-  {x: x1, y: y1} = wasAt if wasAt?
-  defaultChildren([x0, y0]).reject (x:x, y:y) -> 
-    x is x1 and y is y1
+  [xz, yz] = wasAt if wasAt?
+  defaultChildren(nowAt).reject ([x, y]) ->
+    x is xz and y is yz
 
 stringify = (xs) ->
   xs
-    .map (x: x, y: y) -> "[#{x}, #{y}]"
+    .map ([x, y]) -> "[#{x}, #{y}]"
     .join(",")
 
 # Replace this with your real tests.
@@ -28,12 +27,12 @@ test 'it works', ->
   ok result
 
 test 'the successor function should properly give successors', ->
-  actual = successor(x: 0, y: 0)
+  actual = successor([0, 0])
   expected = [
-    { x: 1, y: 0 }
-    { x: -1, y: 0 }
-    { x: 0, y: 1 }
-    { x: 0, y: -1 }
+    [1, 0]
+    [-1, 0]
+    [0, 1]
+    [0, -1]
   ]
   equal stringify(actual), stringify(expected)
 
@@ -47,19 +46,19 @@ test 'the graphSearch should find the solution', ->
       y: 6
     successor: successor
   expected = [
-    { x: -1, y: -1 }
-    { x: 0, y: -1 }
-    { x: 1, y: -1 }
-    { x: 2, y: -1 }
-    { x: 3, y: -1 }
-    { x: 4, y: -1 }
-    { x: 5, y: -1 }
-    { x: 5, y: 0 }
-    { x: 5, y: 1 }
-    { x: 5, y: 2 }
-    { x: 5, y: 3 }
-    { x: 5, y: 4 }
-    { x: 5, y: 5 }
-    { x: 5, y: 6 }
+    [-1, -1]
+    [0, -1]
+    [1, -1]
+    [2, -1]
+    [3, -1]
+    [4, -1]
+    [5, -1]
+    [5, 0]
+    [5, 1]
+    [5, 2]
+    [5, 3]
+    [5, 4]
+    [5, 5]
+    [5, 6]
   ]
-  equal stringify(solution), stringify(expected)
+  equal stringify(solution.reverse()), stringify(expected)

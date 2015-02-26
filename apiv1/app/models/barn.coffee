@@ -11,7 +11,11 @@ Barn = DS.Model.extend
 
   workOnTruck: (truck) ->
     @set "status", "in use"
-    @save()    
+    @save()
+
+  finishWithTruck: ->
+    @set "status", "okay"
+    @save()
 
   order: FunEx.computed "position.order", ->
     @get("position.order")

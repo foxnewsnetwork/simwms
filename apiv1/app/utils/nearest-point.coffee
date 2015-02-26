@@ -1,6 +1,5 @@
 `import Ember from 'ember'`
 `import DebugEx from '../utils/debug-ex'`
-`import normalizePoint from './normalize-point'`
 
 square = (x) -> x * x
 
@@ -13,9 +12,9 @@ min = (points, quantify) ->
   points.objectAt index
 
 nearestPoint = (points, point) ->
-  [x0, y0] = normalizePoint point
-  normalizePoint min points, (pts) ->
-    [x1, y1] = normalizePoint pts
+  [x0, y0] = point
+  min points, (pts) ->
+    [x1, y1] = pts
     square(x1 - x0) + square(y1 - y0)
 
 `export default nearestPoint`
