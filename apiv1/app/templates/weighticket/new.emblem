@@ -1,0 +1,30 @@
+.row
+  .col-lg-8
+    form-for submit="newWeighticket" errors=ticketErrors
+      legend.form-title
+        span.fa truck weight ticket
+      .form-group.input-section attr-name="appno"
+        label.capitalize.bold appointment number
+        == input type="text" class="form-control" name="appno"
+      .form-group.input-section attr-name="licenseno"
+        label.capitalize.bold license plate number
+        == input type="text" class="form-control" name="licenseno"
+      .form-group.input-section attr-name="weight"
+        label.capitalize.bold weight
+        == input type="text" class="form-control" name="weight"
+      .form-group.input-section attr-name="pictures"
+        label.capitalize.bold pictures
+        == input type="text" class="form-control" name="pictures"
+      .actions.btn-group.btn-group-lg
+        button.btn.btn-success.btn-hover type="submit"
+          i.fa.fa-check
+          span.capitalize submit
+        link-to "scalemaster" class="btn btn-default btn-hover"
+          i.fa.fa-times
+          span.capitalize cancel
+  .col-lg-4
+    h4.action-title
+      span.fa I don't know what to do, help!
+    button.btn.btn-danger.btn-hover.btn-lg click="reportProblem"
+      i.fa.fa-warning
+      span.capitalize panic

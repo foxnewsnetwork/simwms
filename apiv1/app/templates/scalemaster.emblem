@@ -1,0 +1,21 @@
+#main-nav
+  nav.navbar.navbar-default
+    .container
+      link-to "scalemaster" class="navbar-brand"
+        span.capitalize.bold scale master
+
+      ul.nav.navbar-nav.navbar-right
+        li
+          a.pointer click="exitScalemaster"
+            i.fa.fa-sign-out
+#scalemaster-application
+  section#scale-info
+    .container
+      == outlet
+
+  footer#scale-footer
+    .container
+      .row
+        .col-xs-12
+          h4.footer-title
+            span.fa Scale Master

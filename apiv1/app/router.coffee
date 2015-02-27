@@ -6,6 +6,8 @@ Router = Ember.Router.extend
 
 Router.map ->
   @resource "scalemaster", path: "/scalemaster", ->
+    @resource "weighticket", path: "/weighticket", ->
+      @route "new"
   @resource "dockworker", path: "/dockworker", ->
   @resource "manager", path: "/manager", ->    
     @resource "contracts", path: "/contracts", ->

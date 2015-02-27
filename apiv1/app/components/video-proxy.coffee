@@ -6,7 +6,7 @@ VideoProxyComponent = Ember.Component.extend
   classNames: ['video-proxy', 'videojs']
   sizeOptions:
     width: "100%"
-    height: "315"
+    height: "100%"
 
   didInsertElement: ->
     @manageSource()
