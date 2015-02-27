@@ -1,0 +1,12 @@
+h2.modal-title
+  span.fa Login
+  
+form-for errors=loginErrors submit="login"
+  .form-group.input-section attr-name="ranks"
+    label.capitalize.bold role
+    == view "select" content=roles name="role" class="form-control"
+
+  .actions
+    button.btn.btn-success.close-button type="submit"
+      i.fa.fa-check
+      span.capitalize submit

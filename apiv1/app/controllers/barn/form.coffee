@@ -27,6 +27,6 @@ BarnFormController = Ember.Controller.extend
       @get("barn").finishWithTruck()
       @putCargoIntoStorage params
       @dispatchTruckToExit params
-      @transitionToRoute "index"
+      @transitionToRoute "manager"
 
 `export default BarnFormController`

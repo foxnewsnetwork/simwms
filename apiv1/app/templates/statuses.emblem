@@ -10,18 +10,18 @@
               span.fa status overview
             .row
               .col-xs-12
-                ul.nav.nav-tabs
-                  li.active
-                    link-to "statuses.index"
-                      span.capitalize.bold workflows
-                  li
-                    link-to "statuses.debug"
-                      span.capitalize debug
+                .btn-group.btn-group-lg role="navigation"
+                  link-to "statuses.index" class="btn btn-default"
+                    i.fa.fa-tasks
+                  link-to "statuses.debug" class="btn btn-default"
+                    i.fa.fa-bug
+                  link-to "statuses.options" class="btn btn-default"
+                    i.fa.fa-gears
             .row
               == outlet
 
             .row
               .col-xs-12.actions
-                link-to "index" class="btn btn-primary close-button"
+                link-to "manager" class="btn btn-primary close-button"
                   i.fa.fa-times
                   span.prespace.upcase dismiss

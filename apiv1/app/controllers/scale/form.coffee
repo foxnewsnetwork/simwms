@@ -19,6 +19,6 @@ ScaleFormController = Ember.Controller.extend
       .save()
       .then (truck) =>
         @iotrucks.pushObject truck
-        @transitionToRoute "index"
+        @transitionToRoute "manager"
 
 `export default ScaleFormController`
