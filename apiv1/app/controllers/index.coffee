@@ -7,8 +7,8 @@ IndexController = Ember.Controller.extend
   redirectOut: ->
     switch @get("session.me.role")
       when "manager" then @transitionToRoute "manager"
-      when "dock worker" then @transitionToRoute "dockworker"
-      when "scale master" then @transitionToRoute "scalemaster"
+      when "dock worker" then @transitionToRoute "dockworker", 1
+      when "scale master" then @transitionToRoute "scalemaster", 1
       else @transitionToRoute "index"
   actions:
     login: (params) ->

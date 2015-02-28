@@ -69,4 +69,7 @@
   @include align-items(center);
   color: #888;
   @include box-shadow(#777 0px -2.5px 3px);
+  .footer-title {
+    text-align: center;
+  }
 }

@@ -1,7 +1,7 @@
 #main-nav
   nav.navbar.navbar-default
     .container
-      link-to "scalemaster" class="navbar-brand"
+      link-to "scalemaster" 1 class="navbar-brand"
         span.capitalize.bold scale master
 
       ul.nav.navbar-nav.navbar-right

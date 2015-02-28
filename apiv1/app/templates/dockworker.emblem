@@ -1,0 +1,34 @@
+#main-nav
+  nav.navbar.navbar-default
+    .container
+      link-to "dockworker" 1 class="navbar-brand"
+        span.capitalize.bold dock worker
+
+      ul.nav.navbar-nav.navbar-right
+        li
+          a.pointer click="exitDock"
+            i.fa.fa-sign-out
+#scalemaster-application.dockworker-application
+  section#scale-info
+    .container
+      .row
+        .col-xs-12
+          .btn-group.btn-group-lg
+            link-to "dockworker.index" 1 class="btn btn-default"
+              i.fa.fa-dashboard
+              span.fa.nav-title dash
+            link-to "dockworker.status" 1 class="btn btn-default"
+              i.fa.fa-camera
+              span.fa.nav-title status
+            link-to "dockworker.inventory" 1 class="btn btn-default"
+              i.fa.fa-cubes
+              span.fa.nav-title inventory
+      .row
+        == outlet
+
+  footer#scale-footer
+    .container
+      .row
+        .col-xs-12
+          h4.footer-title
+            span.fa dock worker
