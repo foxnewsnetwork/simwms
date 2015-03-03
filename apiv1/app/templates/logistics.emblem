@@ -1,0 +1,30 @@
+#main-nav
+  nav.navbar.navbar-default
+    .container
+      link-to "logistics" class="navbar-brand"
+        span.capitalize.bold logistics
+
+      ul.nav.navbar-nav.navbar-right
+        li
+          a.pointer click="exitLogistics"
+            i.fa.fa-sign-out
+#scalemaster-application.logitics-application
+  section#scale-info
+    .container
+      .row
+        .col-xs-12
+          .btn-group.btn-group-lg
+            link-to "logistics.index" class="btn btn-default"
+              i.fa.fa-dashboard
+              span.fa.nav-title dash
+            link-to "logistics.inventory" class="btn btn-default"
+              i.fa.fa-cubes
+              span.fa.nav-title inventory
+        == outlet
+
+  footer#scale-footer
+    .container
+      .row
+        .col-xs-12
+          h4.footer-title
+            span.fa logistics
