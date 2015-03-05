@@ -1,0 +1,21 @@
+#modal-background
+  .modal-container
+    .container
+      .row
+        .col-lg-8.col-md-10.col-sm-12.col-xs-12.col-lg-push-2.col-md-push-1
+          #cell-modal.modal-box
+            .close-button-top.pointer.close-button click="closeModal"
+              i.fa.fa-times
+            h2.modal-title
+              span.fa cell no. 
+              span= model.id
+            .btn-group.btn-group-lg
+              link-to "cell.index" model.id class="btn btn-default"
+                span.capitalize status
+              link-to "cell.pictures" model.id class="btn btn-default"
+                span.capitalize pictures
+            == outlet
+            .actions
+              button.btn.btn-primary.close-button click="closeModal"
+                i.fa.fa-times
+                span.prespace.upcase dismiss

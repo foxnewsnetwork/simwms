@@ -17,7 +17,7 @@
             link-to "logistics.index" class="btn btn-default"
               i.fa.fa-dashboard
               span.fa.nav-title dash
-            link-to "logistics.inventory" class="btn btn-default"
+            link-to "stockpile.index" class="btn btn-default"
               i.fa.fa-cubes
               span.fa.nav-title inventory
         == outlet

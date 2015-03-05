@@ -1,0 +1,16 @@
+table class=tableClassNames
+  thead
+    tr
+      th #
+      each colName in colNames
+        th= colName
+  tbody
+    each bodyRow in bodyRows
+      tr
+        td= bodyRow.rowName
+        each cell in bodyRow.cells
+          td.pointer.cell click="cellTouch cell"
+            if cell.hasGoods
+              i.fa.fa-cubes
+            if cell.hasProblems
+              i.fa.fa-warning

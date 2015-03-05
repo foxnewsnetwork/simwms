@@ -1,0 +1,4 @@
+.col-xs-12
+  inventory-table goods=goods tableClassNames="table table-bordered" action="openModal"
+
+== outlet

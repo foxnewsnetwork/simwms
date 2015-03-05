@@ -6,7 +6,10 @@ Router = Ember.Router.extend
 
 Router.map ->
   @resource "logistics", path: "/logistics", ->
-    @route "inventory"
+    @resource "stockpile", path: "/stockpile", ->
+      @resource "cell", path: "/cell/:cell_id", ->
+        @route "pictures"
+      
     @resource "appointment", path: "/appointment", ->
       @route "new"
 
@@ -29,5 +32,6 @@ Router.map ->
       @route "form"
     @resource "barn", path: "/barn/:barn_id", ->
       @route "form"
+  
 
 `export default Router`

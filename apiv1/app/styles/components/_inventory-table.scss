@@ -1,0 +1,15 @@
+.inventory-table-container {
+  .cell:hover {
+    background-color: #eee;
+    @include box-shadow(#333 1.5px 1.5px 3px);
+  }
+  .cell {
+    text-align: center;
+    @include transition-property(background-color);
+    @include transition-duration(300ms);
+    @include transition-timing-function(ease-out);
+  }
+  .table {
+    table-layout: fixed;
+  }
+}
