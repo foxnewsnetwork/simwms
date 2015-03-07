@@ -1,8 +1,5 @@
 `import Ember from 'ember'`
 
-LogisticsController = Ember.Controller.extend
-  actions:
-    exitLogistics: ->
-      @transitionToRoute "index"
+LogisticsController = Ember.Controller.extend()
 
 `export default LogisticsController`

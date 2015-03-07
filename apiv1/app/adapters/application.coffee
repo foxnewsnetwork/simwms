@@ -1,6 +1,6 @@
 `import DS from 'ember-data'`
 
 ApplicationAdapter = DS.ActiveModelAdapter.extend
-  namespace: 'api'
+  namespace: 'apiv1'
 
 `export default ApplicationAdapter`

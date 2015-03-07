@@ -1,8 +1,5 @@
 `import Ember from 'ember'`
 
-DockworkerController = Ember.Controller.extend
-  actions:
-    exitDock: ->
-      @transitionToRoute "index"
+DockworkerController = Ember.Controller.extend()
 
 `export default DockworkerController`

@@ -6,7 +6,7 @@
 
       ul.nav.navbar-nav.navbar-right
         li
-          a.pointer click="exitScalemaster"
+          a.pointer click="exitRole"
             i.fa.fa-sign-out
 #scalemaster-application
   section#scale-info

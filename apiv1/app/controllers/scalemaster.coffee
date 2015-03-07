@@ -1,8 +1,5 @@
 `import Ember from 'ember'`
 
-ScalemasterController = Ember.Controller.extend
-  actions:
-    exitScalemaster: ->
-      @transitionToRoute "index"
+ScalemasterController = Ember.Controller.extend()
 
 `export default ScalemasterController`

@@ -6,7 +6,7 @@
 
       ul.nav.navbar-nav.navbar-right
         li
-          a.pointer click="exitLogistics"
+          a.pointer click="exitRole"
             i.fa.fa-sign-out
 #scalemaster-application.logitics-application
   section#scale-info

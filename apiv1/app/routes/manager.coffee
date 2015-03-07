@@ -23,6 +23,7 @@ ManagerRoute = Ember.Route.extend
     exitSite: (truck) ->
     exitManager: ->
       @transitionTo "index"
+      @get("session.me").destroyRecord().then => @set "session.me", null
       location.reload()
 
 `export default ManagerRoute`

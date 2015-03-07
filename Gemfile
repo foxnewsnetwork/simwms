@@ -10,6 +10,7 @@ gem 'whenever', '~> 0.9.4', require: false
 gem "haml", "~> 4.0.0"
 gem "haml-rails", "~>0.4"
 gem "stringex", "~> 2.1.2"
+gem 'sorcery', '~> 0.9.0'
 
 # Use mysql as the database for Active Record
 gem 'mysql2'
