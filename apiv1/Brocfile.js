@@ -24,10 +24,9 @@ var app = new EmberApp({
 app.import('bower_components/bootstrap/dist/css/bootstrap.css');
 app.import('bower_components/bootstrap/dist/css/bootstrap.css.map', { destDir: "assets" });
 app.import('bower_components/jquery/dist/jquery.js');
-app.import('bower_components/socket.io-client/socket.io.js');
-app.import("bower_components/underscore/underscore.js",{
+app.import("bower_components/lodash/lodash.min.js",{
   exports: {
-    "underscore": ["_"]
+    "lodash": ["_"]
   }
 });
 app.import("bower_components/pixi.js/bin/pixi.dev.js", {
@@ -55,5 +54,6 @@ app.import("bower_components/fontawesome/fonts/fontawesome-webfont.eot", { destD
 app.import("bower_components/fontawesome/fonts/fontawesome-webfont.svg", { destDir: "fonts" });
 app.import("bower_components/fontawesome/fonts/fontawesome-webfont.ttf", { destDir: "fonts" });
 app.import("bower_components/fontawesome/fonts/fontawesome-webfont.woff", { destDir: "fonts" });
+app.import("bower_components/fontawesome/fonts/fontawesome-webfont.woff2", { destDir: "fonts" });
 app.import("bower_components/fontawesome/fonts/FontAwesome.otf", { destDir: "fonts" });
 module.exports = app.toTree();

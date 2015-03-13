@@ -1,8 +1,8 @@
-`import SocketBaseAdapter from './socket-base'`
+`import config from '../config/environment'`
+`import Firebase from 'firebase'`
+`import FirebaseAdapter from 'emberfire/adapters/firebase'`
 
-TruckAdapter = SocketBaseAdapter.extend
-  host: "http://localhost:4201"
-  namespace: "apiv2"
-  io: io
+TruckAdapter = FirebaseAdapter.extend
+  firebase: new Firebase(config.firebase)
 
 `export default TruckAdapter`

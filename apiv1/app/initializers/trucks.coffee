@@ -1,6 +1,4 @@
 # Takes two parameters: container and app
- 
-
 initialize = (ctn, app) ->
   store = ctn.lookup("store:main")
   trucks = store.find("truck")
