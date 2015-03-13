@@ -1,7 +1,9 @@
 # Takes two parameters: container and app
+ 
+
 initialize = (ctn, app) ->
   store = ctn.lookup("store:main")
-  trucks = []
+  trucks = store.find("truck")
   app.register "io:trucks", trucks, instantiate: false
   app.inject "controller", "iotrucks", "io:trucks"
   app.inject "route", "iotrucks", "io:trucks"

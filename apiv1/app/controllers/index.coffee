@@ -22,5 +22,11 @@ IndexController = Ember.Controller.extend
       .then (session) => @session.set("me", session)
       .then _.bind(@redirectOut, @)
 
+    createTruck: ->
+      @store
+      .createRecord "truck", speed: 1
+      .save()
 
+    killTruck: (truck) ->
+      truck.destroyRecord()
 `export default IndexController`

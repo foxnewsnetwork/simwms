@@ -4,4 +4,9 @@
       .row
         .col-lg-6.col-md-8.col-sm-10.col-xs-12.col-lg-offset-3.col-md-offset-2.col-md-offset-1
           .modal-box
-            == partial "sessions/login"
+            button.btn-success.btn.btn-lg click=createTruck
+              i.fa.fa-plus
+            each truck in iotrucks
+              p.debug-thing
+                span= truck.id
+                i.fa.fa-times.pointer click="killTruck truck"

@@ -4,6 +4,8 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'apiv1',
     environment: environment,
+    contentSecurityPolicy: { 'connect-src': "'self' wss://*.firebaseio.com" },
+    firebase: 'https://YOUR-FIREBASE-NAME.firebaseio.com/',
     baseURL: '/',
     locationType: 'auto',
     EmberENV: {
@@ -26,7 +28,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV.contentSecurityPolicy = {
-      "connect-src": "ws://localhost:4200 wss://*.firebaseio.com",
+      "connect-src": "'self' ws://localhost:4200 ws://localhost:4201 wss://*.firebaseio.com",
       "img-src": "'self' http://192.168.0.101",
       "media-src": "'self' http://localhost:*",
       "font-src": "http://fonts.gstatic.com 'self'",
