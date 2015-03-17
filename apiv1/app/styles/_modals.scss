@@ -1,6 +1,16 @@
 @import "modals/barn";
 @import "modals/marker";
 
+.full-screen-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  z-index: 3000;
+}
+
 #modal-background {
   position: fixed;
   top: 0px;

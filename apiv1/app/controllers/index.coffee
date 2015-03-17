@@ -14,11 +14,16 @@ IndexController = Ember.Controller.extend
       when "dockworker" then @transitionToRoute "dockworker", 1
       when "scalemaster" then @transitionToRoute "scalemaster", 1
       else @transitionToRoute "index"
+  nullSessionPromise: ->
+    if @session.get("me")?
+      @session.get("me").destroyRecord()
+      .then => @session.set "me", null
+    else
+      new Ember.RSVP.Promise (resolve) -> resolve()
   actions:
     login: (params) ->
-      @store
-      .createRecord "session", @prepare params
-      .save()
+      @nullSessionPromise()
+      .then => @store.createRecord("session", @prepare params).save()
       .then (session) => @session.set("me", session)
       .then _.bind(@allahuAckbar, @)
 
