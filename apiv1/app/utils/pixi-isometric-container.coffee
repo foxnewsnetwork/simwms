@@ -40,7 +40,7 @@ class PixiIsometricContainer
     @addChildProcess = baseProcess
       .compose _add2container(@).fork _add2localQueue(@)
 
-    @removeChildProcess = baseProcess
+    @removeChildProcess = _decideContainerReadyStatus(@)
       .compose _removeFromContainer(@).fork _removeFromLocalQueue(@)
 
   isContainerReady: ->
@@ -56,6 +56,11 @@ class PixiIsometricContainer
   
   removeChild: (sprite) ->
     @removeChildProcess.run sprite
+
+  removeAllChildren: ->
+    return unless @container?
+    for child in @container.children
+      @removeChild child
 
 class UnpositionableError extends Error
   name: "UnpositionableError"

@@ -14,4 +14,5 @@
 #
 
 class Apiv1::Inventory < ActiveRecord::Base
+  
 end

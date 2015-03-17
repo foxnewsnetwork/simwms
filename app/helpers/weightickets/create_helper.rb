@@ -1,0 +1,2 @@
+module Weightickets::CreateHelper
+end

@@ -11,6 +11,8 @@
 #scalemaster-application
   section#scale-info
     .container
+      .row
+        == partial "scalemaster/status"
       == outlet
 
   footer#scale-footer

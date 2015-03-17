@@ -31,6 +31,7 @@ PixiBackgroundComponent = Ember.Component.extend PixiBaseMixin,
 
   willDestroyElement: ->
     @get("parentView").removeFromStage @get "sprite"
+    @spriteIsometricContainer.removeAllChildren()
 
   didFinishPreloading: ->
     @manageCamera()

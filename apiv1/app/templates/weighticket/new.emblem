@@ -1,30 +1,34 @@
 .row
-  .col-lg-8
-    form-for submit="newWeighticket" errors=ticketErrors
+  .col-xs-12.col-sm-8.col-md-4.col-lg-2
+    link-to "scalemaster" class="btn btn-default btn-hover btn-lg btn-block"
+      i.fa.fa-times
+      span.capitalize cancel
+
+form-for submit="newWeighticket" errors=ticketErrors
+  .row
+    .col-xs-12.col-sm-12.col-md-6.col-lg-4
       legend.form-title
         span.fa truck weight ticket
-      .form-group.input-section attr-name="appno"
+      .form-group.input-section attr-name="issuerId"
+        label.capitalize.bold issuer scale id
+        == input type="text" class="form-control" name="issuerId"
+      .form-group.input-section attr-name="appointmentNumber"
         label.capitalize.bold appointment number
-        == input type="text" class="form-control" name="appno"
-      .form-group.input-section attr-name="licenseno"
+        == input type="text" class="form-control" name="appointmentNumber"
+      .form-group.input-section attr-name="licensePlate"
         label.capitalize.bold license plate number
-        == input type="text" class="form-control" name="licenseno"
-      .form-group.input-section attr-name="weight"
+        == input type="text" class="form-control" name="licensePlate"
+      .form-group.input-section attr-name="pounds"
         label.capitalize.bold weight
-        == input type="text" class="form-control" name="weight"
+        .input-group
+          == input type="number" class="form-control" name="pounds"
+          span.input-group-addon lbs
+
       .form-group.input-section attr-name="pictures"
         label.capitalize.bold pictures
         == input type="text" class="form-control" name="pictures"
-      .actions.btn-group.btn-group-lg
-        button.btn.btn-success.btn-hover type="submit"
-          i.fa.fa-check
-          span.capitalize submit
-        link-to "scalemaster" class="btn btn-default btn-hover"
-          i.fa.fa-times
-          span.capitalize cancel
-  .col-lg-4
-    h4.action-title
-      span.fa I don't know what to do, help!
-    button.btn.btn-danger.btn-hover.btn-lg click="reportProblem"
-      i.fa.fa-warning
-      span.capitalize panic
+  .row
+    .col-xs-12.col-sm-8.col-md-4.col-lg-2
+      button.btn.btn-success.btn-hover.btn-lg.btn-block type="submit"
+        i.fa.fa-check
+        span.capitalize submit

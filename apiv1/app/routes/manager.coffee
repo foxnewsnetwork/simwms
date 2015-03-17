@@ -22,8 +22,13 @@ ManagerRoute = Ember.Route.extend
       .then (barn) -> barn.workOnTruck truck
     exitSite: (truck) ->
     exitManager: ->
-      @transitionTo "index"
-      @get("session.me").destroyRecord().then => @set "session.me", null
-      location.reload()
+      if @session.get("me")?
+        @session.get("me").destroyRecord().then => 
+          @session.set "me", null
+          @transitionTo "index"
+      else
+        @transitionTo "index"
+      window.location.reload()
+        
 
 `export default ManagerRoute`

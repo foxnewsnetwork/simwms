@@ -10,15 +10,23 @@
   background-color: #fff;
   padding-top: 75px;
   z-index: 0;
+  overflow-x: hidden;
+  .btn-block {
+    margin-bottom: 15px;
+  }
 }
 #main-nav {
   z-index: 1;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  .navbar {
+    @include box-shadow(#333 0px 2.5px 4px);
+  }
 }
 #scale-info {
+  padding-bottom: 75px;
   .scale-camera {
     @include display-flex;
     @include justify-content(center);

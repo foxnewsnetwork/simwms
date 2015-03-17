@@ -7,7 +7,7 @@ IndexController = Ember.Controller.extend
     role: role
     email: "#{role}@test.co"
     password: "asdf123"
-  redirectOut: ->
+  allahuAckbar: ->
     switch @get("session.me.role")
       when "manager" then @transitionToRoute "manager"
       when "logistics" then @transitionToRoute "logistics"
@@ -20,6 +20,6 @@ IndexController = Ember.Controller.extend
       .createRecord "session", @prepare params
       .save()
       .then (session) => @session.set("me", session)
-      .then _.bind(@redirectOut, @)
+      .then _.bind(@allahuAckbar, @)
 
 `export default IndexController`

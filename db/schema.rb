@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305194714) do
+ActiveRecord::Schema.define(version: 20150316184350) do
 
   create_table "apiv1_appointments", force: :cascade do |t|
     t.string   "permalink",  limit: 255
@@ -24,6 +24,13 @@ ActiveRecord::Schema.define(version: 20150305194714) do
     t.string   "permalink",   limit: 255
     t.string   "camera_name", limit: 255
     t.string   "mac_address", limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "apiv1_docks", force: :cascade do |t|
+    t.string   "dock_number", limit: 255
+    t.string   "status",      limit: 255
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
@@ -71,5 +78,15 @@ ActiveRecord::Schema.define(version: 20150305194714) do
   add_index "apiv1_users", ["email"], name: "index_apiv1_users_on_email", unique: true, using: :btree
   add_index "apiv1_users", ["remember_me_token"], name: "index_apiv1_users_on_remember_me_token", using: :btree
   add_index "apiv1_users", ["reset_password_token"], name: "index_apiv1_users_on_reset_password_token", using: :btree
+
+  create_table "apiv1_weightickets", force: :cascade do |t|
+    t.string   "appointment_number", limit: 255
+    t.string   "license_plate",      limit: 255
+    t.string   "target_dock",        limit: 255
+    t.decimal  "pounds",                           precision: 15, scale: 2
+    t.text     "notes",              limit: 65535
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
+  end
 
 end

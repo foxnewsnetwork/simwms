@@ -18,11 +18,14 @@ PixiCanvasComponent = Ember.Component.extend
   didInsertElement: ->
     @set "renderer", PIXI.autoDetectRecommendedRenderer @windowWidth(), @windowHeight()    
     @$(".pixi-canvas-element-container").append @get("renderer.view")
-    window.requestAnimationFrame _.bind @animate, @
+    @interval = window.setInterval _.bind(@animate, @), 15
+
+  willDestroyElement: ->
+    window.clearInterval @interval
 
   animate: ->
-    window.requestAnimationFrame _.bind @animate, @
-    animator @get "renderer" for key, animator of @animators
+    window.requestAnimationFrame => 
+      animator @get "renderer" for key, animator of @animators
 
 
 `export default PixiCanvasComponent`
