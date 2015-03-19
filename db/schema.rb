@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20150316184350) do
     t.string   "license_plate",      limit: 255
     t.string   "target_dock",        limit: 255
     t.decimal  "pounds",                           precision: 15, scale: 2
+    t.string   "issuer_id",          limit: 255
     t.text     "notes",              limit: 65535
     t.datetime "created_at",                                                null: false
     t.datetime "updated_at",                                                null: false

@@ -2,7 +2,8 @@
   video-proxy class="thumbnail scale-camera" src="assets/doge.webm"
 .col-lg-6.col-md-6.col-sm-12.col-xs-12
   h3.section-title
-    span.fa.capitalize scale station
+    span.fa.capitalize scale station#
+    span.fa= model.id
   .row
     .col-lg-6.col-md-6.col-sm-12.col-xs-12
       dl
@@ -22,7 +23,7 @@
           i.fa.fa-check
           span.fa ok
     .col-lg-6.col-md-6.col-sm-12.col-xs-12
-      button.btn.btn-block.btn-lg.btn-danger.btn-hover click=toggleProblemReport
+      button.btn.btn-block.btn-lg.btn-danger.btn-hover click="toggleProblemReport"
         i.fa.fa-warning
         span.fa.capitalize report problem
   h4.subsection-title

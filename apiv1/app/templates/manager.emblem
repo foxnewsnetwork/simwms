@@ -18,13 +18,12 @@ footer#footer.footer
     .row
       .col-lg-10
         .row
-          .col-lg-12.news-ticker
-            span.feed.fa Acme Co. truck is here
+          news-ticker class="col-xs-12" messages=iomessages
         .row
           .col-lg-3.info-box
             span.info-title
               i.fa.fa-truck
-            span.fa.info-data 2
+            span.fa.info-data= iotrucks.length
           .col-lg-3.info-box
             span.fa.info-title
               i.fa.fa-cubes

@@ -1,22 +1,26 @@
 `import DS from 'ember-data'`
 `import PixiPath from '../utils/pixi-path'`
 `import FunEx from '../utils/fun-ex'`
-`import DebugEx from '../utils/debug-ex'`
 
+Statuses = ["moving", "idle", "loading", "problem"]
 Truck = DS.Model.extend
-  speed: DS.attr "number"
   status: DS.attr "string"
+  licensePlate: DS.attr "string"
+  materialDescription: DS.attr "string"
+  arrivedAt: DS.attr "date"
   origination: DS.attr "string"
   origintype: DS.attr "string"
   destination: DS.attr "string"
   destinytype: DS.attr "string"
-  arrivedAt: DS.attr "date"
-  departedAt: DS.attr "date"
-
+  appointmentNumber: DS.attr "string"
+  weighticket: DS.belongsTo "weighticket", async: true
+  
+  speed: 1
   isEmpty: true
-  enterBarn: ->
-    @set "departedAt", new Date()
-    @save()
+
+  arrivedAtAgo: FunEx.computed "arrivedAt", ->
+    return unless @get("arrivedAt")?
+    $.timeago @get "arrivedAt"
 
   pixiGrid: FunEx.computed "grid.pixiGrid", ->
     return unless @get("grid")?

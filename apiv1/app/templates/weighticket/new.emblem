@@ -8,10 +8,11 @@ form-for submit="newWeighticket" errors=ticketErrors
   .row
     .col-xs-12.col-sm-12.col-md-6.col-lg-4
       legend.form-title
-        span.fa truck weight ticket
+        span.fa truck weight ticket @
+        span.fa= model.id
       .form-group.input-section attr-name="issuerId"
         label.capitalize.bold issuer scale id
-        == input type="text" class="form-control" name="issuerId"
+        == input type="text" class="form-control" name="issuerId" disabled=true value=model.id
       .form-group.input-section attr-name="appointmentNumber"
         label.capitalize.bold appointment number
         == input type="text" class="form-control" name="appointmentNumber"

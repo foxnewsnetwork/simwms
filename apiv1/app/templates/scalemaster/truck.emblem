@@ -1,0 +1,45 @@
+.row
+  .col-xs-12
+    legend.form-title
+      span.colon.bold.capitalize appointment number
+      span.fa.prespace= model.weighticket.appointmentNumber
+      span.fa.predash= model.arrivedAtAgo
+.row
+  .col-xs-6.col-sm-6.col-md-3.col-lg-3
+    span.colon.bold.capitalize truck id
+    span.fa.prespace= model.id
+  .col-xs-6.col-sm-6.col-md-3.col-lg-3
+    span.colon.bold.capitalize license plate
+    span.fa.prespace= model.licensePlate
+  .col-xs-6.col-sm-6.col-md-3.col-lg-3
+    span.colon.bold.capitalize origin company
+    span.fa.prespace= model.weighticket.originCompany
+  .col-xs-6.col-sm-6.col-md-3.col-lg-3
+    span.colon.bold.capitalize weighticket id
+    span.fa.prespace= model.weighticket.id
+.row
+  .col-xs-6.col-sm-6.col-md-3.col-lg-3
+    span.colon.bold.capitalize material description
+    span.fa.prespace= model.materialDescription
+  .col-xs-6.col-sm-6.col-md-3.col-lg-3
+    span.colon.bold.capitalize status
+    span.fa.prespace= model.status
+
+.row
+  .col-xs-6.col-sm-6.col-md-3.col-lg-3
+    img.thumbnail.mugshot src="images/doge.jpg"
+
+
+.row
+  .col-xs-4
+    link-to "scalemaster.index" class="btn btn-block btn-default btn-hover"
+      i.fa.fa-caret-left
+      span.fa.capitalize back
+  .col-xs-4
+    button.btn.btn-block.btn-hover.btn-success click="truckHasLeft"
+      i.fa.fa-truck
+      span.fa.capitalize truck departed
+  .col-xs-4
+    link-to "scalemaster.problem" class="btn btn-block btn-hover btn-danger"
+      i.fa.fa-warning
+      span.fa.capitalize truck problems

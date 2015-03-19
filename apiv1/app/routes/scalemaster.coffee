@@ -2,6 +2,7 @@
 
 ScalemasterRoute = Ember.Route.extend
   model: ->
+    @iogrid.then (grid) -> Ember.get(grid, "scales.firstObject")
 
   actions:
     exitRole: ->

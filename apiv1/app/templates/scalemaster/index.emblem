@@ -6,7 +6,7 @@
         span.fa.capitalize truck arrived
 
   .col-xs-12
-    table.table
+    table.table.table-hover
       thead
         tr
           th.capitalize appt no
@@ -14,22 +14,13 @@
           th.capitalize material
           th.capitalize ETA
           th.capitalize status
+          th.capitalize ticket
       tbody
-        tr
-          td 1123
-          td Enterprise Co.
-          td 20 tons LDPE
-          td 4pm today
-          td on route
-        tr
-          td 1124
-          td Spock Logical Inc.
-          td 4 warp engine cores
-          td 5pm today
-          td on route
-        tr
-          td 1125
-          td Kirk Enterprises
-          td 2 lizard suits
-          td cancelled
-          td cancelled
+        each truck in iotrucks
+          tr.pointer click="'openTruck' truck"
+            td= truck.weighticket.appointmentNumber
+            td= truck.weighticket.originCompany
+            td= truck.materialDescription
+            td= truck.arrivedAtAgo
+            td= truck.status
+            td= truck.weighticket.id

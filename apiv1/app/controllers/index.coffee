@@ -11,8 +11,8 @@ IndexController = Ember.Controller.extend
     switch @get("session.me.role")
       when "manager" then @transitionToRoute "manager"
       when "logistics" then @transitionToRoute "logistics"
-      when "dockworker" then @transitionToRoute "dockworker", 1
-      when "scalemaster" then @transitionToRoute "scalemaster", 1
+      when "dockworker" then @transitionToRoute "dockworker"
+      when "scalemaster" then @transitionToRoute "scalemaster"
       else @transitionToRoute "index"
   nullSessionPromise: ->
     if @session.get("me")?

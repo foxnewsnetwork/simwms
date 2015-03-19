@@ -8,5 +8,8 @@ Weighticket = DS.Model.extend
   targetDock: DS.attr "string"
   pictures: DS.hasMany "picture"
   notes: DS.attr "string"
+  updatedAt: DS.attr "date"
+  createdAt: DS.attr "date"
+  status: DS.attr "string"
 
 `export default Weighticket`

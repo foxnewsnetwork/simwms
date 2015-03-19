@@ -6,6 +6,8 @@
 #  appointment_number :string(255)
 #  license_plate      :string(255)
 #  target_dock        :string(255)
+#  pounds             :decimal(15, 2)
+#  issuer_id          :string(255)
 #  notes              :text(65535)
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null

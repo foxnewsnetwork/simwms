@@ -17,6 +17,7 @@
     "fontawesome": "~4.3.0",
     "pixi.js": "~2.2.7",
     "js-priority-queue": "~0.1.1",
-    "firebase": "~2.1.0"
+    "firebase": "~2.1.0",
+    "jquery-timeago": "~1.4.1"
   }
 }

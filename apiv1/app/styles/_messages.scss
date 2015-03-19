@@ -1,0 +1,21 @@
+#messages-modal {
+  .kill {
+    float: right;
+  }
+  .update {
+    color: #fff;
+    background-color: $material-blue;
+  }
+  .notice {
+    color: #fff;
+    background-color: $material-green;
+  }
+  .warning {
+    color: #fff;
+    background-color: $material-orange;
+  }
+  .breaking {
+    color: #fff;
+    background-color: $material-red;
+  }
+}

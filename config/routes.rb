@@ -10,5 +10,6 @@ Rails.application.routes.draw do
     resources :stations, only: [:show], controller: "stations/show"
 
     resources :weightickets, only: [:create], controller: 'weightickets/create'
+    resources :weightickets, only: [:show], controller: 'weightickets/show'
   end
 end
