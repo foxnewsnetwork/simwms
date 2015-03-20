@@ -2,7 +2,8 @@
   video-proxy class="thumbnail scale-camera" src="assets/doge.webm"
 .col-lg-6.col-md-6.col-sm-12.col-xs-12
   h3.section-title
-    span.fa.capitalize loading dock
+    span.fa.capitalize loading dock#
+    span.fa= model.id
   .row
     .col-lg-6.col-md-6.col-sm-12.col-xs-12
       dl
@@ -14,15 +15,18 @@
         dt
           span.dt-title.fa dock status
         dd
-          i.fa.fa-check
-          span.fa empty
-        dt
-          span.dt-title.fa connection status
-        dd
-          i.fa.fa-check
-          span.fa ok
+          if model.isOkay
+            i.fa.fa-check.text-success
+            span.fa ok
+          if model.isInUse
+            i.fa.fa-cog.fa-spin.text-warning
+            span.fa busy
+          if model.isProblem
+            i.fa.fa-warning.text-danger
+            span.fa error
+        
     .col-lg-6.col-md-6.col-sm-12.col-xs-12
-      button.btn.btn-block.btn-lg.btn-danger.btn-hover click="toggleProblemReport"
+      link-to "dock.problem" model.id class="btn btn-block btn-lg btn-danger btn-hover"
         i.fa.fa-warning
         span.fa.capitalize report problem
   h4.subsection-title

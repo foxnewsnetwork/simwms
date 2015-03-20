@@ -22,6 +22,7 @@ Message = DS.Model.extend
   note: DS.attr "string"
   title: DS.attr "string"
   permalink: DS.attr "string"
+  permatype: DS.attr "string"
   createdAt: DS.attr "date"
 
   createdAtAgo: FunEx.computed "createdAt", ->

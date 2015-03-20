@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :grids, only: [:show], controller: "grids/show"
 
     resources :barns, only: [:show], controller: "barns/show"
+    resources :barns, only: [:update], controller: "barns/update"
     resources :stations, only: [:show], controller: "stations/show"
 
     resources :weightickets, only: [:create], controller: 'weightickets/create'

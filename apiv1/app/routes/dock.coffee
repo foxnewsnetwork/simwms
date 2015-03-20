@@ -1,7 +1,8 @@
 `import Ember from 'ember'`
 
-DockworkerRoute = Ember.Route.extend
-  model: ->
+DockRoute = Ember.Route.extend
+  model: (dock_id: id) ->
+    @iogrid.then => @store.find "barn", id
   actions:
     openModal: (cell) ->
       if cell?
@@ -11,9 +12,8 @@ DockworkerRoute = Ember.Route.extend
       else
         throw "Tried to open an inventory cell modal but you didn't give me a cell"
     closeModal: ->
-      @transitionTo "dockworker.inventory", 1
+      @transitionTo "dock.inventory", @get("model.id")
     exitRole: ->
       @transitionTo "index"
-      @get("session.me").destroyRecord().then => @set "session.me", null
 
-`export default DockworkerRoute`
+`export default DockRoute`

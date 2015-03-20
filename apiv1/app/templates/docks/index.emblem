@@ -1,0 +1,10 @@
+.row
+  .col-xs-6
+    .list-group
+      each dock in leftDocks
+        == partial "docks/slice"
+
+  .col-xs-6
+    .list-group
+      each dock in rightDocks
+        == partial "docks/slice"

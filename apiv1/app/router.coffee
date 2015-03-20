@@ -20,9 +20,14 @@ Router.map ->
       @route "new"
   @resource "ticket", path: "/ticket/:ticket_id", ->
     @route "print"
-  @resource "dockworker", path: "/dockworker", ->
-    @route "status"
+
+  @resource "docks", path: "/docks", ->
     @route "inventory"
+    @resource "dock", path: "/dock/:dock_id", ->
+      @route "status"
+      @route "problem"
+      
+
   @resource "manager", path: "/manager", ->    
     @resource "messages", path: "/messages", ->
     @resource "message", path: "/message/:message_id", ->

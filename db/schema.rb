@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150316184350) do
+ActiveRecord::Schema.define(version: 20150316180506) do
 
   create_table "apiv1_appointments", force: :cascade do |t|
     t.string   "permalink",  limit: 255
@@ -24,13 +24,6 @@ ActiveRecord::Schema.define(version: 20150316184350) do
     t.string   "permalink",   limit: 255
     t.string   "camera_name", limit: 255
     t.string   "mac_address", limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
-  create_table "apiv1_docks", force: :cascade do |t|
-    t.string   "dock_number", limit: 255
-    t.string   "status",      limit: 255
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end

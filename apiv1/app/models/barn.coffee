@@ -2,13 +2,27 @@
 `import FunEx from '../utils/fun-ex'`
 `import PixiPosition from '../utils/pixi-position'`
 
-KnownStatuses = ["okay", "in use", "problem"]
+KnownStatuses = [
+  "okay",
+  "waiting",
+  "in use", 
+  "problem"
+]
 Barn = DS.Model.extend
   x: DS.attr "number"
   y: DS.attr "number"
   z: DS.attr "number"
   status: DS.attr "string"
 
+  isWaiting: FunEx.computed "status", ->
+    "waiting" is @get("status")
+  isOkay: FunEx.computed "status", ->
+    "okay" is @get("status")
+  isInUse: FunEx.computed "status", ->
+    "in use" is @get("status")
+  isProblem: FunEx.computed "status", ->
+    "problem" is @get("status")
+    
   workOnTruck: (truck) ->
     @set "status", "in use"
     @save()

@@ -1,0 +1,31 @@
+if expectingTruck
+  .panel.panel-default.instructions-set
+    .list-group
+      .list-group-item.instruction-line
+        span.fa.capitalize free dock: waiting for truck
+    .panel-heading.instruction-line
+      span.fa Waiting for truck from appointment no.
+      span.highlight= truck.appointmentNumber
+    .panel-body
+      figure
+        figcaption
+          span.fa truck on-route from weight station, license number
+          span.highlight= truck.licensePlate
+        img.thumbnail.example-pic src="images/license-plate.jpg"
+
+      .btn-group.btn-group-lg
+        button.btn.btn-success.btn-hover click="truckArrived"
+          i.fa.fa-truck
+          span.fa.capitalize.bold truck arrived
+        link-to "dock.problem" model.id class="btn btn-danger btn-hover"
+          i.fa.fa-warning
+          span.fa.capitalize.bold report problem 
+else
+  .panel.panel-default.instructions-set
+    .panel-heading.instruction-line
+      span.fa.capitalize free dock: nothing to do
+    .panel-body
+      p.capitalize this dock is currently not expecting a truck
+      link-to "dock.problem" model.id class="btn btn-danger btn-lg btn-hover"
+        i.fa.fa-warning
+        span.fa.capitalize.bold report problem 
