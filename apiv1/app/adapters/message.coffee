@@ -1,5 +1,5 @@
-`import TruckAdapter from './truck'`
+`import LiveAdapter from './live'`
 
-MessageAdapter = TruckAdapter.extend()
+MessageAdapter = LiveAdapter.extend()
 
 `export default MessageAdapter`

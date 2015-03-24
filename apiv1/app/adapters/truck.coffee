@@ -1,8 +1,5 @@
-`import config from '../config/environment'`
-`import Firebase from 'firebase'`
-`import FirebaseAdapter from 'emberfire/adapters/firebase'`
+`import LiveAdapter from './live'`
 
-TruckAdapter = FirebaseAdapter.extend
-  firebase: new Firebase(config.firebase)
+TruckAdapter = LiveAdapter.extend()
 
 `export default TruckAdapter`
