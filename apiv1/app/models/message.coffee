@@ -16,6 +16,7 @@ Archtypes =
   "truck has left site": "update"
   "problem": "breaking"
   "miscellanious": "notice"
+  "problem resolved": "update"
 
 Message = DS.Model.extend
   archtype: DS.attr "string"

@@ -8,6 +8,8 @@
       dt.capitalize.bold camera
       dd live
       dt.capitalize.bold dock no.
+      dd= model.dockNumber
+      dt.capitalize.bold data id.
       dd= model.id
       dt.capitalize.bold workers
       dd Jose, Phillip

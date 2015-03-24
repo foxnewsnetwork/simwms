@@ -8,7 +8,7 @@
               i.fa.fa-times
             h2.modal-title
               span.fa barn no. 
-              span= model.id
+              span= model.dockNumber
             ul.nav.nav-pills
               li
                 link-to "barn" model.id class="active"

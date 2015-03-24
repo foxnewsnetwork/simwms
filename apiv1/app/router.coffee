@@ -31,6 +31,14 @@ Router.map ->
   @resource "manager", path: "/manager", ->    
     @resource "messages", path: "/messages", ->
     @resource "message", path: "/message/:message_id", ->
+      @route Ember.String.dasherize "truck arrived on site"
+      @route Ember.String.dasherize "truck at loading dock"
+      @route Ember.String.dasherize "truck left, dock is free"
+      @route Ember.String.dasherize "truck waiting for free dock"
+      @route Ember.String.dasherize "truck at exit station"
+      @route Ember.String.dasherize "truck has left site"
+      @route Ember.String.dasherize "problem"
+      @route Ember.String.dasherize "miscellanious"
     @resource "contracts", path: "/contracts", ->
     @resource "employees", path: "/employees", ->
     @resource "inventories", path: "/inventories", ->
@@ -46,5 +54,6 @@ Router.map ->
   
   @route 'weighticket/new'
   @route 'scalemaster/truck'
+  @route 'message/problem'
 
 `export default Router`

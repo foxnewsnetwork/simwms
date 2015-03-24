@@ -2,7 +2,7 @@
 
 DockRoute = Ember.Route.extend
   model: (dock_id: id) ->
-    @iogrid.then => @store.find "barn", id
+    @iogrid.then => @store.find "live/barn", id
   actions:
     openModal: (cell) ->
       if cell?
@@ -11,8 +11,6 @@ DockRoute = Ember.Route.extend
         @transitionTo "cell", id
       else
         throw "Tried to open an inventory cell modal but you didn't give me a cell"
-    closeModal: ->
-      @transitionTo "dock.inventory", @get("model.id")
     exitRole: ->
       @transitionTo "index"
 

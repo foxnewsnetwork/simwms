@@ -1,8 +1,7 @@
 h2.modal-title
+  i.fa.fa-info-circle.text-primary
   if model.isUpdate
     i.fa.fa-circle-o.text-success
-  if model.isNotice
-    i.fa.fa-info-circle.text-primary
   if model.isWarning
     i.fa.fa-warning.text-warning
   if model.isBreaking
@@ -19,4 +18,4 @@ h6.subheader
 .actions
   button.btn.btn-success.close-button click="resolveMessage"
     i.fa.fa-check
-    span.prespace.upcase resolve
+    span.prespace.upcase dismiss

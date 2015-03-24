@@ -3,10 +3,14 @@
 .col-lg-6.col-md-6.col-sm-12.col-xs-12
   h3.section-title
     span.fa.capitalize loading dock#
-    span.fa= model.id
+    span.fa= model.dockNumber
   .row
     .col-lg-6.col-md-6.col-sm-12.col-xs-12
       dl
+        dt
+          span.dt-title.fa data id
+        dd
+          span.fa= model.id
         dt
           span.dt-title.fa camera status
         dd

@@ -1,46 +1,218 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+# encoding: UTF-8
+# This file is auto-generated from the current content of the database. Instead
+# of editing this file, please use the migrations feature of Seed Migration to
+# incrementally modify your database, and then regenerate this seed file.
 #
-# Examples:
+# If you need to create the database on another system, you should be using
+# db:seed, not running all the migrations from scratch. The latter is a flawed
+# and unsustainable approach (the more migrations you'll amass, the slower
+# it'll run and the greater likelihood for issues).
 #
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+# It's strongly recommended to check this file into your version control system.
 
+ActiveRecord::Base.transaction do
 
-# def inject_type(type, xs)
-#   xs.map do |x|
-#     x[:tile_type] = type
-#     x
-#   end
-# end
+  Apiv1::User.create({"created_at"=>"2015-03-24T19:45:17.000Z", "crypted_password"=>"$2a$10$xV96wHcbTct5aktcbHqthOpK0H3Cqq1EfSF5cqDoYZSm20tgliA4C", "deleted_at"=>nil, "email"=>"manager@test.co", "permalink"=>nil, "remember_me_token"=>nil, "remember_me_token_expires_at"=>nil, "reset_password_email_sent_at"=>nil, "reset_password_token"=>nil, "reset_password_token_expires_at"=>nil, "role"=>"manager", "salt"=>"DPfYqz5SZhS6LzBYiMDc", "updated_at"=>"2015-03-24T19:45:17.000Z", "username"=>nil})
 
-# tiles = (2..12).map { |k| { x: -2, y: k, status: "okay" } } + 
-#   (6..11).map { |k| { x: 2, y: k, status: "okay" } }
-# barns = inject_type :barn, tiles
+  Apiv1::User.create({"created_at"=>"2015-03-24T19:45:17.000Z", "crypted_password"=>"$2a$10$OKlGMGGb1ABCud96FlEPSeKdb4TBWQCnPTwzzSM1/aO6/nkrEm2wW", "deleted_at"=>nil, "email"=>"dockworker@test.co", "permalink"=>nil, "remember_me_token"=>nil, "remember_me_token_expires_at"=>nil, "reset_password_email_sent_at"=>nil, "reset_password_token"=>nil, "reset_password_token_expires_at"=>nil, "role"=>"dockworker", "salt"=>"2sMPnjqszGYyLpVCwe5T", "updated_at"=>"2015-03-24T19:45:17.000Z", "username"=>nil})
 
-# tiles = (1..12).map { |k| { x: 0, y: k, z: -0.25 } } + 
-#   (1..8).map { |k| { x: k, y: 12, z: -0.25 } } +
-#   (1..12).map { |k| { x: 8, y: k, z: -0.25 } }
-# roads = inject_type :road, tiles
+  Apiv1::User.create({"created_at"=>"2015-03-24T19:45:18.000Z", "crypted_password"=>"$2a$10$CrS7/P6oHGCDDN0oNeCoRuUveAxeWHd5qmYCXOuq063rKvJez4Unm", "deleted_at"=>nil, "email"=>"scalemaster@test.co", "permalink"=>nil, "remember_me_token"=>nil, "remember_me_token_expires_at"=>nil, "reset_password_email_sent_at"=>nil, "reset_password_token"=>nil, "reset_password_token_expires_at"=>nil, "role"=>"scalemaster", "salt"=>"1AgWyGcesXuvahtrhcES", "updated_at"=>"2015-03-24T19:45:18.000Z", "username"=>nil})
 
-# tiles = (3..6).to_a.product( (4..11).to_a ).map { |(x,y)| { x: x, y: y } } +
-#   (2..12).map { |k| { x: -3, y: k } }
-# warehouses = inject_type :warehouse, tiles
+  Apiv1::User.create({"created_at"=>"2015-03-24T19:45:18.000Z", "crypted_password"=>"$2a$10$rm2ItTmBg7nA8EIWtBkw4e5kY0vZQBi5fQysKrk4KR2ttYY3uHoF6", "deleted_at"=>nil, "email"=>"logistics@test.co", "permalink"=>nil, "remember_me_token"=>nil, "remember_me_token_expires_at"=>nil, "reset_password_email_sent_at"=>nil, "reset_password_token"=>nil, "reset_password_token_expires_at"=>nil, "role"=>"logistics", "salt"=>"K6y758zWMiWaHtZtzkNN", "updated_at"=>"2015-03-24T19:45:18.000Z", "username"=>nil})
+  ActiveRecord::Base.connection.reset_pk_sequence!('apiv1_users')
 
-# tiles = [{x: -1, y: 0}, {x: 7, y: 0}]
-# stations = inject_type :station, tiles
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>1, "status"=>"okay", "tile_name"=>"0", "tile_type"=>"barn", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>-2, "y"=>2, "z"=>nil})
 
-# tiles = [{x: 0, y: 0}, {x: 8, y: 0}]
-# scales = inject_type :scale, tiles
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>2, "status"=>"okay", "tile_name"=>"1", "tile_type"=>"barn", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>-2, "y"=>3, "z"=>nil})
 
-# Apiv1::Tile.create! barns + roads + warehouses + stations + scales
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>3, "status"=>"okay", "tile_name"=>"2", "tile_type"=>"barn", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>-2, "y"=>4, "z"=>nil})
 
-["manager", "dockworker", "scalemaster", "logistics"].map do |role|
-  {
-    role: role,
-    email: "#{role}@test.co",
-    password: "asdf123"
-  }
-end.map do |slug|
-  Apiv1::User.create! slug
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>4, "status"=>"okay", "tile_name"=>"3", "tile_type"=>"barn", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>-2, "y"=>5, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>5, "status"=>"okay", "tile_name"=>"4", "tile_type"=>"barn", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>-2, "y"=>6, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>6, "status"=>"okay", "tile_name"=>"5", "tile_type"=>"barn", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>-2, "y"=>7, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>7, "status"=>"okay", "tile_name"=>"6", "tile_type"=>"barn", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>-2, "y"=>8, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>8, "status"=>"okay", "tile_name"=>"7", "tile_type"=>"barn", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>-2, "y"=>9, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>9, "status"=>"okay", "tile_name"=>"8", "tile_type"=>"barn", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>-2, "y"=>10, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>10, "status"=>"okay", "tile_name"=>"9", "tile_type"=>"barn", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>-2, "y"=>11, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>11, "status"=>"okay", "tile_name"=>"10", "tile_type"=>"barn", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>-2, "y"=>12, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>12, "status"=>"okay", "tile_name"=>"11", "tile_type"=>"barn", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>2, "y"=>6, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>13, "status"=>"okay", "tile_name"=>"12", "tile_type"=>"barn", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>2, "y"=>7, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>14, "status"=>"okay", "tile_name"=>"13", "tile_type"=>"barn", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>2, "y"=>8, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>15, "status"=>"okay", "tile_name"=>"14", "tile_type"=>"barn", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>2, "y"=>9, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>16, "status"=>"okay", "tile_name"=>"15", "tile_type"=>"barn", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>2, "y"=>10, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>17, "status"=>"okay", "tile_name"=>"16", "tile_type"=>"barn", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>2, "y"=>11, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>18, "status"=>nil, "tile_name"=>"0", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>0, "y"=>1, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>19, "status"=>nil, "tile_name"=>"1", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>0, "y"=>2, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>20, "status"=>nil, "tile_name"=>"2", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>0, "y"=>3, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>21, "status"=>nil, "tile_name"=>"3", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>0, "y"=>4, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>22, "status"=>nil, "tile_name"=>"4", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>0, "y"=>5, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>23, "status"=>nil, "tile_name"=>"5", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>0, "y"=>6, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>24, "status"=>nil, "tile_name"=>"6", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>0, "y"=>7, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>25, "status"=>nil, "tile_name"=>"7", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>0, "y"=>8, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>26, "status"=>nil, "tile_name"=>"8", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>0, "y"=>9, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>27, "status"=>nil, "tile_name"=>"9", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>0, "y"=>10, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>28, "status"=>nil, "tile_name"=>"10", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>0, "y"=>11, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>29, "status"=>nil, "tile_name"=>"11", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>0, "y"=>12, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>30, "status"=>nil, "tile_name"=>"12", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>1, "y"=>12, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>31, "status"=>nil, "tile_name"=>"13", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>2, "y"=>12, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>32, "status"=>nil, "tile_name"=>"14", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>3, "y"=>12, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>33, "status"=>nil, "tile_name"=>"15", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>4, "y"=>12, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>34, "status"=>nil, "tile_name"=>"16", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>5, "y"=>12, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>35, "status"=>nil, "tile_name"=>"17", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>6, "y"=>12, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>36, "status"=>nil, "tile_name"=>"18", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>7, "y"=>12, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>37, "status"=>nil, "tile_name"=>"19", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>8, "y"=>12, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>38, "status"=>nil, "tile_name"=>"20", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>8, "y"=>1, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>39, "status"=>nil, "tile_name"=>"21", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>8, "y"=>2, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>40, "status"=>nil, "tile_name"=>"22", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>8, "y"=>3, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>41, "status"=>nil, "tile_name"=>"23", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>8, "y"=>4, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>42, "status"=>nil, "tile_name"=>"24", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>8, "y"=>5, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>43, "status"=>nil, "tile_name"=>"25", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>8, "y"=>6, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>44, "status"=>nil, "tile_name"=>"26", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>8, "y"=>7, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>45, "status"=>nil, "tile_name"=>"27", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>8, "y"=>8, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>46, "status"=>nil, "tile_name"=>"28", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>8, "y"=>9, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>47, "status"=>nil, "tile_name"=>"29", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>8, "y"=>10, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>48, "status"=>nil, "tile_name"=>"30", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>8, "y"=>11, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>49, "status"=>nil, "tile_name"=>"31", "tile_type"=>"road", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>8, "y"=>12, "z"=>0})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>50, "status"=>nil, "tile_name"=>"0", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>3, "y"=>4, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>51, "status"=>nil, "tile_name"=>"1", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>3, "y"=>5, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>52, "status"=>nil, "tile_name"=>"2", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>3, "y"=>6, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>53, "status"=>nil, "tile_name"=>"3", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>3, "y"=>7, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>54, "status"=>nil, "tile_name"=>"4", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>3, "y"=>8, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>55, "status"=>nil, "tile_name"=>"5", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>3, "y"=>9, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>56, "status"=>nil, "tile_name"=>"6", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>3, "y"=>10, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>57, "status"=>nil, "tile_name"=>"7", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>3, "y"=>11, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>58, "status"=>nil, "tile_name"=>"8", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>4, "y"=>4, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>59, "status"=>nil, "tile_name"=>"9", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>4, "y"=>5, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>60, "status"=>nil, "tile_name"=>"10", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>4, "y"=>6, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>61, "status"=>nil, "tile_name"=>"11", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>4, "y"=>7, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>62, "status"=>nil, "tile_name"=>"12", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>4, "y"=>8, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>63, "status"=>nil, "tile_name"=>"13", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>4, "y"=>9, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>64, "status"=>nil, "tile_name"=>"14", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>4, "y"=>10, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>65, "status"=>nil, "tile_name"=>"15", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>4, "y"=>11, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>66, "status"=>nil, "tile_name"=>"16", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>5, "y"=>4, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>67, "status"=>nil, "tile_name"=>"17", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>5, "y"=>5, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>68, "status"=>nil, "tile_name"=>"18", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>5, "y"=>6, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>69, "status"=>nil, "tile_name"=>"19", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>5, "y"=>7, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>70, "status"=>nil, "tile_name"=>"20", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>5, "y"=>8, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>71, "status"=>nil, "tile_name"=>"21", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>5, "y"=>9, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>72, "status"=>nil, "tile_name"=>"22", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>5, "y"=>10, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>73, "status"=>nil, "tile_name"=>"23", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>5, "y"=>11, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>74, "status"=>nil, "tile_name"=>"24", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>6, "y"=>4, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>75, "status"=>nil, "tile_name"=>"25", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>6, "y"=>5, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>76, "status"=>nil, "tile_name"=>"26", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>6, "y"=>6, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>77, "status"=>nil, "tile_name"=>"27", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>6, "y"=>7, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>78, "status"=>nil, "tile_name"=>"28", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>6, "y"=>8, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>79, "status"=>nil, "tile_name"=>"29", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>6, "y"=>9, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>80, "status"=>nil, "tile_name"=>"30", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>6, "y"=>10, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>81, "status"=>nil, "tile_name"=>"31", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>6, "y"=>11, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>82, "status"=>nil, "tile_name"=>"32", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>-3, "y"=>2, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>83, "status"=>nil, "tile_name"=>"33", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>-3, "y"=>3, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>84, "status"=>nil, "tile_name"=>"34", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>-3, "y"=>4, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>85, "status"=>nil, "tile_name"=>"35", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>-3, "y"=>5, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>86, "status"=>nil, "tile_name"=>"36", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>-3, "y"=>6, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>87, "status"=>nil, "tile_name"=>"37", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>-3, "y"=>7, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>88, "status"=>nil, "tile_name"=>"38", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>-3, "y"=>8, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>89, "status"=>nil, "tile_name"=>"39", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>-3, "y"=>9, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>90, "status"=>nil, "tile_name"=>"40", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>-3, "y"=>10, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>91, "status"=>nil, "tile_name"=>"41", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>-3, "y"=>11, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>92, "status"=>nil, "tile_name"=>"42", "tile_type"=>"warehouse", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>-3, "y"=>12, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>93, "status"=>nil, "tile_name"=>"0", "tile_type"=>"station", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>-1, "y"=>0, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>94, "status"=>nil, "tile_name"=>"1", "tile_type"=>"station", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>7, "y"=>0, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>95, "status"=>nil, "tile_name"=>"0", "tile_type"=>"scale", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>0, "y"=>0, "z"=>nil})
+
+  Apiv1::Tile.create({"created_at"=>"2015-03-24T19:45:17.000Z", "deleted_at"=>nil, "id"=>96, "status"=>nil, "tile_name"=>"1", "tile_type"=>"scale", "updated_at"=>"2015-03-24T19:45:17.000Z", "x"=>8, "y"=>0, "z"=>nil})
+  ActiveRecord::Base.connection.reset_pk_sequence!('apiv1_tiles')
 end
+
+SeedMigration::Migrator.bootstrap(20150324193409)

@@ -12,6 +12,7 @@ Barn = DS.Model.extend
   x: DS.attr "number"
   y: DS.attr "number"
   z: DS.attr "number"
+  tileName: DS.attr "string"
   status: DS.attr "string"
 
   isWaiting: FunEx.computed "status", ->
@@ -40,4 +41,6 @@ Barn = DS.Model.extend
       x: @get("x") 
       y: @get("y")
       constant: @get("z")
+
+  dockNumber: Ember.computed.alias("tileName")
 `export default Barn`
