@@ -12,14 +12,13 @@ Router.map ->
       
     @resource "appointment", path: "/appointment", ->
       @route "new"
-
-  @resource "scalemaster", path: "/scalemaster", ->
-    @route "problem"
-    @resource "scalemaster.truck", path: "/truck/:truck_id", ->
-    @resource "weighticket", path: "/weighticket", ->
-      @route "new"
-  @resource "ticket", path: "/ticket/:ticket_id", ->
-    @route "print"
+  
+  @resource "stations", path: "/stations", ->
+    @resource "stations.station", path: "/station/:station_id", ->
+      @route "arrivals"
+      @route "departures"
+      @route "status"
+      @route "problem"
 
   @resource "docks", path: "/docks", ->
     @route "inventory"
@@ -51,9 +50,5 @@ Router.map ->
       @route "form"
     @resource "barn", path: "/barn/:barn_id", ->
       @route "form"
-  
-  @route 'weighticket/new'
-  @route 'scalemaster/truck'
-  @route 'message/problem'
 
 `export default Router`

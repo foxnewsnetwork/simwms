@@ -5,7 +5,10 @@ Scale = DS.Model.extend
   x: DS.attr "number"
   y: DS.attr "number"
   z: DS.attr "number"
+  tileName: DS.attr "string"
 
+  stationNumber: Ember.computed.alias("tileName")
+  
   order: FunEx.computed "position.order", ->
     @get("position.order")
 
@@ -15,5 +18,8 @@ Scale = DS.Model.extend
       x: @get("x") 
       y: @get("y")
       constant: @get("z")
+
+  isEntryStation: FunEx.computed "x", ->
+    @get("x") <= 0
 
 `export default Scale`

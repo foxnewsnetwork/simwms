@@ -1,0 +1,23 @@
+.row
+  .col-xs-6
+    .list-group
+      link-to "stations.station" entryStation.id class="list-group-item"
+        .list-group-item-heading
+          span.fa.capitalize entrance weight station
+        .list-group-item-text
+          span.bold.colon station number
+          span.prespace= entryStation.stationNumber
+          span.bold.colon status
+          span.prespace= entryStation.status
+
+  .col-xs-6
+    .list-group
+      link-to "stations.station" exitStation.id class="list-group-item"
+        .list-group-item-heading
+          span.fa.capitalize exit weight station
+        .list-group-item-text
+          span.bold.colon station number
+          span.prespace= exitStation.stationNumber
+          span.bold.colon status
+          span.prespace= exitStation.status
+    

@@ -5,18 +5,20 @@
 Statuses = ["moving", "idle", "loading", "problem"]
 Truck = DS.Model.extend
   status: DS.attr "string"
-  licensePlate: DS.attr "string"
-  materialDescription: DS.attr "string"
   arrivedAt: DS.attr "date"
   origination: DS.attr "string"
   origintype: DS.attr "string"
   destination: DS.attr "string"
   destinytype: DS.attr "string"
-  appointmentNumber: DS.attr "string"
   weighticket: DS.belongsTo "weighticket", async: true
   
   speed: 1
   isEmpty: true
+
+  materialDescription: Ember.computed.alias "weighticket.materialDescription"
+  appointmentNumber: Ember.computed.alias "weighticket.appointmentNumber"
+  licensePlate: Ember.computed.alias "weighticket.licensePlate"
+
 
   arrivedAtAgo: FunEx.computed "arrivedAt", ->
     return unless @get("arrivedAt")?

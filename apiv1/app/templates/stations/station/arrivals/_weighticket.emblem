@@ -1,0 +1,42 @@
+.panel.panel-default
+  .panel-heading.instruction-line
+    span.fa create a weight ticket for the truck
+
+  .row
+    .col-xs-12.col-sm-12.col-md-9.col-lg-6
+      form-for classNames="panel-body instruction-line" submit="newTicket"
+        form-input name="appointmentNumber" type="text" labelText="appointment number"
+          span.help-block get this from the driver
+
+        form-input name="licensePlate" type="text" labelText="license plate number"
+          span.help-block read this off the truck
+        
+        form-input name="pounds" type="number" labelText="weight" suffix="lbs"
+          span.help-block read this off the scale
+
+        form-input name="targetDock" type="number" labelText="target loading dock" value=firstFreeDockNumber
+          span.help-block if you don't like my suggestion, please pick a dock yourself 
+
+        form-input name="notes" type="text" labelText="notes"
+          span.help-block extra notes
+
+        .btn-group
+          button.btn.btn-success.btn-hover.btn-lg type="submit"
+            i.fa.fa-check
+            span.capitalize submit
+          link-to "stations.station.problem" model.id class="btn btn-danger btn-hover btn-lg"
+            i.fa.fa-warning
+            span.capitalize report problem
+    .hidden-xs.hidden-sm.col-md-3.col-lg-6
+      dl.dl-horizontal
+        each barn in iogrid.barns
+          dt
+            span.fa.bold dock no.
+            span.fa.bold= barn.dockNumber
+          dd= barn.status
+
+  .list-group
+    link-to "stations.station.arrivals" model.id (query-params state='print') classNames="list-group-item instruction-line"
+      span.fa print out weight ticket
+    link-to "stations.station.arrivals" model.id (query-params state='give') classNames="list-group-item instruction-line"
+      span.fa give weight ticket to driver

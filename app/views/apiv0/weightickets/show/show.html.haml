@@ -1,0 +1,19 @@
+%h1.instructions-to-driver
+  %span.colon driver, go to dock number
+  %span.highlight= @weighticket.target_dock
+%dl
+  %dt appointment number
+  %dd= @weighticket.appointment_number
+  %dt issuer id
+  %dd= @weighticket.issuer_id
+  %dt pounds
+  %dd= @weighticket.pounds
+  %dt license plate
+  %dd= @weighticket.license_plate
+  %dt target dock
+  %dd= @weighticket.target_dock
+  %dt createdAt
+  %dd= @weighticket.created_at
+  
+  %dt notes
+  %dd= @weighticket.notes

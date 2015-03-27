@@ -11,13 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150324192449) do
+ActiveRecord::Schema.define(version: 20150325174300) do
 
   create_table "apiv1_appointments", force: :cascade do |t|
-    t.string   "permalink",  limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "permalink",            limit: 255
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.datetime "deleted_at"
+    t.string   "material_description", limit: 255
+    t.string   "material_permalink",   limit: 255
+    t.string   "company",              limit: 255
+    t.string   "company_permalink",    limit: 255
+    t.text     "notes",                limit: 65535
+    t.datetime "fulfilled_at"
+    t.datetime "cancelled_at"
+    t.datetime "expected_at"
+    t.datetime "exploded_at"
   end
 
   create_table "apiv1_cameras", force: :cascade do |t|

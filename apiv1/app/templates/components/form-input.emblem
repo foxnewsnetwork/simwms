@@ -1,0 +1,12 @@
+label for=name
+  span.fa= labelText
+if shouldInputGroup
+  .input-group
+    if prefix
+      span.input-group-addon= prefix
+    == input type=type class="form-control" name=name value=value
+    if suffix
+      span.input-group-addon= suffix
+else
+  == input type=type class="form-control" name=name value=value
+== yield

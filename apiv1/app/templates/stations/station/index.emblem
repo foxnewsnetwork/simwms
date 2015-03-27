@@ -1,0 +1,5 @@
+.col-xs-12
+  if isEntryStation
+    == partial "stations/station/entrance"
+  else
+    == partial "stations/station/exit"

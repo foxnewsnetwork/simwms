@@ -9,3 +9,4 @@ SeedMigration.register Apiv1::User do
   exclude :id, :password
 end
 SeedMigration.register Apiv1::Tile
+SeedMigration.register Apiv1::Appointment

@@ -3,15 +3,4 @@
     .container
       .row
         .col-xs-12
-          h1.instructions-to-scalemaster
-            span.colon print and give this to truck
-            span.highlight= model.licensePlate
-
-          if model.targetDock
-            h1.instructions-to-driver
-              span.colon driver, go to dock number
-              span.highlight= model.targetDock
-          else
-            h1.instructions-to-driver
-              span.colon.bold.spacebar please wait
-              span= model.notes
+          

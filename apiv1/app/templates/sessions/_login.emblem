@@ -1,12 +1,16 @@
 h2.modal-title
   span.fa Login
-  
-form-for errors=loginErrors submit="login"
-  .form-group.input-section attr-name="ranks"
-    label.capitalize.bold role
-    == view "select" content=roles name="role" class="form-control"
 
-  .actions
-    button.btn.btn-success.close-button type="submit"
-      i.fa.fa-check
-      span.capitalize submit
+.list-group
+  link-to "manager" class="list-group-item"
+    i.fa.fa-institution
+    span.fa manager overview
+  link-to "docks" class="list-group-item"
+    i.fa.fa-truck
+    span.fa loading docks
+  link-to "stations" class="list-group-item"  
+    i.fa.fa-bell
+    span.fa weight stations
+  link-to "logistics" class="list-group-item"
+    i.fa.fa-pencil
+    span.fa logistics

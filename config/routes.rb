@@ -12,5 +12,12 @@ Rails.application.routes.draw do
 
     resources :weightickets, only: [:create], controller: 'weightickets/create'
     resources :weightickets, only: [:show], controller: 'weightickets/show'
+
+    resources :appointments, only: [:show], controller: "appointments/show"
+    resources :appointments, only: [:index], controller: "appointments/index"
+  end
+
+  namespace :apiv0 do
+    resources :weightickets, only: [:show], controller: 'weightickets/show'
   end
 end

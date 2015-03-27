@@ -14,6 +14,7 @@ module.exports = function(environment) {
       "frame-src": "'self' https://www.youtube.com"
     },
     firebase: 'https://simwms-apiv2.firebaseio.com/',
+    print: 'http://localhost:4200/apiv0',
     baseURL: '/',
     locationType: 'auto',
     EmberENV: {
