@@ -10,7 +10,7 @@ Levels = [
 Archtypes = 
   "truck arrived on site": "notice"
   "truck at loading dock": "update"
-  "truck left, dock is free": "update"
+  "truck left dock is free": "update"
   "truck waiting for free dock": "warning"
   "truck at exit station": "update"
   "truck has left site": "update"

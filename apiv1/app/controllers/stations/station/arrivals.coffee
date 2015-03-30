@@ -42,7 +42,7 @@ StationsStationArrivalsController = Ember.Controller.extend
     origintype: "live/scale"
     destination: @inferTarget(weighticket)
     destinytype: "live/barn"
-    weighticket: weighticket
+    weighticketId: weighticket.get("id")
 
   calculateMessage: (truck) ->
     archtype: inferTruckIntention(truck)

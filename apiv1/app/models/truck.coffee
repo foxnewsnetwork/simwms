@@ -10,7 +10,11 @@ Truck = DS.Model.extend
   origintype: DS.attr "string"
   destination: DS.attr "string"
   destinytype: DS.attr "string"
-  weighticket: DS.belongsTo "weighticket", async: true
+  weighticketId: DS.attr "string"
+
+  weighticket: FunEx.computed "weighticketId", -> 
+    return unless @get("weighticketId")?
+    @store.find "weighticket", @get("weighticketId")
   
   speed: 1
   isEmpty: true

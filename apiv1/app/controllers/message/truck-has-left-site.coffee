@@ -1,9 +1,8 @@
 `import Ember from 'ember'`
 
-MessageMiscellaniousController = Ember.Controller.extend
+MessageTruckHasLeftSiteController = Ember.Controller.extend
   actions:
     resolveMessage: ->
       @model.destroyRecord().then => @send 'closeModal'
 
-
-`export default MessageMiscellaniousController`
+`export default MessageTruckHasLeftSiteController`

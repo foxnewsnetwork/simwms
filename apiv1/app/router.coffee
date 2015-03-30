@@ -32,7 +32,7 @@ Router.map ->
     @resource "message", path: "/message/:message_id", ->
       @route Ember.String.dasherize "truck arrived on site"
       @route Ember.String.dasherize "truck at loading dock"
-      @route Ember.String.dasherize "truck left, dock is free"
+      @route Ember.String.dasherize "truck left dock is free"
       @route Ember.String.dasherize "truck waiting for free dock"
       @route Ember.String.dasherize "truck at exit station"
       @route Ember.String.dasherize "truck has left site"
@@ -50,5 +50,12 @@ Router.map ->
       @route "form"
     @resource "barn", path: "/barn/:barn_id", ->
       @route "form"
+
+  @route 'message/truck-arrived-on-site'
+  @route 'message/truck-at-loading-dock'
+  @route 'message/truck-left-dock-is-free'
+  @route 'message/truck-waiting-for-free-dock'
+  @route 'message/truck-at-exit-station'
+  @route 'message/truck-has-left-site'
 
 `export default Router`
