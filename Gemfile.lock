@@ -40,7 +40,7 @@ GEM
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
     arel (6.0.0)
-    arrows (0.1.0)
+    arrows (0.1.1)
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -247,7 +247,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate (~> 2.6.5)
-  arrows (~> 0.1.0)
+  arrows (~> 0.1.1)
   byebug
   coffee-rails (~> 4.1.0)
   compass-rails (~> 2.0.1)

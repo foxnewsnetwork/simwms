@@ -1,9 +1,13 @@
 .inventory-table-container {
-  .cell:hover {
+  td:hover:not(:first-child) {
     background-color: #eee;
     @include box-shadow(#333 1.5px 1.5px 3px);
+    cursor: pointer;
   }
-  .cell {
+  th {
+    text-align: center;
+  }
+  td {
     text-align: center;
     @include transition-property(background-color);
     @include transition-duration(300ms);

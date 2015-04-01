@@ -41,6 +41,7 @@ Router.map ->
     @resource "contracts", path: "/contracts", ->
     @resource "employees", path: "/employees", ->
     @resource "inventories", path: "/inventories", ->
+      @resource "inventories.cell", path: "/cell/:cell_id", ->
     @resource "statuses", path: "/statuses", ->
       @route "debug"
       @route "options"
@@ -50,12 +51,6 @@ Router.map ->
       @route "form"
     @resource "barn", path: "/barn/:barn_id", ->
       @route "form"
-
-  @route 'message/truck-arrived-on-site'
-  @route 'message/truck-at-loading-dock'
-  @route 'message/truck-left-dock-is-free'
-  @route 'message/truck-waiting-for-free-dock'
-  @route 'message/truck-at-exit-station'
-  @route 'message/truck-has-left-site'
+  @route 'inventories/cell'
 
 `export default Router`

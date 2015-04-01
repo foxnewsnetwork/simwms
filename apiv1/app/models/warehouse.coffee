@@ -7,10 +7,14 @@ Warehouse = DS.Model.extend
   y: DS.attr "number"
   z: DS.attr "number"
   status: DS.attr "string"
+  tileName: DS.attr "string"
 
   loadWithMaterial: ->
     @set "status", "full"
     @save()
+
+  hasStuff: Ember.computed "status", ->
+    Ember.isBlank(@get "status") or (@get("status") isnt "empty")
 
   order: FunEx.computed "position.order", ->
     @get("position.order")
@@ -22,5 +26,15 @@ Warehouse = DS.Model.extend
       y: @get("y")
       constant: @get("z")
 
+  colName: Ember.computed "x", ->
+    switch parseInt @get "x"
+      when -3 then "a"
+      when 3 then "b"
+      when 4 then "c"
+      when 5 then "d"
+      when 6 then "e"
+      else throw new Error "Not sure what #{@get 'x'} maps to"
+
+  rowName: Ember.computed.alias("y")
 
 `export default Warehouse`

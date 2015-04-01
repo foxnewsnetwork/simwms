@@ -7,16 +7,19 @@ enliven = (stableModel) ->
   store = stableModel.store
   typeKey = stableModel.constructor.typeKey
   liveKey = typeKey.replace "stable/", "live/"
+
   liveModel = store.createRecord liveKey
 
   copyOverFields stableModel, liveModel
 
 copyOverFields = (origin, destiny) ->
   fields = Ember.get(origin.constructor, "fields")
+  destiny.set "permalink", origin.get("id")
   fields.forEach (relation, key) ->
     value = origin.get key
     return if Ember.isBlank(key) or Ember.isBlank(value)
-    return destiny.get(key).addObjects value.map enliven if relation is "hasMany"
+    return if key is "batches"
+    return destiny.get(key).addObjects value.map enliven if (relation is "hasMany")
     return destiny.set(key, value) unless key is "id"
   destiny
 

@@ -1,6 +1,13 @@
 class Apiv1::Grids::ShowController < ApplicationController
   def show
-    render json: { grid: _grid_hash, barns: _barns, roads: _roads, warehouses: _warehouses, scales: _scales, stations: _stations }
+    render json: { 
+      grid: _grid_hash,
+      barns: _barns,
+      roads: _roads,
+      warehouses: _warehouses.map(&:ember_attributes),
+      scales: _scales,
+      stations: _stations 
+    }
   end
   private
   def _grid_hash
@@ -20,7 +27,7 @@ class Apiv1::Grids::ShowController < ApplicationController
     @barns ||= Apiv1::Tile.living_barns
   end
   def _warehouses
-    @warehouses ||= Apiv1::Tile.living_warehouses
+    @warehouses ||= Apiv1::Warehouse.living_warehouses
   end
   def _roads
     @roads ||= Apiv1::Tile.living_roads

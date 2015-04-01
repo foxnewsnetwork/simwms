@@ -1,6 +1,6 @@
 `import Ember from 'ember'`
 
-InventoriesController = Ember.Controller.extend
-  blankRows: [4..11]
+InventoriesController = Ember.Controller.extend()
+  
 
 `export default InventoriesController`

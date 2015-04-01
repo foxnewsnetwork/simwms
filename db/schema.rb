@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150325174300) do
+ActiveRecord::Schema.define(version: 20150330182408) do
 
   create_table "apiv1_appointments", force: :cascade do |t|
     t.string   "permalink",            limit: 255
@@ -28,6 +28,20 @@ ActiveRecord::Schema.define(version: 20150325174300) do
     t.datetime "expected_at"
     t.datetime "exploded_at"
   end
+
+  create_table "apiv1_batches", force: :cascade do |t|
+    t.integer  "appointment_id", limit: 4
+    t.integer  "warehouse_id",   limit: 4
+    t.string   "permalink",      limit: 255
+    t.string   "description",    limit: 255
+    t.string   "quantity",       limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.datetime "deleted_at"
+  end
+
+  add_index "apiv1_batches", ["appointment_id"], name: "index_apiv1_batches_on_appointment_id", using: :btree
+  add_index "apiv1_batches", ["warehouse_id"], name: "index_apiv1_batches_on_warehouse_id", using: :btree
 
   create_table "apiv1_cameras", force: :cascade do |t|
     t.string   "permalink",   limit: 255

@@ -258,4 +258,4 @@ ActiveRecord::Base.transaction do
   ActiveRecord::Base.connection.reset_pk_sequence!('apiv1_appointments')
 end
 
-SeedMigration::Migrator.bootstrap(20150325181732)
+SeedMigration::Migrator.bootstrap(20150330222204)

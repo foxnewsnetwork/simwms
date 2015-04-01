@@ -33,5 +33,5 @@ footer#footer.footer
               i.fa.fa-exchange
             span.fa.info-data 24
           .col-lg-3.info-box
-            span.fa.info-data Sat Feb 14, 11:04 AM
+            span.fa.info-data= rightNow
 == outlet
