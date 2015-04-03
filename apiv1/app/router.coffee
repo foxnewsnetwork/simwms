@@ -6,12 +6,14 @@ Router = Ember.Router.extend
 
 Router.map ->
   @resource "logistics", path: "/logistics", ->
-    @resource "stockpile", path: "/stockpile", ->
-      @resource "cell", path: "/cell/:cell_id", ->
+    @resource "logistics.inventories", path: "/inventories", ->
+      @resource "logistics.cell", path: "/cell/:cell_id", ->
         @route "pictures"
-      
-    @resource "appointment", path: "/appointment", ->
-      @route "new"
+    @resource "logistics.appointments", path: "/appointments", ->
+      @route "new"      
+    @resource "logistics.appointment", path: "/appointment/:appointment_id", ->
+      @route "edit"
+      @route "reschedule"
   
   @resource "stations", path: "/stations", ->
     @resource "stations.station", path: "/station/:station_id", ->
@@ -51,6 +53,5 @@ Router.map ->
       @route "form"
     @resource "barn", path: "/barn/:barn_id", ->
       @route "form"
-  @route 'inventories/cell'
 
 `export default Router`

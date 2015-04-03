@@ -1,0 +1,73 @@
+.row
+  .col-xs-12
+    link-to "logistics.appointments" class="btn btn-default"
+      i.fa.fa-caret-left
+      span.fa.capitalize back to appointment index
+.row
+  .col-xs-12.col-sm-12.col-md-6.col-lg-4
+    dl
+      dt.capitalize data id
+      dd
+        span.fa= model.id
+      dt.capitalize appointment number
+      dd
+        span.fa= model.permalink
+      dt.capitalize material description
+      dd
+        span.fa= model.materialDescription
+      dt.capitalize company
+      dd
+        span.fa= model.company
+      dt.capitalize notes
+      dd
+        span.fa= model.notes
+      dt.capitalize status
+      dd
+        span.fa= model.status
+      dt.capitalize createdAt
+      dd
+        span.fa= model.createdAt
+      dt.capitalize updatedAt
+      dd
+        span.fa= model.updatedAt
+      dt.capitalize expectedAt
+      dd
+        span.fa= model.expectedAt
+  .col-xs-12.col-sm-12.col-md-6.col-lg-4
+    .list-group
+      link-to "logistics.appointment.reschedule" model.id class="list-group-item"
+        i.fa.fa-calendar
+        span.fa reschedule appointment
+      link-to "logistics.appointment.edit" model.id class="list-group-item"
+        i.fa.fa-edit
+        span.fa edit appointment
+      if model.isCancellable
+        .list-group-item.list-group-item-warning.pointer click="cancel"
+          i.fa.fa-trash
+          span.fa cancel appointment
+      if model.statusIsCancelled
+        .list-group-item.list-group-item-warning.pointer click="uncancel"
+          i.fa.fa-trash
+          span.fa uncancel appointment
+
+    if showprob
+      form-for submit="submitProblem"
+        .panel.panel-danger.pointer click="unproblem"
+          .panel-heading
+            i.fa.fa-warning
+            span.fa.capitalize report problem
+          .panel-body
+            form-input name="notes" type="text" labelText="problem message"
+          
+          .list-group
+            button.list-group-item.btn-block.align-left type="submit"
+              i.fa.fa-check
+              span.fa submit
+            .list-group-item.pointer click="unproblem"
+              i.fa.fa-times
+              span.fa cancel
+    else
+      .list-group
+        .list-group-item.list-group-item-danger.pointer click="problem"
+          i.fa.fa-warning
+          span.fa.capitalize report problem

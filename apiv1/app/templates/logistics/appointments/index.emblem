@@ -1,0 +1,36 @@
+.list-group
+  link-to "logistics.appointments.new" class="list-group-item list-group-item-success"
+    h4.list-group-item-heading
+      i.fa.fa-plus
+      span.capitalize new appointment
+  each appointment in model
+    link-to "logistics.appointment" appointment.id class="list-group-item"
+      h4.list-group-item-heading
+        if appointment.statusIsPlanned
+          i.fa.fa-calendar
+        if appointment.statusIsProblem
+          i.fa.fa-warning
+        if appointment.statusIsExpected
+          i.fa.fa-spinner.fa-spin
+        if appointment.statusIsFulfilled
+          i.fa.fa-check
+        if appointment.statusIsCancelled
+          i.fa.fa-times
+        if appointment.statusIsVanished
+          i.fa.fa-exclamation-circle
+        if appointment.statusIsUnknown
+          i.fa.fa-question-circle
+        span= appointment.permalink
+      p.list-group-item-text
+        .segment
+          span.segment-title company
+          span.segment-info= appointment.company
+        .segment
+          span.segment-title description
+          span.segment-info= appointment.materialDescription
+        .segment
+          span.segment-title ETA
+          span.segment-info= appointment.expectedAtAgo
+        .segment
+          span.segment-title status
+          span.segment-info= appointment.status

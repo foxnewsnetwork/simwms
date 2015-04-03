@@ -1,7 +1,8 @@
 `import Ember from 'ember'`
 
-StockpileRoute = Ember.Route.extend
+LogisticsInventoriesRoute = Ember.Route.extend
   model: ->
+    @iogrid.then => @store.find "live/warehouse"
   actions:
     openModal: (cell) ->
       if cell?
@@ -13,4 +14,4 @@ StockpileRoute = Ember.Route.extend
     closeModal: ->
       @transitionTo "stockpile"
 
-`export default StockpileRoute`
+`export default LogisticsInventoriesRoute`

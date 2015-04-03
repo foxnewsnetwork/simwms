@@ -1,5 +1,5 @@
 `import DS from 'ember-data'`
-`import FunEx from '../utils/fun-ex'`
+`import Ember from 'ember'`
 Appointment = DS.Model.extend
   permalink: DS.attr "string"
   materialDescription: DS.attr "string"
@@ -9,7 +9,32 @@ Appointment = DS.Model.extend
   createdAt: DS.attr "date"
   updatedAt: DS.attr "date"
   expectedAt: DS.attr "date"
+  fulfilledAt: DS.attr "date"
+  cancelledAt: DS.attr "date"
+  explodedAt: DS.attr "date"
 
-  expectedAtAgo: FunEx.computed "expectedAt", ->
+  expectedAtAgo: Ember.computed "expectedAt", ->
     $.timeago @get "expectedAt"
+
+  statusIsPlanned: Ember.computed.equal "status", "planned"
+  statusIsProblem: Ember.computed.equal "status", "problem"
+  statusIsExpected: Ember.computed.equal "status", "expected"
+  statusIsFulfilled: Ember.computed.equal "status", "fulfilled"
+  statusIsCancelled: Ember.computed.equal "status", "cancelled"
+  statusIsVanished: Ember.computed.equal "status", "vanished"
+  statusIsUnknown: Ember.computed.equal "status", "unknown"
+
+  isCancellable: Ember.computed.or "statusIsPlanned", "statusIsProblem", "statusIsUnknown", "statusIsExpected", "statusIsVanished"
+
+  cancel: ->
+    @set "cancelledAt", new Date()
+
+  uncancel: ->
+    @set "cancelledAt", null
+
+  explode: ->
+    @set "explodedAt", new Date()
+
+  unexplode: ->
+    @set "explodedAt", null
 `export default Appointment`

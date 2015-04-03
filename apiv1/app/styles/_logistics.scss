@@ -1,0 +1,26 @@
+#logistics {
+  @include apiv1-role-module-setup;
+  i {
+    margin-right: 10px;
+  }
+  .segment {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    &:first-child {
+      margin-left: 0px;
+      padding-left: 0px;
+    }
+  }
+  .segment-title {
+    font-weight: bold;
+    text-transform: capitalize;
+    margin-right: 5px;
+    &:after {
+      content: ":";
+    }
+  }
+}
