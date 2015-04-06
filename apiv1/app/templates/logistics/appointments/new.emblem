@@ -1,31 +1,24 @@
-.col-xs-12.col-sm-12.col-md-8.col-lg-6
-  link-to "logistics.index" class="btn btn-default btn-lg btn-hover"
-    i.fa.fa-caret-left
-    span.prespace.capitalize.bold back
-  form-for errors=appointmentError submit="newAppointment"
-    legend
-      span.form-title.fa new appointment
-    .form-group.input-section attr-name="company"
-      label.capitalize.bold
-        span.fa company
-      == input type="text" name="company" class="form-control"
-    .form-group.input-section attr-name="via"
-      label.capitalize.bold
-        span.fa truck carrier
-      == input type="text" name="via" class="form-control"
-    .form-group.input-section attr-name="material"
-      label.capitalize.bold
-        span.fa material description
-      == input type="text" name="material" class="form-control"
-    .form-group.input-section attr-name="ETA"
-      label.capitalize.bold
-        span.fa ETA
-      == input type="date" name="ETA" class="form-control"
-    .form-group.input-section attr-name="notes"
-      label.capitalize.bold
-        span.fa notes
-      == textarea name="notes" class="form-control"
-    .actions
-      button.btn.btn-success.btn-lg.btn-hover type="submit"
-        i.fa.fa-check
-        span.prespace.capitalize.bold submit
+h2.section-title
+  span.fa.capitalize new appointment
+
+.row
+  .col-xs-12
+    link-to "logistics.appointments.index" class="btn btn-default btn-lg btn-hover"
+      i.fa.fa-caret-left
+      span.capitalize.bold back
+
+.row
+  .col-xs-12.col-sm-12.col-md-9.col-lg-6
+    form-for errors=appointmentError submit="create"
+      form-input name="company" labelText="company" type="text"
+      
+      form-input name="materialDescription" labelText="material description" type="text"
+      
+      form-input name="expectedAt" labelText="ETA" type="date"
+      
+      form-input name="notes" labelText="notes" type="text"
+      
+      .actions
+        promise-button model=appointment classNames="btn btn-success btn-lg btn-hover" type="submit"
+          i.fa.fa-check
+          span.capitalize.bold submit

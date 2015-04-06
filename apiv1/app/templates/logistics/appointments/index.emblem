@@ -3,7 +3,23 @@
     h4.list-group-item-heading
       i.fa.fa-plus
       span.capitalize new appointment
-  each appointment in model
+
+.panel.panel-default
+  .panel-heading
+    h3.panel-title
+      span.fa.capitalize appointment search tools
+  .panel-body
+    .btn-group
+      link-to "logistics.appointments" (query-params macro="all") classNames="btn btn-default"
+        span.fa all
+      link-to "logistics.appointments" (query-params macro="today") classNames="btn btn-default"
+        span.fa relevant today
+      link-to "logistics.appointments" (query-params macro="future") classNames="btn btn-default"
+        span.fa planned for future
+      link-to "logistics.appointments" (query-params macro="problem") classNames="btn btn-default"
+        span.fa has problems
+
+  each appointment in content
     link-to "logistics.appointment" appointment.id class="list-group-item"
       h4.list-group-item-heading
         if appointment.statusIsPlanned
@@ -34,3 +50,6 @@
         .segment
           span.segment-title status
           span.segment-info= appointment.status
+
+  .panel-footer
+    page-numbers content=content

@@ -14,6 +14,7 @@ Appointment = DS.Model.extend
   explodedAt: DS.attr "date"
 
   expectedAtAgo: Ember.computed "expectedAt", ->
+    return if Ember.isBlank @get "expectedAt"
     $.timeago @get "expectedAt"
 
   statusIsPlanned: Ember.computed.equal "status", "planned"
@@ -26,6 +27,7 @@ Appointment = DS.Model.extend
 
   isCancellable: Ember.computed.or "statusIsPlanned", "statusIsProblem", "statusIsUnknown", "statusIsExpected", "statusIsVanished"
 
+  canReschedule: Ember.computed.not "statusIsFulfilled"
   cancel: ->
     @set "cancelledAt", new Date()
 

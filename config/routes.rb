@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :appointments, only: [:show], controller: "appointments/show"
     resources :appointments, only: [:index], controller: "appointments/index"
     resources :appointments, only: [:update], controller: "appointments/update"
+    resources :appointments, only: [:create], controller: "appointments/create"
 
     resources :batches, only: [:create], controller: "batches/create"
     resources :batches, only: [:show], controller: "batches/show"

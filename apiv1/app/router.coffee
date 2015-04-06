@@ -53,5 +53,6 @@ Router.map ->
       @route "form"
     @resource "barn", path: "/barn/:barn_id", ->
       @route "form"
+  
 
 `export default Router`
