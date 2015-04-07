@@ -13,9 +13,6 @@
     .row
       .col-xs-12
         .btn-group.btn-group-lg
-          link-to "logistics.index" class="btn btn-default"
-            i.fa.fa-dashboard
-            span.fa.nav-title dash
           link-to "logistics.appointments" class="btn btn-default"
             i.fa.fa-calendar-o
             span.fa.nav-title appointments
