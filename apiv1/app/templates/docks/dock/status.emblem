@@ -30,7 +30,7 @@
             span.fa error
         
     .col-lg-6.col-md-6.col-sm-12.col-xs-12
-      link-to "dock.problem" model.id class="btn btn-block btn-lg btn-danger btn-hover"
+      link-to "docks.dock.problem" model.id class="btn btn-block btn-lg btn-danger btn-hover"
         i.fa.fa-warning
         span.fa.capitalize report problem
   h4.subsection-title

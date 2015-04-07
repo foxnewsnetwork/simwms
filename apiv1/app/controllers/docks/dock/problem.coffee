@@ -1,6 +1,6 @@
 `import Ember from 'ember'`
 
-DockProblemController = Ember.Controller.extend
+DocksDockProblemController = Ember.Controller.extend
   prepare: (params) ->
     archtype: "problem"
     note: Ember.get(params, "notes")
@@ -13,6 +13,6 @@ DockProblemController = Ember.Controller.extend
       @get("model").set("status", "problem").save()
       @store.createRecord("message", @prepare params).save()
       .then =>
-        @transitionToRoute "dock.status", @get("model.id")
+        @transitionToRoute "docks.dock.status", @get("model.id")
 
-`export default DockProblemController`
+`export default DocksDockProblemController`

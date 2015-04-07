@@ -1,0 +1,8 @@
+.col-xs-12
+  if model.isOkay
+    == partial "docks/dock/okay"
+  if model.isInUse
+    == partial "docks/dock/inuse"
+  if model.isProblem
+    == partial "docks/dock/problem"
+  

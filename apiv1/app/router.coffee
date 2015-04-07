@@ -23,8 +23,10 @@ Router.map ->
       @route "problem"
 
   @resource "docks", path: "/docks", ->
-    @route "inventory"
-    @resource "dock", path: "/dock/:dock_id", ->
+    @resource "docks.inventories", path: "/inventories", ->
+      @resource "docks.cell", path: "/cell/:cell_id", ->
+        @route "pictures"
+    @resource "docks.dock", path: "/dock/:dock_id", ->
       @route "status"
       @route "problem"
       

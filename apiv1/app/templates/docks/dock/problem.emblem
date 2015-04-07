@@ -13,6 +13,6 @@
         i.fa.fa-check
         span.capitalize submit
 
-      link-to "dock.status" model.id class="btn btn-default btn-hover btn-lg btn-block"
+      link-to "docks.dock.status" model.id class="btn btn-default btn-hover btn-lg btn-block"
         i.fa.fa-times
         span.capitalize cancel

@@ -1,8 +1,0 @@
-.col-xs-12
-  if model.isOkay
-    == partial "dock/okay"
-  if model.isInUse
-    == partial "dock/inuse"
-  if model.isProblem
-    == partial "dock/problem"
-  

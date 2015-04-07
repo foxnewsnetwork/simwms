@@ -17,7 +17,7 @@ if expectingTruck
         button.btn.btn-success.btn-hover click="truckArrived"
           i.fa.fa-truck
           span.fa.capitalize.bold truck arrived
-        link-to "dock.problem" model.id class="btn btn-danger btn-hover"
+        link-to "docks.dock.problem" model.id class="btn btn-danger btn-hover"
           i.fa.fa-warning
           span.fa.capitalize.bold report problem 
 else
@@ -26,6 +26,6 @@ else
       span.fa.capitalize free dock: nothing to do
     .panel-body
       p.capitalize this dock is currently not expecting a truck
-      link-to "dock.problem" model.id class="btn btn-danger btn-lg btn-hover"
+      link-to "docks.dock.problem" model.id class="btn btn-danger btn-lg btn-hover"
         i.fa.fa-warning
         span.fa.capitalize.bold report problem 

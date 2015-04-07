@@ -6,7 +6,7 @@
 
       ul.nav.navbar-nav
         li
-          link-to "docks.inventory"
+          link-to "docks.inventories"
             i.fa.fa-cubes
             span.capitalize inventory
 
