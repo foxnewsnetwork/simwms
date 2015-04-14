@@ -3,7 +3,7 @@
     span.fa.capitalize free entrance weight station
   .panel-body
     p.capitalize we are currently expecting the following appointments
-    table.table
+    table.table.responsive-table.table-hover
       thead
         tr
           th status
@@ -13,15 +13,20 @@
           th ETA
       tbody
         each appointment in appointments
-          tr
-            td= appointment.status
-            td= appointment.permalink
-            td= appointment.company
-            td= appointment.materialDescription
-            td= appointment.expectedAtAgo
+          tr.pointer click="'truckArrived' appointment"
+            td data-label="status" 
+              span.fa= appointment.status
+            td data-label="appointment number" 
+              span.fa= appointment.permalink
+            td data-label="company" 
+              span.fa= appointment.company
+            td data-label="material description" 
+              span.fa= appointment.materialDescription
+            td data-label="ETA" 
+              span.fa= appointment.expectedAtAgo
             
     .btn-group.btn-lg
-      link-to "stations.station.arrivals" station.id class="btn btn-success btn-lg btn-hover"
+      link-to "stations.station.weightickets.new" station.id class="btn btn-success btn-lg btn-hover"
         i.fa.fa-truck
         span.fa.bold.nav-title truck has arrived
       link-to "stations.station.problem" station.id class="btn btn-danger btn-lg btn-hover"

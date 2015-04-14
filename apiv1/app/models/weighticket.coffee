@@ -11,5 +11,5 @@ Weighticket = DS.Model.extend
   createdAt: DS.attr "date"
   status: DS.attr "string"
   notes: DS.attr "string"
-
+  
 `export default Weighticket`

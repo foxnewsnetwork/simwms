@@ -1,5 +1,4 @@
 `import Ember from 'ember'`
-`import FunEx from '../utils/fun-ex'`
 
 FormForComponent = Ember.Component.extend
   classNames: ['form-for']
@@ -10,10 +9,11 @@ FormForComponent = Ember.Component.extend
     _.partial _.foldl, @formData(), (memo, next) ->
       memo.set next.name, next.value
       memo
+      
   updatedModel: ->
-    @processNewData()(@model || new Ember.Object())
+    @processNewData() Ember.getWithDefault(@, "model", new Ember.Object())
   
-  displayErrors: FunEx.observed "errors", ->
+  displayErrors: Ember.observer "errors", "errors.size", ->
     @resetErrorFields()
     @explainErrorFields()
 
@@ -22,9 +22,20 @@ FormForComponent = Ember.Component.extend
     @$("small.error").remove()
 
   explainErrorFields: ->
-    _.map @errors, (errors, field) =>
-      @$(".input-section[attr-name=#{Ember.String.camelize field}]").addClass("error").append("<small class='error'>#{errors}</small>")
-      
+    errors = @get "errors"
+    return if Ember.isBlank errors
+    _.forEach @namedInputFields(), (name) =>
+      input$ = @$(".input-section[attr-name=#{name}]").addClass "error"
+      messages = Ember.getWithDefault errors, Ember.camelize(name), []
+      messages.forEach (message) ->
+        input$.append "<small class='error'>#{message}</small>"
+  
+  namedInputFields: ->
+    @$(".input-section")
+    .map (index, el) ->
+      el.getAttribute "attr-name"
+    .filter Ember.isPresent
+
   actions:
     submit: ->
       @sendAction "submit", @updatedModel()

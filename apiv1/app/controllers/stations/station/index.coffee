@@ -6,4 +6,10 @@ StationsStationIndexController = Ember.Controller.extend
 
   isEntryStation: Ember.computed.alias("station.isEntryStation")
 
+  actions:
+    truckArrived: (appointment) ->
+      @transitionToRoute "stations.station.weightickets.new", @get("station.id"), 
+        queryParams:
+          appointment: appointment.get("id")
+
 `export default StationsStationIndexController`

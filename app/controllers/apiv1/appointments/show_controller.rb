@@ -4,6 +4,6 @@ class Apiv1::Appointments::ShowController < ApplicationController
   end
   private
   def _appointment
-    Apiv1::Appointment.find(params[:id]).ember_attributes
+    Apiv1::Appointment.find_by_permalink!(params[:id]).ember_attributes
   end
 end

@@ -4,8 +4,8 @@
 
   .row
     .col-xs-12.col-sm-12.col-md-9.col-lg-6
-      form-for classNames="panel-body instruction-line" submit="newTicket"
-        form-input name="appointmentNumber" type="text" labelText="appointment number"
+      form-for classNames="panel-body instruction-line" model=params submit="newTicket"
+        form-input name="appointmentNumber" type="text" labelText="appointment number" value=appointment
           span.help-block get this from the driver
 
         form-input name="licensePlate" type="text" labelText="license plate number"
@@ -24,7 +24,7 @@
           button.btn.btn-success.btn-hover.btn-lg type="submit"
             i.fa.fa-check
             span.capitalize submit
-          link-to "stations.station.problem" model.id class="btn btn-danger btn-hover btn-lg"
+          link-to "stations.station.problem" station.id class="btn btn-danger btn-hover btn-lg"
             i.fa.fa-warning
             span.capitalize report problem
     .hidden-xs.hidden-sm.col-md-3.col-lg-6
@@ -36,7 +36,7 @@
           dd= barn.status
 
   .list-group
-    link-to "stations.station.arrivals" model.id (query-params state='print') classNames="list-group-item instruction-line"
+    link-to "stations.station.arrivals" station.id (query-params state='print') classNames="list-group-item instruction-line"
       span.fa print out weight ticket
-    link-to "stations.station.arrivals" model.id (query-params state='give') classNames="list-group-item instruction-line"
+    link-to "stations.station.arrivals" station.id (query-params state='give') classNames="list-group-item instruction-line"
       span.fa give weight ticket to driver

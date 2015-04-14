@@ -1,15 +1,18 @@
 `import Ember from 'ember'`
+`import validate from 'apiv1/validators/appointment'`
 
 LogisticsAppointmentsNewController = Ember.Controller.extend
-  prepare: (params) ->
-    company: Ember.get(params, "company")
-    materialDescription: Ember.get(params, "materialDescription")
-    expectedAt: new Date Ember.get(params, "expectedAt")
-    notes: Ember.get(params, "notes")
+  appointment: Ember.computed.alias "model"
   actions:
     create: (params) ->
-      appt = @store.createRecord("appointment", @prepare params)
-      appt.save().then => @transitionToRoute "logistics.appointments.index"
-      @set "appointment", appt
+      validate @get "model"
+      .then (appointment) ->
+        theD = new Date Ember.get(params, "expectedAt")
+        appointment.set "expectedAt", theD
+        appointment.save()
+      .then (appointment) => 
+        @transitionToRoute "logistics.appointments.index"
+      .catch (errors) =>
+        @set "appointmentError", errors
 
 `export default LogisticsAppointmentsNewController`

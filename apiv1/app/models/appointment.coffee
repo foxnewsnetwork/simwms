@@ -1,7 +1,7 @@
 `import DS from 'ember-data'`
 `import Ember from 'ember'`
 Appointment = DS.Model.extend
-  permalink: DS.attr "string"
+  databaseId: DS.attr "string"
   materialDescription: DS.attr "string"
   company: DS.attr "string"
   notes: DS.attr "string"
@@ -13,6 +13,8 @@ Appointment = DS.Model.extend
   cancelledAt: DS.attr "date"
   explodedAt: DS.attr "date"
 
+  permalink: Ember.computed.alias "id"
+  
   expectedAtAgo: Ember.computed "expectedAt", ->
     return if Ember.isBlank @get "expectedAt"
     $.timeago @get "expectedAt"

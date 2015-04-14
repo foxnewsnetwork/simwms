@@ -1,11 +1,10 @@
 `import Ember from 'ember'`
 
 DocksDockIndexController = Ember.Controller.extend
-  expectingTruck: Ember.computed 'truck', ->
-    @get("truck")?
+  expectingTruck: Ember.computed.and 'truck'
 
-  truck: Ember.computed "iotrucks.@each", ->
-    @iotrucks.findBy "origin", @get("model")
+  truck: Ember.computed "iotrucks.@each.destination", "model.id", ->
+    @iotrucks.findBy "destination", @get("model.id")
 
   problemResolvedMessage: ->
     archtype: "problem resolved"

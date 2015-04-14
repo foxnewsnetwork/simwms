@@ -7,4 +7,6 @@ FormInputComponent = Ember.Component.extend
 
   shouldInputGroup: Ember.computed.or("suffix", "prefix")
 
+  isSelectType: Ember.computed.equal("type", "select")
+
 `export default FormInputComponent`

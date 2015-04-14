@@ -16,7 +16,14 @@ Router.map ->
       @route "reschedule"
   
   @resource "stations", path: "/stations", ->
+    @resource "stations.weighticket", path: "/weighticket/:weighticketId", ->
+      @route "edit"
+      @route "print"
+      @resource "stations.weighticket.trucks", path: "/trucks", ->
+        @route "new"
     @resource "stations.station", path: "/station/:station_id", ->
+      @resource "stations.station.weightickets", path: "/weightickets", ->
+        @route "new"
       @route "arrivals"
       @route "departures"
       @route "status"
@@ -55,6 +62,8 @@ Router.map ->
       @route "form"
     @resource "barn", path: "/barn/:barn_id", ->
       @route "form"
-  
+  @route 'stations/weighticket/print'
+  @route 'stations/weighticket'
+  @route 'stations/weighticket/trucks/new'
 
 `export default Router`

@@ -1,0 +1,14 @@
+.col-xs-12
+  .panel.panel-default
+    .panel-heading.instruction-line
+      i.fa.fa-check
+      span.fa edit weight ticket for the truck
+
+    .panel-body.instruction-line
+      == partial "stations/station/weightickets/form"
+
+    .list-group
+      link-to "stations.weighticket.print" model.id class="list-group-item instruction-line"
+        span.fa print weight ticket
+      link-to "stations.weighticket.trucks.new" model.id class="list-group-item instruction-line"
+        span.fa give weight ticket to driver

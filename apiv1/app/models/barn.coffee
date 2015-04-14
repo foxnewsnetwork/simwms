@@ -1,5 +1,5 @@
 `import DS from 'ember-data'`
-`import FunEx from '../utils/fun-ex'`
+`import Ember from 'ember'`
 `import PixiPosition from '../utils/pixi-position'`
 
 KnownStatuses = [
@@ -15,32 +15,18 @@ Barn = DS.Model.extend
   tileName: DS.attr "string"
   status: DS.attr "string"
 
-  isWaiting: FunEx.computed "status", ->
-    "waiting" is @get("status")
-  isOkay: FunEx.computed "status", ->
-    "okay" is @get("status")
-  isInUse: FunEx.computed "status", ->
-    "in use" is @get("status")
-  isProblem: FunEx.computed "status", ->
-    "problem" is @get("status")
-    
-  workOnTruck: (truck) ->
-    @set "status", "in use"
-    @save()
+  isWaiting: Ember.computed.equal "status", "waiting"
+  isOkay: Ember.computed.equal "status", "okay"
+  isInUse: Ember.computed.equal "status", "in use"
+  isProblem: Ember.computed.equal "status", "problem"
+  order: Ember.computed.alias "position.order"
+  dockNumber: Ember.computed.alias("tileName")
 
-  finishWithTruck: ->
-    @set "status", "okay"
-    @save()
-
-  order: FunEx.computed "position.order", ->
-    @get("position.order")
-
-  position: FunEx.computed "x", "y", "z", ->
+  position: Ember.computed "x", "y", "z", ->
     return unless @get("x")? and @get("y")?
     PixiPosition.create 
       x: @get("x") 
       y: @get("y")
       constant: @get("z")
 
-  dockNumber: Ember.computed.alias("tileName")
 `export default Barn`

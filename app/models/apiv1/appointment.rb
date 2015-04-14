@@ -46,8 +46,8 @@ class Apiv1::Appointment < ActiveRecord::Base
     
   def ember_attributes
     {
-      id: id,
-      permalink: permalink,
+      id: permalink,
+      database_id: id,
       company_permalink: company_permalink,
       created_at: created_at,
       updated_at: updated_at,
@@ -90,6 +90,6 @@ class Apiv1::Appointment < ActiveRecord::Base
     save
   end
   def _make_company_permalink
-    self.company_permalink ||= company.to_s.downcase.gsub(/[aeiouy]+/, "").gsub(/\s+/, "-")
+    self.company_permalink ||= company.to_s.downcase.gsub(/[aeiouy]+/, "").gsub(/\s+/, "-").to_url
   end
 end

@@ -9,14 +9,14 @@ h2.section-title
 
 .row
   .col-xs-12.col-sm-12.col-md-9.col-lg-6
-    form-for errors=appointmentError submit="create"
-      form-input name="company" labelText="company" type="text"
+    em-form-for mistakes=appointmentError action="create" model=appointment
+      em-form-input name="company" label="company" type="text"
       
-      form-input name="materialDescription" labelText="material description" type="text"
+      em-form-input name="materialDescription" label="material description" type="text"
       
-      form-input name="expectedAt" labelText="ETA" type="date"
+      em-form-input name="expectedAt" label="ETA" type="datetime"
       
-      form-input name="notes" labelText="notes" type="text"
+      em-form-input name="notes" label="notes" type="textarea"
       
       .actions
         promise-button model=appointment classNames="btn btn-success btn-lg btn-hover" type="submit"

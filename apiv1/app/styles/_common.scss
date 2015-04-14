@@ -14,6 +14,17 @@ $screen-sm-min: 768px;
 $screen-md-min: 992px;
 $screen-lg-min: 1200px;
 
+.form-group {
+  width: 100%;
+}
+form {
+  .error-text {
+    &::before {
+      content: "» ";
+      font-weight: bold;
+    }
+  }
+}
 .highlight {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
