@@ -8,6 +8,7 @@ Truck = DS.Model.extend
   arrivedAt: DS.attr "date"
   origination: DS.attr "string"
   origintype: DS.attr "string"
+  
   destination: DS.attr "string"
   destinytype: DS.attr "string"
   weighticketId: DS.attr "string"
@@ -23,6 +24,11 @@ Truck = DS.Model.extend
   appointmentNumber: Ember.computed.alias "weighticket.appointmentNumber"
   licensePlate: Ember.computed.alias "weighticket.licensePlate"
 
+  leaveDock: ->
+    dock = @get("origin")
+    @store.createRecord "truck",
+      status: @get "status"
+      arrivedAt: @get "arrivedAt"
 
   arrivedAtAgo: FunEx.computed "arrivedAt", ->
     return unless @get("arrivedAt")?

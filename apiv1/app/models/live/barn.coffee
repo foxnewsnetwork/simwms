@@ -3,6 +3,7 @@
 `import Barn from '../barn'`
 
 LiveBarn = Barn.extend
+  permalink: DS.attr "string"
   truckId: DS.attr "string"
 
   truck: Ember.computed "truckId", (key, truck) ->

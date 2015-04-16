@@ -1,0 +1,11 @@
+.panel.panel-default.instructions-set
+  .panel-heading.instruction-line
+    span.fa the truck from appointment no.
+    span.highlight= model.appointmentNumber
+    span.fa is ready to depart
+  .panel-body 
+    p.instructions
+      span.fa instruct the driver to proceed to the exit weight station
+
+    link-to "docks.dock" model.destination class="btn btn-lg btn-success btn-hover"
+      span.fa finish

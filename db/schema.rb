@@ -32,6 +32,9 @@ ActiveRecord::Schema.define(version: 20150330182408) do
   create_table "apiv1_batches", force: :cascade do |t|
     t.integer  "appointment_id", limit: 4
     t.integer  "warehouse_id",   limit: 4
+    t.integer  "weighticket_id", limit: 4
+    t.string   "entry_dock_id",  limit: 255
+    t.string   "exit_dock_id",   limit: 255
     t.string   "permalink",      limit: 255
     t.string   "description",    limit: 255
     t.string   "quantity",       limit: 255
@@ -42,6 +45,7 @@ ActiveRecord::Schema.define(version: 20150330182408) do
 
   add_index "apiv1_batches", ["appointment_id"], name: "index_apiv1_batches_on_appointment_id", using: :btree
   add_index "apiv1_batches", ["warehouse_id"], name: "index_apiv1_batches_on_warehouse_id", using: :btree
+  add_index "apiv1_batches", ["weighticket_id"], name: "index_apiv1_batches_on_weighticket_id", using: :btree
 
   create_table "apiv1_cameras", force: :cascade do |t|
     t.string   "permalink",   limit: 255

@@ -24,18 +24,23 @@ Router.map ->
     @resource "stations.station", path: "/station/:station_id", ->
       @resource "stations.station.weightickets", path: "/weightickets", ->
         @route "new"
-      @route "arrivals"
       @route "departures"
       @route "status"
       @route "problem"
 
   @resource "docks", path: "/docks", ->
+    @resource "docks.batch", path: "/batch/:batchId", ->
     @resource "docks.inventories", path: "/inventories", ->
       @resource "docks.cell", path: "/cell/:cell_id", ->
         @route "pictures"
     @resource "docks.dock", path: "/dock/:dock_id", ->
       @route "status"
       @route "problem"
+    @resource "docks.truck", path: "/truck/:truckId", ->
+      @route "arrive"
+      @resource "docks.truck.batches", path: "/batches", ->
+        @route "new"
+      @route "depart"
       
 
   @resource "manager", path: "/manager", ->    
@@ -62,8 +67,5 @@ Router.map ->
       @route "form"
     @resource "barn", path: "/barn/:barn_id", ->
       @route "form"
-  @route 'stations/weighticket/print'
-  @route 'stations/weighticket'
-  @route 'stations/weighticket/trucks/new'
 
 `export default Router`

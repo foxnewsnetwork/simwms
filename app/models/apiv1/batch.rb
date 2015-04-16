@@ -5,6 +5,9 @@
 #  id             :integer          not null, primary key
 #  appointment_id :integer
 #  warehouse_id   :integer
+#  weighticket_id :integer
+#  entry_dock_id  :integer
+#  exit_dock_id   :integer
 #  permalink      :string(255)
 #  description    :string(255)
 #  quantity       :string(255)
@@ -15,6 +18,8 @@
 
 class Apiv1::Batch < ActiveRecord::Base
   acts_as_paranoid
+  belongs_to :weighticket,
+    class_name: 'Apiv1::Weighticket'
   belongs_to :appointment,
     class_name: 'Apiv1::Appointment'
   belongs_to :warehouse,

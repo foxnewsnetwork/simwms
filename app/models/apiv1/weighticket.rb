@@ -14,4 +14,7 @@
 #
 
 class Apiv1::Weighticket < ActiveRecord::Base
+  belongs_to :appointment,
+    foreign_key: :appointment_number,
+    class_name: "Apiv1::Appointment"
 end

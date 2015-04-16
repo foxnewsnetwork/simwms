@@ -1,10 +1,7 @@
 `import Ember from 'ember'`
 
 DocksDockIndexController = Ember.Controller.extend
-  expectingTruck: Ember.computed.and 'truck'
-
-  truck: Ember.computed "iotrucks.@each.destination", "model.id", ->
-    @iotrucks.findBy "destination", @get("model.id")
+  truck: Ember.computed.alias "model.truck"
 
   problemResolvedMessage: ->
     archtype: "problem resolved"
@@ -17,5 +14,10 @@ DocksDockIndexController = Ember.Controller.extend
     resolveProblem: ->
       @model.set("status", "okay").save()
       @store.createRecord("message", @problemResolvedMessage()).save()
+
+    truckArrived: ->
+      @model.workOnTruck()
+      .then =>
+        @transitionToRoute "docks.truck.arrive", @get("model.truckId")
 
 `export default DocksDockIndexController`

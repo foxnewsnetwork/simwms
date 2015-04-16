@@ -1,0 +1,9 @@
+.panel.panel-default.instructions-set
+  .panel-heading.instruction-line
+    span.fa.capitalize there is a truck at this dock
+  .panel-body
+    p.capitalize workers are already on it
+
+    link-to "docks.truck.arrive" model.truckId class="btn btn-success btn-lg btn-hover"
+      i.fa.fa-truck
+      span.fa.capitalize go to truck

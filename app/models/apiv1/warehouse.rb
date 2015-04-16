@@ -24,7 +24,7 @@ class Apiv1::Warehouse < Apiv1::Tile
     class_name: 'Apiv1::Batch'
 
   scope :empty_warehouse,
-    -> { order(updated_at: :desc).where status: :empty }
+    -> { order(updated_at: :desc).where("#{self.table_name}.status = ? || #{self.table_name}.status is null", :empty) }
 
   def ember_attributes
     attributes.merge batches: batches.map(&:id),

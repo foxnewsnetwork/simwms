@@ -1,5 +1,6 @@
 `import DS from 'ember-data'`
-`import FunEx from '../utils/fun-ex'`
+`import Ember from 'ember'`
+`import EmberCPM from 'ember-cpm'`
 `import PixiPosition from '../utils/pixi-position'`
 
 Warehouse = DS.Model.extend
@@ -16,10 +17,9 @@ Warehouse = DS.Model.extend
   hasStuff: Ember.computed "status", ->
     Ember.isBlank(@get "status") or (@get("status") isnt "empty")
 
-  order: FunEx.computed "position.order", ->
-    @get("position.order")
+  order: Ember.computed.alias "position.order"
 
-  position: FunEx.computed "x", "y", "z", ->
+  position: Ember.computed "x", "y", "z", ->
     return unless @get("x")? and @get("y")?
     PixiPosition.create 
       x: @get("x") 
@@ -36,5 +36,7 @@ Warehouse = DS.Model.extend
       else throw new Error "Not sure what #{@get 'x'} maps to"
 
   rowName: Ember.computed.alias("y")
+
+  squareName: EmberCPM.Macros.join "colName", "rowName", "-"
 
 `export default Warehouse`

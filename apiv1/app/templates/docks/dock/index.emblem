@@ -5,4 +5,5 @@
     == partial "docks/dock/inuse"
   if model.isProblem
     == partial "docks/dock/problem"
-  
+  if model.isWaiting
+    == partial "docks/dock/waiting"

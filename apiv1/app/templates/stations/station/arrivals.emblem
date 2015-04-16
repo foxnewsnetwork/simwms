@@ -1,7 +1,0 @@
-.col-xs-12
-  if atWeighticketStep
-    == partial "stations/station/arrivals/weighticket"
-  if atPrintoutStep
-    == partial "stations/station/arrivals/print"
-  if atGiveStep
-    == partial "stations/station/arrivals/give"

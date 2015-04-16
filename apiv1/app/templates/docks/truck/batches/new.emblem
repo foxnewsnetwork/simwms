@@ -1,0 +1,35 @@
+.panel.panel-default.instructions-set
+  .panel-heading.instruction-line
+    span.fa material bale from truck with weighticket
+    span.highlight= model.weighticketId
+    
+  em-form-for model=model mistakes=batchErrors action="batch" classNames="panel-body instruction-line"
+    dl.hidden
+      dt appointmentId
+      dd= model.appointmentId
+      dt warehouseId
+      dd= model.warehouseId
+      dt weighticketId
+      dd= model.weighticketId
+      dt entryDockId
+      dd= model.entryDockId
+      dt exitDockId
+      dd= model.exitDockId
+      dt permalink
+      dd= model.permalink
+      dt description
+      dd= model.description
+      dt quantity
+      dd= model.quantity
+      dt createdAt
+      dd= model.createdAt
+    em-form-input name="description" type="textarea" label="description"
+      span.help-block any additional notes
+
+    .btn-group
+      promise-button model=model classNames="btn btn-success btn-hover btn-lg" type="submit"
+        i.fa.fa-check
+        span.capitalize submit
+      link-to "docks.truck.arrive" model.truck.id class="btn btn-default btn-hover btn-lg"
+        i.fa.fa-times
+        span.capitalize back
