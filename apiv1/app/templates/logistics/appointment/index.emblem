@@ -11,7 +11,7 @@
         span.fa= model.id
       dt.capitalize appointment number
       dd
-        span.fa= model.permalink
+        span.fa= model.id
       dt.capitalize material description
       dd
         span.fa= model.materialDescription

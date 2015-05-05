@@ -36,7 +36,7 @@
           i.fa.fa-exclamation-circle
         if appointment.statusIsUnknown
           i.fa.fa-question-circle
-        span= appointment.permalink
+        span= appointment.id
       p.list-group-item-text
         .segment
           span.segment-title company
