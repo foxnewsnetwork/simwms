@@ -1,5 +1,5 @@
-`import LiveAdapter from './live'`
+`import FireAdapter from './fire'`
 
-MessageAdapter = LiveAdapter.extend()
+MessageAdapter = FireAdapter.extend()
 
 `export default MessageAdapter`

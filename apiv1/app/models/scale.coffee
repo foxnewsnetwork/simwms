@@ -1,25 +1,12 @@
 `import DS from 'ember-data'`
-`import FunEx from '../utils/fun-ex'`
-`import PixiPosition from '../utils/pixi-position'`
-Scale = DS.Model.extend
-  x: DS.attr "number"
-  y: DS.attr "number"
-  z: DS.attr "number"
-  tileName: DS.attr "string"
+`import DSC from 'ember-data-complex'`
 
-  stationNumber: Ember.computed.alias("tileName")
-  
-  order: FunEx.computed "position.order", ->
-    @get("position.order")
+Scale = DSC.ModelComplex.extend
+  fireId: DS.attr "string"
+  railId: DS.attr "string"
 
-  position: FunEx.computed "x", "y", "z", ->
-    return unless @get("x")? and @get("y")?
-    PixiPosition.create 
-      x: @get("x") 
-      y: @get("y")
-      constant: @get("z")
+  fire: DSC.belongsTo "fire/scale", "fireId"
+  rail: DSC.belongsTo "rail/scale", "railId"
 
-  isEntryStation: FunEx.computed "x", ->
-    @get("x") <= 0
-
+  isSetup: Ember.computed.and "fire", "rail"
 `export default Scale`

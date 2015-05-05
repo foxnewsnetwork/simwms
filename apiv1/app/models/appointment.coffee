@@ -1,7 +1,6 @@
 `import DS from 'ember-data'`
-`import Ember from 'ember'`
+
 Appointment = DS.Model.extend
-  databaseId: DS.attr "string"
   materialDescription: DS.attr "string"
   company: DS.attr "string"
   notes: DS.attr "string"
@@ -12,8 +11,6 @@ Appointment = DS.Model.extend
   fulfilledAt: DS.attr "date"
   cancelledAt: DS.attr "date"
   explodedAt: DS.attr "date"
-
-  permalink: Ember.computed.alias "id"
   
   expectedAtAgo: Ember.computed "expectedAt", ->
     return if Ember.isBlank @get "expectedAt"
@@ -30,15 +27,4 @@ Appointment = DS.Model.extend
   isCancellable: Ember.computed.or "statusIsPlanned", "statusIsProblem", "statusIsUnknown", "statusIsExpected", "statusIsVanished"
 
   canReschedule: Ember.computed.not "statusIsFulfilled"
-  cancel: ->
-    @set "cancelledAt", new Date()
-
-  uncancel: ->
-    @set "cancelledAt", null
-
-  explode: ->
-    @set "explodedAt", new Date()
-
-  unexplode: ->
-    @set "explodedAt", null
 `export default Appointment`

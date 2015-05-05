@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150330182408) do
+ActiveRecord::Schema.define(version: 20150504183351) do
 
   create_table "apiv1_appointments", force: :cascade do |t|
     t.string   "permalink",            limit: 255
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20150330182408) do
     t.datetime "cancelled_at"
     t.datetime "expected_at"
     t.datetime "exploded_at"
+    t.string   "fire_id",              limit: 255
   end
 
   create_table "apiv1_batches", force: :cascade do |t|
@@ -76,6 +77,7 @@ ActiveRecord::Schema.define(version: 20150330182408) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.datetime "deleted_at"
+    t.string   "fire_id",    limit: 255
   end
 
   create_table "apiv1_users", force: :cascade do |t|
@@ -108,6 +110,13 @@ ActiveRecord::Schema.define(version: 20150330182408) do
     t.text     "notes",              limit: 65535
     t.datetime "created_at",                                                null: false
     t.datetime "updated_at",                                                null: false
+  end
+
+  create_table "apivm_grids", force: :cascade do |t|
+    t.string   "fire_id",    limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.datetime "deleted_at"
   end
 
   create_table "seed_migration_data_migrations", force: :cascade do |t|

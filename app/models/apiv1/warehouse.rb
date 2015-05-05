@@ -12,6 +12,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  deleted_at :datetime
+#  fire_id    :string(255)
 #
 
 class Apiv1::Warehouse < Apiv1::Tile

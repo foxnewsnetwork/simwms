@@ -1,21 +1,28 @@
-`import DS from 'ember-data'`
-`import FunEx from 'apiv1/utils/fun-ex'`
-`import PixiGrid from 'apiv1/utils/pixi-grid'`
+`import Ember from 'ember'`
 
-Grid = DS.Model.extend
-  barns: DS.hasMany "barn"
-  roads: DS.hasMany "road"
-  warehouses: DS.hasMany "warehouse"
-  stations: DS.hasMany "station"
-  scales: DS.hasMany "scale"
+Grid = Ember.Object.extend
+  barns: []
+  roads: []
+  warehouses: []
+  stations: []
+  scales: []
 
-  pixiGrid: FunEx.computed "barns.@each", "roads.@each", "warehouses.@each", "stations.@each", "scales.@each", ->
+  badBarns: Ember.computed.filterBy "barns", "isSetup", false
+  badScales: Ember.computed.filterBy "scales", "isSetup", false
+  badWarehouses: Ember.computed.filterBy "warehouses", "isSetup", false
+
+  barnsAreSetup: Ember.computed.empty "badBarns"
+  scalesAreSetup: Ember.computed.empty "badScales"
+  warehousesAreSetup: Ember.computed.empty "badWarehouses"
+  
+  hasBeenSetup: Ember.computed.and "barnsAreSetup", "scalesAreSetup", "warehousesAreSetup"
+  
+  pixiGrid: Ember.computed "barns.@each", "roads.@each", "warehouses.@each", "stations.@each", "scales.@each", ->
     PixiGrid.create
       barns: @get("barns")
       roads: @get("roads")
       warehouses: @get("warehouses")
       stations: @get("stations")
       scales: @get("scales")
-
 
 `export default Grid`

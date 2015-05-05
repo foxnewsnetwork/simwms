@@ -12,6 +12,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  deleted_at :datetime
+#  fire_id    :string(255)
 #
 
 class Apiv1::Tile < ActiveRecord::Base
@@ -31,4 +32,12 @@ class Apiv1::Tile < ActiveRecord::Base
     -> { where tile_type: :road }
   scope :living_stations,
     -> { where tile_type: :station }
+
+  def master_attributes
+    {
+      id: id,
+      rail_id: id,
+      fire_id: fire_id
+    }
+  end
 end

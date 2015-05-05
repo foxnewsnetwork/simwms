@@ -1,5 +1,5 @@
-`import LiveAdapter from './live'`
+`import FireAdapter from './fire'`
 
-TruckAdapter = LiveAdapter.extend()
+TruckAdapter = FireAdapter.extend()
 
 `export default TruckAdapter`

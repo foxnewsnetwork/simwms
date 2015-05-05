@@ -6,8 +6,8 @@
 #  appointment_id :integer
 #  warehouse_id   :integer
 #  weighticket_id :integer
-#  entry_dock_id  :integer
-#  exit_dock_id   :integer
+#  entry_dock_id  :string(255)
+#  exit_dock_id   :string(255)
 #  permalink      :string(255)
 #  description    :string(255)
 #  quantity       :string(255)

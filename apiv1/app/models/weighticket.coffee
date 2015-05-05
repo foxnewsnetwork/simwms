@@ -1,4 +1,5 @@
 `import DS from 'ember-data'`
+`import DSC from 'ember-data-complex'`
 
 Weighticket = DS.Model.extend
   appointmentNumber: DS.attr "string"
@@ -11,5 +12,9 @@ Weighticket = DS.Model.extend
   createdAt: DS.attr "date"
   status: DS.attr "string"
   notes: DS.attr "string"
+  
+  appointment: DSC.belongsTo "appointment", foreignKey: 'appointmentNumber'
+  entryScale: DSC.belongsTo "scale", foreignKey: 'issuerId'
+  barn: DSC.belongsTo "barn", foreignKey: 'targetDock'
   
 `export default Weighticket`

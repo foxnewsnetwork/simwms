@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
     resources :barns, only: [:show], controller: "barns/show"
     resources :barns, only: [:update], controller: "barns/update"
-    resources :stations, only: [:show], controller: "stations/show"
+    resources :scales, only: [:show], controller: "scales/show"
 
     resources :warehouses, only: [:show], controller: "warehouses/show" do
       resources :batches, only: [:index], controller: "batches/index"
@@ -26,9 +26,31 @@ Rails.application.routes.draw do
     resources :batches, only: [:show], controller: "batches/show"
     resources :batches, only: [:index], controller: "batches/index"
     resources :batches, only: [:destroy], controller: "batches/destroy"
+
+    resources :trucks, only: [:show], controller: 'trucks/show'
+    resources :trucks, only: [:index], controller: 'trucks/index'
+    resources :trucks, only: [:create], controller: 'trucks/create'
+    resources :trucks, only: [:update], controller: 'trucks/update'
   end
 
   namespace :apiv0 do
     resources :weightickets, only: [:show], controller: 'weightickets/show'
+  end
+
+  namespace :apivm do
+    resources :barns, only: [:show], controller: 'barns/show'
+    resources :barns, only: [:index], controller: 'barns/index'
+    resources :barns, only: [:create], controller: 'barns/create'
+    resources :barns, only: [:update], controller: 'barns/update'
+
+    resources :scales, only: [:show], controller: 'scales/show'
+    resources :scales, only: [:index], controller: 'scales/index'
+    resources :scales, only: [:create], controller: 'scales/create'
+    resources :scales, only: [:update], controller: 'scales/update'
+
+    resources :warehouses, only: [:show], controller: 'warehouses/show'
+    resources :warehouses, only: [:index], controller: 'warehouses/index'
+    resources :warehouses, only: [:create], controller: 'warehouses/create'
+    resources :warehouses, only: [:update], controller: 'warehouses/update'
   end
 end

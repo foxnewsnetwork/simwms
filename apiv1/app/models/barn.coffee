@@ -1,32 +1,13 @@
 `import DS from 'ember-data'`
-`import Ember from 'ember'`
-`import PixiPosition from '../utils/pixi-position'`
+`import DSC from 'ember-data-complex'`
 
-KnownStatuses = [
-  "okay",
-  "waiting",
-  "in use", 
-  "problem"
-]
-Barn = DS.Model.extend
-  x: DS.attr "number"
-  y: DS.attr "number"
-  z: DS.attr "number"
-  tileName: DS.attr "string"
-  status: DS.attr "string"
+Barn = DSC.ModelComplex.extend
+  fireId: DS.attr "string"
+  railId: DS.attr "string"
 
-  isWaiting: Ember.computed.equal "status", "waiting"
-  isOkay: Ember.computed.equal "status", "okay"
-  isInUse: Ember.computed.equal "status", "in use"
-  isProblem: Ember.computed.equal "status", "problem"
-  order: Ember.computed.alias "position.order"
-  dockNumber: Ember.computed.alias("tileName")
+  fire: DSC.belongsTo "fire/barn", "fireId"
+  rail: DSC.belongsTo "rail/barn", "railId"
 
-  position: Ember.computed "x", "y", "z", ->
-    return unless @get("x")? and @get("y")?
-    PixiPosition.create 
-      x: @get("x") 
-      y: @get("y")
-      constant: @get("z")
+  isSetup: Ember.computed.and "fire", "rail"
 
 `export default Barn`

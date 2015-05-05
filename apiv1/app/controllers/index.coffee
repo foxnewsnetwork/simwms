@@ -2,6 +2,8 @@
 
 IndexController = Ember.Controller.extend
   roles: ["manager", "scalemaster", "dockworker", "logistics"]
+  applicationReady: Ember.computed.and "iogrid.hasBeenSetup", "iotrucks.isFulfilled"
+
   prepare: (params) ->
     role = params.get("role")
     role: role

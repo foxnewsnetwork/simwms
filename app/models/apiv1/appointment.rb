@@ -62,6 +62,14 @@ class Apiv1::Appointment < ActiveRecord::Base
     }
   end
 
+  def master_attributes
+    {
+      id: id,
+      rail_id: id,
+      fire_id: fire_id
+    }
+  end
+
   def status
     return :fulfilled if fulfilled_at.present?
     return :cancelled if cancelled_at.present?
