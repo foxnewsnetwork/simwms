@@ -2,7 +2,7 @@
 `import DSC from 'ember-data-complex'`
 `import DS from 'ember-data'`
 
-Batch = DS.Model.extend
+Batch = DSC.ModelComplex.extend
   appointmentId: DS.attr "string"
   warehouseId: DS.attr "string"
   weighticketId: DS.attr "string"

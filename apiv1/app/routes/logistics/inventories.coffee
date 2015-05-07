@@ -2,7 +2,6 @@
 
 LogisticsInventoriesRoute = Ember.Route.extend
   model: ->
-    @iogrid.then => @store.find "live/warehouse"
-
+    @iogrid.then => @store.all "warehouse"
 
 `export default LogisticsInventoriesRoute`

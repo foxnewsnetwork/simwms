@@ -4,6 +4,6 @@ class Apivm::Warehouses::IndexController < ApplicationController
   end
   private
   def _warehouses
-    @warehouses ||= Apiv1::Tile.living_warehouses
+    @warehouses ||= Apiv1::Warehouse.all
   end
 end

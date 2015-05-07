@@ -27,6 +27,10 @@ class Apiv1::Warehouse < Apiv1::Tile
   scope :empty_warehouse,
     -> { order(updated_at: :desc).where("#{self.table_name}.status = ? || #{self.table_name}.status is null", :empty) }
 
+  def master_attributes
+    super.merge x: x, y: y
+  end
+
   def ember_attributes
     attributes.merge batches: batches.map(&:id),
       status: status_with_default
