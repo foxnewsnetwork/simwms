@@ -37,7 +37,9 @@ class Apiv1::Tile < ActiveRecord::Base
     {
       id: id,
       rail_id: id,
-      fire_id: fire_id
+      fire_id: fire_id,
+      x: x,
+      y: y
     }
   end
 end

@@ -2,7 +2,7 @@
   form-for submit="newProblemMessage"
     legend.form-title
       span.fa dock problem @
-      span.fa= model.id
+      span.fa= model.dockNumber
 
     .form-group.input-section attr-name="notes"
       label.capitalize.bold describe what went wrong

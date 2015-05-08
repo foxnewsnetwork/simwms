@@ -2,14 +2,14 @@
 `import DS from 'ember-data'`
 `import DSC from 'ember-data-complex'`
 
-FireBarn = DS.Model.extend
+FireBarn = DSC.ModelComplex.extend
   tileName: DS.attr "string"
   
   messageId: DS.attr "string"
   truckId: DS.attr "string"
 
-  message: DSC.Macros.through "message", "messageId"
-  truck: DSC.Macros.through "truck", "truckId"
+  message: DSC.belongsTo "message", "messageId"
+  truck: DSC.belongsTo "truck", "truckId"
 
   dockNumber: Ember.computed.alias("tileName")
   isOkay: Ember.computed.not "isBusy"
