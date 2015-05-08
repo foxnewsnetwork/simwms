@@ -20,6 +20,16 @@ Barn = DSC.ModelComplex.extend
   isInUse: alias "fire.isInUse"
   isProblem: alias "fire.isProblem"
   isWaiting: alias "fire.isWaiting"
+  status: alias "fire.status"
+
+  selectChoice: Ember.computed "dockNumber", "status", "id", ->
+    value: @get("id")
+    presentation: ["dock no.", @get("dockNumber"), "-", @get("status")].join " "
+
+  waitForTruck: (truck) ->
+    @get "fire"
+    .then (fire) ->
+      fire.waitForTruck truck
 
   createProblem: (messageParams) ->
     @get("fire").then (fire) ->

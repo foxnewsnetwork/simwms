@@ -15,7 +15,7 @@ ensureFreeDock = (model) ->
   store = model.store
   dockno = model.get "targetDock"
   return if Ember.isBlank dockno
-  store.find "live/barn", dockno
+  store.find "barn", dockno
   .then (barn) ->
     "the dock number: #{dockno} is not free, please select another dock" unless barn.get("isOkay")?
   .catch ->

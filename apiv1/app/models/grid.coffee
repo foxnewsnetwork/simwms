@@ -1,5 +1,5 @@
 `import Ember from 'ember'`
-
+`import EmberCPM from 'ember-cpm'`
 Grid = Ember.Object.extend
   barns: []
   roads: []
@@ -16,6 +16,9 @@ Grid = Ember.Object.extend
   warehousesAreSetup: Ember.computed.empty "badWarehouses"
   
   hasBeenSetup: Ember.computed.and "barnsAreSetup", "scalesAreSetup", "warehousesAreSetup"
+
+  availableDocks: Ember.computed.filterBy "barns", "isOkay"
+  oldestAvailableDock: EmberCPM.Macros.firstPresent "availableDocks"
   
   pixiGrid: Ember.computed "barns.@each", "roads.@each", "warehouses.@each", "stations.@each", "scales.@each", ->
     PixiGrid.create

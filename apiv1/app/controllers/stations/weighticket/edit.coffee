@@ -1,9 +1,7 @@
 `import Ember from 'ember'`
 
 StationsWeighticketEditController = Ember.Controller.extend
-  dockChoices: Ember.computed.map "iogrid.barns.@each.id", (barn) ->
-    value: Ember.get(barn, "id")
-    presentation: ["dock no.", Ember.get(barn, "dockNumber"), "-", Ember.get(barn, "status")].join " "
+  dockChoices: Ember.computed.mapBy "iogrid.barns", "selectChoice"
 
   actions:
     newTicket: ->

@@ -12,7 +12,7 @@ StationsStationWeighticketsNewRoute = Ember.Route.extend
         targetDock: Ember.get(grid, "oldestAvailableDock.dockNumber")
 
   killRecord: (model) ->
-    model.deleteRecord() if model.get("isDirty")
+    model.deleteRecord() if Ember.get model, 'isDirty'
 
   tearDown: Ember.on "deactivate", ->
     model = @controller.get("model")

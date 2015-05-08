@@ -17,7 +17,7 @@
             td data-label="status" 
               span.fa= appointment.status
             td data-label="appointment number" 
-              span.fa= appointment.permalink
+              span.fa= appointment.id
             td data-label="company" 
               span.fa= appointment.company
             td data-label="material description" 
@@ -26,9 +26,6 @@
               span.fa= appointment.expectedAtAgo
             
     .btn-group.btn-lg
-      link-to "stations.station.weightickets.new" station.id class="btn btn-success btn-lg btn-hover"
+      link-to "stations.station.weightickets.new" station.id class="btn btn-default btn-lg btn-hover"
         i.fa.fa-truck
-        span.fa.bold.nav-title truck has arrived
-      link-to "stations.station.problem" station.id class="btn btn-danger btn-lg btn-hover"
-        i.fa.fa-warning
-        span.fa.bold.nav-title report problem 
+        span.fa.nav-title truck without appointment has arrived

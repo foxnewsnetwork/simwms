@@ -1,7 +1,7 @@
 `import Ember from 'ember'`
 `import DS from 'ember-data'`
-
-FireTruck = DS.Model.extend
+`import DSC from 'ember-data-complex'`
+FireTruck = DSC.ModelComplex.extend
   speed: DS.attr "number"
   position: DS.attr "string"
   
@@ -22,7 +22,12 @@ FireTruck = DS.Model.extend
   exitScale: DSC.belongsTo 'scale', "exitScaleId"
   dock: DSC.belongsTo 'barn', "dockId"
 
-  arrivedAtAgo: FunEx.computed "arrivedAt", ->
+  gotoDock: (truck) ->
+    @get "dock"
+    .then (dock) ->
+      dock.waitForTruck truck
+
+  arrivedAtAgo: Ember.computed "arrivedAt", ->
     return unless @get("arrivedAt")?
     $.timeago @get "arrivedAt"
     

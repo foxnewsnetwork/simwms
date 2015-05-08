@@ -25,6 +25,12 @@ FireBarn = DSC.ModelComplex.extend
   isInUse: Ember.computed.and "truck"
   isProblem: Ember.computed.and "message"
 
+  status: Ember.computed "isOkay", "isBusy", "isInUse", "isProblem", ->
+    return "problem" if @get "isProblem"
+    return "busy" if @get "isBusy"
+    return "ok" if @get "isOkay"
+    "unknown"
+
   createProblem: (messageParams) ->
     assertNoProblems Ember.isPresent @get "messageId"
     @store.createRecord "message", messageParams

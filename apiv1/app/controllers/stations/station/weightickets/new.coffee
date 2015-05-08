@@ -4,10 +4,8 @@
 StationsStationWeighticketsNewController = Ember.Controller.extend
   queryParams: ["appointment"]
   appointment: null
-  dockChoices: Ember.computed.map "iogrid.barns.@each.id", (barn) ->
-    value: Ember.get(barn, "id")
-    presentation: ["dock no.", Ember.get(barn, "dockNumber"), "-", Ember.get(barn, "status")].join " "
-
+  dockChoices: Ember.computed.mapBy "iogrid.barns", "selectChoice"
+    
   actions:
     newTicket: ->
       validate @get "model"
