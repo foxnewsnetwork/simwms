@@ -20,4 +20,14 @@ Barn = DSC.ModelComplex.extend
   isInUse: alias "fire.isInUse"
   isProblem: alias "fire.isProblem"
   isWaiting: alias "fire.isWaiting"
+
+  createProblem: (messageParams) ->
+    @get("fire").then (fire) ->
+      fire.createProblem messageParams
+
+  resolveProblem: ->
+    @get "fire"
+    .then (fire) ->
+      fire.resolveProblem()
+
 `export default Barn`

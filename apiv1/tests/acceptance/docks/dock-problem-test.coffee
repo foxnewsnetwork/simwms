@@ -6,7 +6,7 @@
 application = null
 container = null
 store = null
-
+x = {}
 describe 'Acceptance: Docks: DockProblemTest', ->
   beforeEach ->
     application = startApp()

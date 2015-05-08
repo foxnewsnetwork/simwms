@@ -10,8 +10,8 @@ DocksDockProblemController = Ember.Controller.extend
     createdAt: new Date()
   actions:
     newProblemMessage: (params) ->
-      @get("model").set("status", "problem").save()
-      @store.createRecord("message", @prepare params).save()
+      dock = @get("model")
+      dock.createProblem @prepare params
       .then =>
         @transitionToRoute "docks.dock.status", @get("model.id")
 
