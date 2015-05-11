@@ -15,6 +15,7 @@ Barn = DSC.ModelComplex.extend
   x: DS.attr "number"
   y: DS.attr "number"
 
+  truckId: alias "fire.truckId"
   dockNumber: alias "rail.dockNumber"
   isOkay: alias "fire.isOkay"
   isInUse: alias "fire.isInUse"
@@ -30,6 +31,13 @@ Barn = DSC.ModelComplex.extend
     @get "fire"
     .then (fire) ->
       fire.waitForTruck truck
+
+  releaseTruck: ->
+    @get "fire"
+    .then (fire) ->
+      fire.releaseTruck()
+    .then =>
+      @
 
   createProblem: (messageParams) ->
     @get("fire").then (fire) ->

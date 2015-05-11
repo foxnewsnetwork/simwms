@@ -50,8 +50,8 @@ FireBarn = DSC.ModelComplex.extend
     @set "truck", truck
     @save()
 
-  finishWithTruck: ->
-    @set "truck", null
+  releaseTruck: ->
+    @set "truckId", null
     @save()
 
 `export default FireBarn`

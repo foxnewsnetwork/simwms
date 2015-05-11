@@ -2,7 +2,7 @@
   .panel-heading.instruction-line
     span.fa from appointment no.
     span.highlight= truck.appointmentNumber
-    span.fa is at the dock
+    span.fa is coming to this dock
   .panel-body 
     figure
       figcaption

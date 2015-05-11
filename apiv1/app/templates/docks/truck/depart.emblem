@@ -7,5 +7,5 @@
     p.instructions
       span.fa instruct the driver to proceed to the exit weight station
 
-    link-to "docks.dock" model.destination class="btn btn-lg btn-success btn-hover"
+    button.btn.btn-lg.btn-success.btn-hover click="finish"
       span.fa finish

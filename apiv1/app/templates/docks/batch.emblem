@@ -21,7 +21,7 @@
       .panel-body 
         p
           span.fa this bale belongs in section
-          span.highlight= model.warehouse.squareName
+          span.highlight= model.squareName
 
-        link-to "docks.truck.arrive" model.entryDock.truck.id class="btn btn-lg btn-success btn-hover"
+        link-to "docks.truck.arrive" model.entryTruckId class="btn btn-lg btn-success btn-hover"
           span.fa.capitalize done

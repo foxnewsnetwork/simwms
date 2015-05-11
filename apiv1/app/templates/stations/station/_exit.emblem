@@ -10,15 +10,15 @@
             th.capitalize appt no
             th.capitalize origin
             th.capitalize material
-            th.capitalize ETA
+            th.capitalize arrival time
             th.capitalize status
             th.capitalize ticket
         tbody
           each truck in iotrucks
             tr.pointer click="'openTruck' truck"
-              td= truck.weighticket.appointmentNumber
-              td= truck.weighticket.originCompany
-              td= truck.materialDescription
+              td= truck.appointmentNumber
+              td= truck.appointment.company
+              td= truck.appointment.materialDescription
               td= truck.arrivedAtAgo
               td= truck.status
               td= truck.weighticket.id

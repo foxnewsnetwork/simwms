@@ -3,10 +3,13 @@
 DocksTruckBatchesNewRoute = Ember.Route.extend
   model: ->
     truck = @modelFor "docks.truck"
-    @store.createRecord "batch",
+    truck.get("fire")
+    .then (fire) ->
       truck: truck
-      weighticketId: Ember.get truck, "weighticketId"
-      entryDockId: Ember.get truck, "destination"
+      weighticketId: Ember.get fire, "weighticketId"
+      entryDockId: Ember.get fire, "dockId"
+    .then (initialParams) =>
+      @store.createRecord "batch", initialParams
       
   tearDown: Ember.on "deactivate", ->
     model = @controller.get "model"

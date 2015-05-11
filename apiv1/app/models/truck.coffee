@@ -1,6 +1,7 @@
 `import Ember from 'ember'`
 `import DS from 'ember-data'`
 `import DSC from 'ember-data-complex'`
+`import APM from '../utils/async-property-macros'`
 
 alias = Ember.computed.alias
 
@@ -26,11 +27,26 @@ Truck = DSC.ModelComplex.extend
   fire: DSC.belongsTo "fire/truck", "fireId"
   rail: DSC.belongsTo "rail/truck", "railId"
 
+  appointmentNumber: alias "fire.appointmentId"
+  arrivedAtAgo: alias "fire.arrivedAtAgo"
+  weighticket: APM.alias "fire.weighticket"
+  appointment: APM.alias "fire.appointment"
+
   gotoDock: ->
     @get "fire"
     .then (fire) =>
       fire.gotoDock @
     .then (fire) =>
       @store.createRecord("message", calculateMessage @).save()
+
+  gotoExit: ->
+    @get "fire"
+    .then (fire) =>
+      fire.gotoExit()
+
+  leaveDock: ->
+    @get "fire"
+    .then (fire) =>
+      fire.leaveDock()
 
 `export default Truck`

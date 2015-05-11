@@ -27,6 +27,11 @@ FireTruck = DSC.ModelComplex.extend
     .then (dock) ->
       dock.waitForTruck truck
 
+  leaveDock: ->
+    @get "dock"
+    .then (dock) ->
+      dock.releaseTruck()
+
   arrivedAtAgo: Ember.computed "arrivedAt", ->
     return unless @get("arrivedAt")?
     $.timeago @get "arrivedAt"

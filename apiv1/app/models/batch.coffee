@@ -1,6 +1,7 @@
 `import Ember from 'ember'`
 `import DSC from 'ember-data-complex'`
 `import DS from 'ember-data'`
+`import APM from '../utils/async-property-macros'`
 
 Batch = DSC.ModelComplex.extend
   appointmentId: DS.attr "string"
@@ -19,4 +20,6 @@ Batch = DSC.ModelComplex.extend
   entryDock: DSC.belongsTo "barn", foreignKey: "entryDockId"
   exitDock: DSC.belongsTo "barn", foreignKey: "exitDockId"
 
+  squareName: APM.alias "warehouse.squareName"
+  entryTruckId: APM.alias "entryDock.fire.truckId"
 `export default Batch`
