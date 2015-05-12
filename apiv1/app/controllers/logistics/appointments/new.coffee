@@ -7,6 +7,9 @@ throttle = (ctx, time, action) -> Ember.run.throttle ctx, action, time
 invalidMsg = """
 Your new appointment did not pass validation, tough break kid.
 """
+lll = (x) ->
+  console.log x
+  x
 
 LogisticsAppointmentsNewController = Ember.Controller.extend
   appointment: Ember.computed.alias "model"
@@ -15,13 +18,13 @@ LogisticsAppointmentsNewController = Ember.Controller.extend
   actions:
     create: (params) ->
       throttle @, 125, ->
-        theD = moment( get params, "expectedAt" ).format()
-        @set "appointment.expectedAt", theD
         @validateModel()
         .then (appointment) ->
           appointment.save()
         .then (appointment) =>
-          @transitionToRoute "logistics.appointments.index"
+          @transitionToRoute "logistics.appointments.index",
+            queryParams:
+              macro: "today"
         .catch (errors) =>
           @set "appointmentError", errors
           Ember.assert invalidMsg, errors

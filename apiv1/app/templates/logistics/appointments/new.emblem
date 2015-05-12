@@ -14,7 +14,7 @@ h2.section-title
       
       em-form-input name="materialDescription" label="material description" type="text"
       
-      em-form-input name="expectedAt" label="ETA" type="datetime"
+      em-form-input name="expectedAtISO" label="ETA" type="datetime"
       
       em-form-input name="notes" label="notes" type="textarea"
       

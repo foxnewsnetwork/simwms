@@ -1,15 +1,18 @@
 `import Ember from 'ember'`
 
+lll = (x) -> 
+  console.log x
+  x
+
 StationsStationWeighticketsNewRoute = Ember.Route.extend
   queryParams:
     appointment: true
-  model: (appointment: appointment) ->
+  model: ({appointment}) ->
     Ember.RSVP.hash grid: @iogrid, station: @modelFor("stations.station")
-    .then (grid: grid, station: station) =>
-      @store.createRecord "weighticket",
+    .then ({grid, station}) =>
+      window.weighticket = @store.createRecord "weighticket",
         issuerId: Ember.get(station, "id")
         appointmentNumber: appointment
-        targetDock: Ember.get(grid, "oldestAvailableDock.dockNumber")
 
   killRecord: (model) ->
     model.deleteRecord() if Ember.get model, 'isDirty'

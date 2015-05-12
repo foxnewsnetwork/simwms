@@ -1,6 +1,6 @@
 `import DS from 'ember-data'`
 `import DSC from 'ember-data-complex'`
-
+`import APM from 'apiv1/utils/async-property-macros'`
 alias = Ember.computed.alias
 
 Barn = DSC.ModelComplex.extend
@@ -18,14 +18,15 @@ Barn = DSC.ModelComplex.extend
   truckId: alias "fire.truckId"
   dockNumber: alias "rail.dockNumber"
   isOkay: alias "fire.isOkay"
+  willBeOkay: APM.alias "fire.isOkay"
   isInUse: alias "fire.isInUse"
   isProblem: alias "fire.isProblem"
   isWaiting: alias "fire.isWaiting"
   status: alias "fire.status"
 
-  selectChoice: Ember.computed "dockNumber", "status", "id", ->
+  selectChoice: Ember.computed "status", "id", ->
     value: @get("id")
-    presentation: ["dock no.", @get("dockNumber"), "-", @get("status")].join " "
+    presentation: ["dock no.", @get("id"), "-", @get("status")].join " "
 
   waitForTruck: (truck) ->
     @get "fire"

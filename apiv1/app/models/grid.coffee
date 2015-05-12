@@ -18,7 +18,8 @@ Grid = Ember.Object.extend
   hasBeenSetup: Ember.computed.and "barnsAreSetup", "scalesAreSetup", "warehousesAreSetup"
 
   availableDocks: Ember.computed.filterBy "barns", "isOkay"
-  oldestAvailableDock: EmberCPM.Macros.firstPresent "availableDocks"
+  oldestAvailableDock: Ember.computed.alias "availableDocks.firstObject"
+
   
   pixiGrid: Ember.computed "barns.@each", "roads.@each", "warehouses.@each", "stations.@each", "scales.@each", ->
     PixiGrid.create

@@ -11,7 +11,7 @@
           each barn in iogrid.barns
             dt
               span.fa.bold dock no.
-              span.fa.bold= barn.dockNumber
+              span.fa.bold= barn.id
             dd= barn.status
 
     .list-group
