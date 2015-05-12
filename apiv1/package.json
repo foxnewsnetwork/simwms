@@ -42,6 +42,7 @@
     "ember-export-application-global": "^1.0.2",
     "ember-form-tool": "0.0.3-beta-4",
     "ember-functional-validation": "0.0.2-beta-3",
+    "ember-moment": "1.1.1",
     "emberfire": "1.4.4",
     "express": "^4.12.2",
     "glob": "^5.0.3",

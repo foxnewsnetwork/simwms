@@ -2,7 +2,10 @@
 `import PixiCamera from '../utils/pixi-camera'`
 ApplicationRoute = Ember.Route.extend
   model: ->
-    camera: PixiCamera.create(x: 250, y: 280, zoom: 0.8)
+    # camera: PixiCamera.create(x: 250, y: 280, zoom: 0.8)
+    Ember.RSVP.hash
+      grid: @iogrid
+      trucks: @iotrucks
 
   actions:
     openModal: (modalName, model) ->
@@ -14,13 +17,5 @@ ApplicationRoute = Ember.Route.extend
         @transitionTo modalName
     closeModal: ->
       @transitionTo "manager"
-    arriveAtBarn: (truck) ->
-      @iotrucks.removeObject truck
-      truck.enterBarn()
-      barn = truck.get("destiny")
-      @store.find "barn", Ember.get(barn, "id")
-      .then (barn) -> barn.workOnTruck truck
-    exitSite: (truck) ->
-
 
 `export default ApplicationRoute`
