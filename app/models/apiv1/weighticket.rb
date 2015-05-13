@@ -11,6 +11,8 @@
 #  notes              :text(65535)
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  finisher_id        :string(255)
+#  finish_pounds      :decimal(15, 2)
 #
 
 class Apiv1::Weighticket < ActiveRecord::Base

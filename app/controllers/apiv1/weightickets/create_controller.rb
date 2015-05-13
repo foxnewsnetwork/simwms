@@ -4,7 +4,15 @@ class Apiv1::Weightickets::CreateController < ApplicationController
   end
   private
   def _ticket_params
-    params.require(:weighticket).permit(:appointment_number, :license_plate, :notes, :issuer_id, :pounds, :target_dock, pictures: [])
+    params.require(:weighticket).permit(:appointment_number,
+      :license_plate,
+      :notes,
+      :issuer_id,
+      :pounds, 
+      :finisher_id,
+      :finish_pounds,
+      :target_dock, 
+      pictures: [])
   end
   def _weighticket_process
     _create_basic_weighticket >> _assign_to_dock >> _check_validity >> (_output_success ^ _output_failure)

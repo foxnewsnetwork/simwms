@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150504183351) do
+ActiveRecord::Schema.define(version: 20150513004004) do
 
   create_table "apiv1_appointments", force: :cascade do |t|
     t.string   "permalink",            limit: 255
@@ -110,6 +110,8 @@ ActiveRecord::Schema.define(version: 20150504183351) do
     t.text     "notes",              limit: 65535
     t.datetime "created_at",                                                null: false
     t.datetime "updated_at",                                                null: false
+    t.string   "finisher_id",        limit: 255
+    t.decimal  "finish_pounds",                    precision: 15, scale: 2
   end
 
   create_table "apivm_grids", force: :cascade do |t|

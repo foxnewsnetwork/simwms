@@ -1,4 +1,5 @@
 `import Ember from 'ember'`
+`import EmberCPM from 'ember-cpm'`
 `import DS from 'ember-data'`
 `import DSC from 'ember-data-complex'`
 
@@ -13,11 +14,15 @@ Weighticket = DSC.ModelComplex.extend
   createdAt: DS.attr "date"
   status: DS.attr "string"
   notes: DS.attr "string"
-  
+  finisherId: DS.attr "string"
+  finishPounds: DS.attr "number"
+
   appointment: DSC.belongsTo "appointment", foreignKey: 'appointmentNumber'
   entryScale: DSC.belongsTo "scale", foreignKey: 'issuerId'
   stationNumber: Ember.computed.alias "entryScale.stationNumber"
   barn: DSC.belongsTo "barn", foreignKey: 'targetDock'
   dockNumber: Ember.computed.alias "barn.dockNumber"
+
+  netWeight: EmberCPM.Macros.difference "pounds", "finishPounds"
   
 `export default Weighticket`

@@ -1,13 +1,13 @@
 .row
   .col-xs-12
     .btn-group.btn-group-lg
-      link-to "docks.dock.index" model.destination class="btn btn-default"
+      link-to "docks.dock.index" model.dockId class="btn btn-default"
         i.fa.fa-dashboard
         span.fa.nav-title dash
-      link-to "docks.dock.status" model.destination class="btn btn-default"
+      link-to "docks.dock.status" model.dockId class="btn btn-default"
         i.fa.fa-camera
         span.fa.nav-title status
-      link-to "docks.dock.problem" model.destination class="btn btn-default"
+      link-to "docks.dock.problem" model.dockId class="btn btn-default"
         i.fa.fa-warning
         span.fa.nav-title problem
       link-to "docks.truck.arrive" model.id class="btn btn-default"

@@ -13,6 +13,8 @@ workFlow =
   weighticketId: null
   truckId: null
   entranceId: null
+  dockId: null
+  exitId: null
   batchIds: []
 wait = (time, action) ->
   Ember.run.later action, time
@@ -118,12 +120,12 @@ describe 'Acceptance: MainWorkflow', ->
         .to.match /entrance weight station/i
 
       it "should have the proper appointment", ->
-        expect find("tr.appointment-row:last-child").text()
+        expect find("tr.appointment-row:first-child").text()
         .to.have.string trackSeed
 
       describe "a truck has arrived for its appointment", ->
         before (done) ->
-          click "table.appointments tr:last-child"
+          click "table.appointments tr:first-child"
           andThen -> done()
 
         it "should land me in the weighticket creation page", ->
@@ -155,8 +157,8 @@ describe 'Acceptance: MainWorkflow', ->
             .to.be.true
 
           it "should therefore no longer be new", ->
-            expect @weighticket.get 'isNew'
-            .to.be.false
+            expect @weighticket.get 'id'
+            .to.match /\d+/
 
           it "should belong to the proper appointment", ->
             expect @weighticket.get "appointmentNumber"
@@ -187,7 +189,6 @@ describe 'Acceptance: MainWorkflow', ->
               before (done) ->
                 click ".btn-success"
                 @truck = container.lookup("controller:stations/weighticket/trucks/new").get "model"
-                console.log @truck
                 andThen =>
                   workFlow.truckId = @truck.get "id"
                   done()
@@ -199,7 +200,8 @@ describe 'Acceptance: MainWorkflow', ->
               it "should have the proper dockId", ->
                 @truck.get "fire"
                 .then (fire) =>
-                  expect fire.get "dockId"
+                  workFlow.dockId = fire.get "dockId"
+                  expect workFlow.dockId
                   .to.be.ok
 
               it "should have the proper appointmentId", ->
@@ -223,3 +225,143 @@ describe 'Acceptance: MainWorkflow', ->
               it "should transition to the station index", ->
                 expect currentPath()
                 .to.equal "stations.station.index"
+
+  context "loading dock", ->
+    before (done) ->
+      visit "/"
+      click "a[href=\"/docks\"]"
+      andThen -> done()
+
+    it "should land me in the docks index", ->
+      expect currentPath()
+      .to.equal "docks.index"
+
+    it "should have prepared a dock id for me", ->
+      expect workFlow.dockId
+      .to.match /\d+/
+
+    describe "going to my dock", ->
+      before (done) ->
+        click "a[href=\"/docks/dock/#{workFlow.dockId}\"]"
+        @dock = container.lookup("controller:docks/dock/index").get "model"
+        andThen -> done()
+
+      it "should land me at my dock index", ->
+        expect currentPath()
+        .to.equal "docks.dock.index"
+
+      it "will be in use", ->
+        expect @dock.get("willBeInUse")
+        .to.eventually.be.true
+
+      it "should be waiting for the right truck", ->
+        @dock.get "fire"
+        .then (fire) ->
+          expect fire.get "truckId"
+          .to.equal workFlow.truckId
+
+      it "should inform the user the truck is there", ->
+        expect find(".panel-heading").text()
+        .to.have.string "truck at this dock"
+
+      describe "going to the truck", ->
+        before (done) ->
+          click "a.btn-success"
+          andThen -> done()
+
+        it "should take me to the truck arrival page", ->
+          expect currentPath()
+          .to.equal "docks.truck.arrive"
+
+        it "should be the truck from the correct appointment", ->
+          expect find(".panel-heading").text()
+          .to.have.string workFlow.appointmentId
+
+        describe "unloading a pallet", ->
+          before (done) ->
+            click "a[name$=\"batches/new\"]"
+            andThen -> done()
+
+          it "should take me to the new pallet batch page", ->
+            expect currentPath()
+            .to.equal "docks.truck.batches.new"
+
+          describe "making a new batch", ->
+            before (done) ->
+              fillIn "textarea[name=\"description\"]", "batch description - #{trackSeed}"
+              click "button[type=\"submit\"]"
+              @batch = container.lookup("controller:docks/truck/batches/new").get "model"
+              andThen =>
+                workFlow.batchIds.pushObject @batch.get "id"
+                done()
+
+            it "should create a new batch", ->
+              expect @batch.get "id"
+              .to.be.ok
+
+            it "should be properly loaded", ->
+              expected @batch.get "isLoaded"
+              .to.be.true
+
+            it "should have the correct appointmentId", ->
+              expect @batch.get "appointmentId"
+              .to.equal workFlow.appointmentId
+
+            it "should have the correct warehouseId", ->
+              expect @batch.get "warehouseId"
+              .to.be.ok
+
+            it "should have the correct weighticketId", ->
+              expect @batch.get "weighticketId"
+              .to.equal workFlow.weighticketId
+
+            it "should have the correct entryDockId", ->
+              expect @batch.get "entryDockId"
+              .to.equal workFlow.dockId
+
+            it "should land me in bale instruction page", ->
+              expect currentPath()
+              .to.equal 'docks.batch.index'
+
+            describe "back to the truck", ->
+              before (done) ->
+                click "a[href^=\"/docks/truck\"]"
+                andThen -> done()
+
+              it "should take me back to the truck arrival page", ->
+                expect currentPath()
+                .to.equal "docks.truck.arrive"
+
+              describe "readying truck for departure", ->
+                before (done) ->
+                  click "a[href$=\"/depart\"]"
+                  andThen -> done()
+
+                it "should take me to depart instruction page", ->
+                  expect currentPath()
+                  .to.equal "docks.truck.depart"
+
+                describe "truck departs dock", ->
+                  before (done) ->
+                    click "button.btn-success"
+                    @dock = container.lookup("controller:docks/dock/index").get "model"
+                    @truck = container.lookup("controller:docks/truck/depart").get "model"
+                    andThen -> done()
+
+                  it "the dock should no longer be busy", ->
+                    expect @dock.get "isInUse"
+                    .to.be.false
+
+                  it "the dock should be free", ->
+                    expect @dock.get "isOkay"
+                    .to.be.true
+
+                  it "should change the truck's position", ->
+                    @truck.get "fire"
+                    .then (fire) ->
+                      expect fire.get "position"
+                      .to.equal "going to exit"
+
+                  it "should redirect to the dock index", ->
+                    expect currentPath
+                    .to.equal "docks.dock.index"

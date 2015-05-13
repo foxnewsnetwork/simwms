@@ -12,7 +12,9 @@ StationsWeighticketTrucksNewController = Ember.Controller.extend
         @get("truck").save()
         .then (truck) ->
           truck.gotoDock()
-        .then =>
-          @transitionToRoute "stations.station", @get "model.weighticket.issuerId"
+        .then (truck) ->
+          truck.get "entryScaleId"
+        .then (entryScaleId) =>
+          @transitionToRoute "stations.station", entryScaleId
       
 `export default StationsWeighticketTrucksNewController`

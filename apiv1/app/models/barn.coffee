@@ -20,6 +20,7 @@ Barn = DSC.ModelComplex.extend
   isOkay: alias "fire.isOkay"
   willBeOkay: APM.alias "fire.isOkay"
   isInUse: alias "fire.isInUse"
+  willBeInUse: APM.alias "fire.isInUse"
   isProblem: alias "fire.isProblem"
   isWaiting: alias "fire.isWaiting"
   status: alias "fire.status"

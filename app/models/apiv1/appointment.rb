@@ -16,6 +16,7 @@
 #  cancelled_at         :datetime
 #  expected_at          :datetime
 #  exploded_at          :datetime
+#  fire_id              :string(255)
 #
 
 class Apiv1::Appointment < ActiveRecord::Base

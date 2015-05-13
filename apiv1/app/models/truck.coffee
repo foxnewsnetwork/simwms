@@ -27,6 +27,9 @@ Truck = DSC.ModelComplex.extend
   fire: DSC.belongsTo "fire/truck", "fireId"
   rail: DSC.belongsTo "rail/truck", "railId"
 
+  dockId: APM.alias "fire.dockId"
+  entryScaleId: APM.alias "fire.entryScaleId"
+
   appointmentNumber: alias "fire.appointmentId"
   arrivedAtAgo: alias "fire.arrivedAtAgo"
   weighticket: APM.alias "fire.weighticket"
@@ -43,10 +46,14 @@ Truck = DSC.ModelComplex.extend
     @get "fire"
     .then (fire) =>
       fire.gotoExit()
+    .then =>
+      @
 
   leaveDock: ->
     @get "fire"
-    .then (fire) =>
+    .then (fire) ->
       fire.leaveDock()
+    .then =>
+      @
 
 `export default Truck`

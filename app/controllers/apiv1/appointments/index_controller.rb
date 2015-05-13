@@ -11,10 +11,10 @@ class Apiv1::Appointments::IndexController < ApplicationController
   end
   private
   def _search_process
-    _default_scope >> _consider_special_queries >> _consider_pagination 
+    _default_scope >> _consider_pagination >> _consider_special_queries 
   end
   def _default_scope
-    Arrows.lift { Apiv1::Appointment }
+    Arrows.lift { Apiv1::Appointment.order expected_at: :desc }
   end
   def _consider_pagination
     Arrows.lift { |scope| scope.page(params[:page]).per(params[:per_page]) }
@@ -42,7 +42,4 @@ class Apiv1::Appointments::IndexController < ApplicationController
   def _relevant_today?
     Arrows.polarize { params[:macro] == "today" }
   end
-  def _appointments
-    Apiv1::Appointment.relevant_today.map &:ember_attributes
-  end 
 end

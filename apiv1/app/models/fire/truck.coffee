@@ -1,6 +1,15 @@
 `import Ember from 'ember'`
 `import DS from 'ember-data'`
 `import DSC from 'ember-data-complex'`
+
+Positions = [
+  "going to entrance",
+  "at entrance",
+  "going to dock",
+  "at dock", 
+  "going to exit",
+  "at exit"
+]
 FireTruck = DSC.ModelComplex.extend
   speed: DS.attr "number"
   position: DS.attr "string"
@@ -27,10 +36,15 @@ FireTruck = DSC.ModelComplex.extend
     .then (dock) ->
       dock.waitForTruck truck
 
+  gotoExit: ->
+    @set "position", "going to exit"
+    @save()
+
   leaveDock: ->
     @get "dock"
     .then (dock) ->
       dock.releaseTruck()
+      
 
   arrivedAtAgo: Ember.computed "arrivedAt", ->
     return unless @get("arrivedAt")?
