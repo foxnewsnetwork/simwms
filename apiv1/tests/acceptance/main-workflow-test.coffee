@@ -12,6 +12,7 @@ workFlow =
   appointmentId: null
   weighticketId: null
   truckId: null
+  fireTruckId: null
   entranceId: null
   dockId: null
   exitId: null
@@ -120,12 +121,12 @@ describe 'Acceptance: MainWorkflow', ->
         .to.match /entrance weight station/i
 
       it "should have the proper appointment", ->
-        expect find("tr.appointment-row:first-child").text()
+        expect find("tr[data-appointment-id=\"#{workFlow.appointmentId}\"]").text()
         .to.have.string trackSeed
 
       describe "a truck has arrived for its appointment", ->
         before (done) ->
-          click "table.appointments tr:first-child"
+          click "tr[data-appointment-id=\"#{workFlow.appointmentId}\"]"
           andThen -> done()
 
         it "should land me in the weighticket creation page", ->
@@ -191,7 +192,10 @@ describe 'Acceptance: MainWorkflow', ->
                 @truck = container.lookup("controller:stations/weighticket/trucks/new").get "model"
                 andThen =>
                   workFlow.truckId = @truck.get "id"
-                  done()
+                  @truck.get "fire"
+                  .then (fire) ->
+                    workFlow.fireTruckId = fire.get "id"
+                    done()
 
               it "should have loaded a truck", ->
                 expect @truck.get "isLoaded"
@@ -387,3 +391,71 @@ describe 'Acceptance: MainWorkflow', ->
       before (done) ->
         click ".exit-stations a"
         andThen -> done()
+
+      it "should land me at the exit station", ->
+        expect currentPath()
+        .to.equal "stations.station.index"
+
+      it "should have the correct header", ->
+        expect find(".panel-heading").text()
+        .to.have.string "exit"
+
+      it "should have the truck I want here", ->
+        expect find("tr[data-truck-id=\"#{workFlow.truckId}\"]").text()
+        .to.have.string trackSeed
+
+      describe "going to truck", ->
+        before (done) ->
+          click "tr[data-truck-id=\"#{workFlow.truckId}\"]"
+          andThen -> done()
+
+        it "should lead me to the departure page", ->
+          expect currentPath()
+          .to.equal "stations.truck.departure"
+
+        describe "weighing the truck again", ->
+          before (done) ->
+            click "button.btn-success"
+            andThen -> done()
+
+          it "should take me to the completion page", ->
+            expect currentPath()
+            .to.equal "stations.truck.complete"
+
+          describe "generating the complete ticket", ->
+            before (done) ->
+              fillIn "input[name=\"finishPounds\"]", 45000
+              click "button[type=\"submit\"]"
+              @truck = container.lookup("controller:stations.truck.complete").get "model"
+              andThen -> done()
+
+            it "should take me to the exit page", ->
+              expect currentPath()
+              .to.equal "stations.truck.exit"
+
+            it "should have a proper finish attr", ->
+              @truck.get "weighticketPromise"
+              .then (weighticket) ->
+                assert.equal weighticket.get("finishPounds"), 45000, "the pounds should be right"
+                assert.ok weighticket.get("finisherId"), "there should be a exit scale id"
+
+            describe "killing the truck", ->
+              before (done) ->
+                click "button.btn-default"
+                andThen -> done()
+
+              it "should redirect me the index", ->
+                expect currentPath()
+                .to.equal "stations.station.index"
+
+              it "should destroy the truck from firebase", ->
+                store.find "truck", workFlow.truckId
+                .catch (error) ->
+                  expect error.message
+                  .to.have.string "no record was found"
+
+              it "should destroy the fire truck from firebase also", ->
+                store.find "fire/truck", workFlow.fireTruckId
+                .catch (error) ->
+                  expect error.message
+                  .to.have.string "no record was found"

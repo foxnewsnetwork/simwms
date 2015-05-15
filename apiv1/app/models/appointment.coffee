@@ -25,7 +25,7 @@ Appointment = DS.Model.extend
   
   expectedAtAgo: Ember.computed "expectedAt", ->
     return if Ember.isBlank @get "expectedAt"
-    Ember.$.timeago @get("expectedAt").toDate()
+    @get("expectedAt").fromNow()
 
   statusIsPlanned: Ember.computed.equal "status", "planned"
   statusIsProblem: Ember.computed.equal "status", "problem"

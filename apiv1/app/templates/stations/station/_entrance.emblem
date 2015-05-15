@@ -13,7 +13,7 @@
           th ETA
       tbody
         each appointment in appointments
-          tr.pointer.appointment-row click="'truckArrived' appointment"
+          tr.pointer data-appointment-id=appointment.id click="'truckArrived' appointment"
             td data-label="status" 
               span.fa= appointment.status
             td data-label="appointment number" 

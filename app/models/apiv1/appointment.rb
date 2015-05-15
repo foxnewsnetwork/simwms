@@ -25,7 +25,7 @@ class Apiv1::Appointment < ActiveRecord::Base
   before_create :_make_company_permalink
   after_create :_make_permalink
   scope :relevant,
-    -> { where(fulfilled_at: nil).where(cancelled_at: nil).order(expected_at: "asc") }
+    -> { where(fulfilled_at: nil).where(cancelled_at: nil) }
 
   scope :relevant_today,
     -> { relevant.expected_today }

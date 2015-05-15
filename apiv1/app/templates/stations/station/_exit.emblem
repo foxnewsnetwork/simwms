@@ -15,7 +15,7 @@
             th.capitalize ticket
         tbody
           each truck in iotrucks
-            tr.pointer click="'truckDeparted' truck"
+            tr.pointer data-truck-id=truck.id click="'truckDeparted' truck"
               td= truck.appointmentNumber
               td= truck.appointment.company
               td= truck.appointment.materialDescription
