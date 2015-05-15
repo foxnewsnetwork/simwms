@@ -25,7 +25,7 @@ h2.modal-title
             td= batch.description
             td= batch.quantity
             td= batch.createdAt
-            td= batch.appointment.id
+            td= batch.appointmentId
   
 .actions
   button.btn.btn-primary.close-button click="closeModal"

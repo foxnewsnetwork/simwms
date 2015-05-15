@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150513004004) do
+ActiveRecord::Schema.define(version: 20150515000214) do
 
   create_table "apiv1_appointments", force: :cascade do |t|
     t.string   "permalink",            limit: 255
@@ -31,9 +31,9 @@ ActiveRecord::Schema.define(version: 20150513004004) do
   end
 
   create_table "apiv1_batches", force: :cascade do |t|
-    t.integer  "appointment_id", limit: 4
     t.integer  "warehouse_id",   limit: 4
     t.integer  "weighticket_id", limit: 4
+    t.string   "appointment_id", limit: 255
     t.string   "entry_dock_id",  limit: 255
     t.string   "exit_dock_id",   limit: 255
     t.string   "permalink",      limit: 255
@@ -80,6 +80,20 @@ ActiveRecord::Schema.define(version: 20150513004004) do
     t.string   "fire_id",    limit: 255
   end
 
+  create_table "apiv1_trucks", force: :cascade do |t|
+    t.string   "entry_scale_id", limit: 255
+    t.string   "exit_scale_id",  limit: 255
+    t.string   "dock_id",        limit: 255
+    t.string   "appointment_id", limit: 255
+    t.string   "weighticket_id", limit: 255
+    t.datetime "arrived_at"
+    t.datetime "departed_at"
+    t.datetime "docked_at"
+    t.datetime "undocked_at"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
   create_table "apiv1_users", force: :cascade do |t|
     t.string   "email",                           limit: 255, null: false
     t.string   "crypted_password",                limit: 255
@@ -112,13 +126,6 @@ ActiveRecord::Schema.define(version: 20150513004004) do
     t.datetime "updated_at",                                                null: false
     t.string   "finisher_id",        limit: 255
     t.decimal  "finish_pounds",                    precision: 15, scale: 2
-  end
-
-  create_table "apivm_grids", force: :cascade do |t|
-    t.string   "fire_id",    limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.datetime "deleted_at"
   end
 
   create_table "seed_migration_data_migrations", force: :cascade do |t|

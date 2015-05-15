@@ -1,9 +1,9 @@
 class Apiv1::Trucks::ShowController < ApplicationController
   def show
-    render json: { warehouse: _warehouse.master_attributes }
+    render json: { truck: _truck }
   end
   private
-  def _warehouse
-    @warehouse ||= Apiv1::Tile.living_warehouses.find params[:id]
+  def _truck
+    @truck ||= Apiv1::Truck.find params[:id]
   end
 end

@@ -2,6 +2,7 @@
 
 StationsStationRoute = Ember.Route.extend
   model: (station_id: id) ->
-    @store.find "scale", id
+    @iogrid.then =>
+      @store.find "scale", id
 
 `export default StationsStationRoute`

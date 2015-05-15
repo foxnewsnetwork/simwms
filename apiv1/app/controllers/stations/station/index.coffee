@@ -12,4 +12,9 @@ StationsStationIndexController = Ember.Controller.extend
         queryParams:
           appointment: appointment.get("id")
 
+    truckDeparted: (truck) ->
+      truck.prepareToLeave @get "station"
+      .then (truck) =>
+        @transitionToRoute "stations.truck.departure", truck.get "id"
+
 `export default StationsStationIndexController`

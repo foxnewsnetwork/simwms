@@ -13,8 +13,9 @@ StationsWeighticketTrucksNewController = Ember.Controller.extend
         .then (truck) ->
           truck.gotoDock()
         .then (truck) ->
-          truck.get "entryScaleId"
+          truck.get "entryScaleIdPromise"
         .then (entryScaleId) =>
+          Ember.assert "there is a entry scale id #{entryScaleId}", Ember.isPresent entryScaleId
           @transitionToRoute "stations.station", entryScaleId
       
 `export default StationsWeighticketTrucksNewController`

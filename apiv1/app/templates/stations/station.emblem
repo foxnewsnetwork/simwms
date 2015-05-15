@@ -10,9 +10,6 @@
       link-to "stations.station.weightickets.new" model.id class="btn btn-default"
         i.fa.fa-sign-in
         span.fa.nav-title truck arrived
-      link-to "stations.station.departures" model.id class="btn btn-default"
-        i.fa.fa-sign-out
-        span.fa.nav-title truck left
       link-to "stations.station.problem" model.id class="btn btn-default"
         i.fa.fa-warning
         span.fa.nav-title problem

@@ -1,0 +1,16 @@
+.col-xs-12
+  .panel.panel-default
+    .panel-heading.instruction-line
+      span.fa.capitalize complete weighticket information
+
+    .panel-body.instruction-line
+      em-form-for model=weighticket mistakes=mistakes action="completeTicket" classNames="panel-body instruction-line"
+        em-form-input name="finishPounds" type="number" label="weight" suffix="lbs"
+          span.help-block read this off the scale
+        .btn-group
+          promise-button model=model classNames="btn btn-success btn-hover btn-lg" type="submit"
+            i.fa.fa-check
+            span.capitalize submit
+          link-to "stations.truck.departure" model.id classNames="btn btn-default btn-hover btn-lg"
+            i.fa.fa-times
+            span.capitalize cancel

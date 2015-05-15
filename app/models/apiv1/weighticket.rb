@@ -18,5 +18,19 @@
 class Apiv1::Weighticket < ActiveRecord::Base
   belongs_to :appointment,
     foreign_key: :appointment_number,
-    class_name: "Apiv1::Appointment"
+    class_name: "Apiv1::Appointment",
+    primary_key: :permalink
+
+  has_many :batches,
+    class_name: 'Apiv1::Batch'
+
+  def bale_count
+    batches.count.to_i
+  end
+
+  def complete?
+    pounds.present? && 
+    finish_pounds.present? &&
+    bale_count > 0
+  end
 end

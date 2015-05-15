@@ -15,21 +15,14 @@
             th.capitalize ticket
         tbody
           each truck in iotrucks
-            tr.pointer click="'openTruck' truck"
+            tr.pointer click="'truckDeparted' truck"
               td= truck.appointmentNumber
               td= truck.appointment.company
               td= truck.appointment.materialDescription
               td= truck.arrivedAtAgo
-              td= truck.status
+              td= truck.position
               td= truck.weighticket.id
               
-      .btn-group.btn-lg
-        link-to "stations.station.departures" station.id class="btn btn-success btn-lg btn-hover"
-          i.fa.fa-truck
-          span.fa.bold.nav-title truck is trying to leave
-        link-to "stations.station.problem" station.id class="btn btn-danger btn-lg btn-hover"
-          i.fa.fa-warning
-          span.fa.bold.nav-title report problem
     else
       p.capitalize there are currently no trucks on site
       link-to "stations.station.problem" station.id class="btn btn-danger btn-lg btn-hover"

@@ -1,15 +1,20 @@
 class Apiv1::Trucks::CreateController < ApplicationController
   def create
-    render json: { warehouses: _warehouse.master_attributes }
+    render json: { trucks: _truck }
   end
   private
-  def _create_params
-    params.require(:warehouse).permit :fire_id
+  def _truck_params
+    params.require(:truck).permit :entry_scale_id,
+      :exit_scale_id,
+      :dock_id,
+      :appointment_id,
+      :weighticket_id,
+      :arrived_at,
+      :departed_at,
+      :docked_at,
+      :undocked_at
   end
-  def _warehouse_params
-    _create_params.merge tile_type: :warehouse
-  end
-  def _warehouse
-    @warehouse ||= Apiv1::Tile.create! _warehouse_params
+  def _truck
+    @truck ||= Apiv1::Truck.create! _truck_params
   end
 end

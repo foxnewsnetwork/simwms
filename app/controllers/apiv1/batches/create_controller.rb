@@ -56,10 +56,12 @@ class Apiv1::Batches::CreateController::Defaulter
 
   private
   def _warehouse_id
-    @params[:warehouse_id] || _first_empty_warehouse.id
+    return @params[:warehouse_id] if @params[:warehouse_id].present?
+     _first_empty_warehouse.id
   end
   def _appointment_id
-    @params[:appointment_id] || _weighticket.appointment_number
+    return @params[:appointment_id] if @params[:appointment_id].present?
+    _weighticket.appointment_number
   end
   def _weighticket
     Apiv1::Weighticket.find @params[:weighticket_id]

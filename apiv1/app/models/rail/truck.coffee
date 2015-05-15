@@ -2,7 +2,7 @@
 `import DS from 'ember-data'`
 `import DSC from 'ember-data-complex'`
 
-RailTruck = DS.Model.extend
+RailTruck = DSC.ModelComplex.extend
   dockedAt: DS.attr "date"
   undockedAt: DS.attr "date"
   arrivedAt: DS.attr "date"
@@ -20,7 +20,8 @@ RailTruck = DS.Model.extend
   exitScale: DSC.belongsTo 'scale', "exitScaleId"
   dock: DSC.belongsTo 'barn', "dockId"
 
-  arrivedAtAgo: FunEx.computed "arrivedAt", ->
+  arrivedAtAgo: Ember.computed "arrivedAt", ->
     return unless @get("arrivedAt")?
-    $.timeago @get "arrivedAt"
+    Ember.$.timeago @get "arrivedAt"
+
 `export default RailTruck`

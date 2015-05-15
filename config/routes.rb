@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
     resources :weightickets, only: [:create], controller: 'weightickets/create'
     resources :weightickets, only: [:show], controller: 'weightickets/show'
+    resources :weightickets, only: [:update], controller: 'weightickets/update'
 
     resources :appointments, only: [:show], controller: "appointments/show"
     resources :appointments, only: [:index], controller: "appointments/index"
@@ -30,7 +31,6 @@ Rails.application.routes.draw do
     resources :trucks, only: [:show], controller: 'trucks/show'
     resources :trucks, only: [:index], controller: 'trucks/index'
     resources :trucks, only: [:create], controller: 'trucks/create'
-    resources :trucks, only: [:update], controller: 'trucks/update'
   end
 
   namespace :apiv0 do

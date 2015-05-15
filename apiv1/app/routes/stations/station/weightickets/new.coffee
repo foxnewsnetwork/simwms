@@ -13,6 +13,7 @@ StationsStationWeighticketsNewRoute = Ember.Route.extend
       window.weighticket = @store.createRecord "weighticket",
         issuerId: Ember.get(station, "id")
         appointmentNumber: appointment
+        targetDock: grid.get("oldestAvailableDock.id")
 
   killRecord: (model) ->
     model.deleteRecord() if Ember.get model, 'isDirty'

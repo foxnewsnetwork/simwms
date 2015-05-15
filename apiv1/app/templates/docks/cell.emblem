@@ -25,4 +25,4 @@ h2.section-title
             td= batch.description
             td= batch.quantity
             td= batch.createdAt
-            td= batch.appointment.id
+            td= batch.appointmentId

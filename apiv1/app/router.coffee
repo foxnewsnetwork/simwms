@@ -24,9 +24,12 @@ Router.map ->
     @resource "stations.station", path: "/station/:station_id", ->
       @resource "stations.station.weightickets", path: "/weightickets", ->
         @route "new"
-      @route "departures"
       @route "status"
       @route "problem"
+    @resource "stations.truck", path: "/truck/:truckId", ->
+      @route "departure"
+      @route "complete"
+      @route "exit"
 
   @resource "docks", path: "/docks", ->
     @resource "docks.batch", path: "/batch/:batchId", ->

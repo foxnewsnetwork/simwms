@@ -37,11 +37,33 @@ alias = (names) ->
     .then (value) => @set key, value
     return
 
+readOnlyMsg = (key, value) -> """
+APM's promiseDelegate and eventuallyEqual always returns a read-only promise, yet you, 
+for some incomprehensible reason,decided to call set on a read-only promise object. 
+This means, somewhere in your code, you called:
+
+this.set(#{key}, #{value});
+
+Which is an oversight on your part. If you didn't do this, then your either using #{key} is your templates
+(which you shouldn't be), or you're setting key on your create (which you also shouldn't be).
+"""
+
+# sort of like alias, except ALWAYS returns a promise
+promiseDelegate = (names) ->
+  fields = names.split "."
+  Ember.computed names, (key, value) ->
+    if arguments.length > 1
+      throw new Error readOnlyMsg key, value
+    syncReduce promiseLift(@), fields, (ctx, field) ->
+      ctx.get field
+
 class APM
   @alias = alias
-
+  @promiseDelegate = promiseDelegate
 
 `export default APM`
 `export {
-  alias
+  APM,
+  alias,
+  promiseDelegate
 }`

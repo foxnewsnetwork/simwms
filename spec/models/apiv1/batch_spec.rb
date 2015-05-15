@@ -3,9 +3,9 @@
 # Table name: apiv1_batches
 #
 #  id             :integer          not null, primary key
-#  appointment_id :integer
 #  warehouse_id   :integer
 #  weighticket_id :integer
+#  appointment_id :string(255)
 #  entry_dock_id  :string(255)
 #  exit_dock_id   :string(255)
 #  permalink      :string(255)

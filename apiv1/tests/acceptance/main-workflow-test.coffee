@@ -243,16 +243,23 @@ describe 'Acceptance: MainWorkflow', ->
     describe "going to my dock", ->
       before (done) ->
         click "a[href=\"/docks/dock/#{workFlow.dockId}\"]"
-        @dock = container.lookup("controller:docks/dock/index").get "model"
-        andThen -> done()
+        andThen => 
+          @dock = container.lookup("controller:docks/dock").get "model"
+          done()
+
+      it "should have retrieved a dock", ->
+        expect @dock
+        .to.be.ok
 
       it "should land me at my dock index", ->
         expect currentPath()
         .to.equal "docks.dock.index"
 
       it "will be in use", ->
-        expect @dock.get("willBeInUse")
-        .to.eventually.be.true
+        @dock.get("fire")
+        .then (fire) ->
+          expect fire.get "isInUse"
+          .to.be.ok
 
       it "should be waiting for the right truck", ->
         @dock.get "fire"
@@ -279,7 +286,7 @@ describe 'Acceptance: MainWorkflow', ->
 
         describe "unloading a pallet", ->
           before (done) ->
-            click "a[name$=\"batches/new\"]"
+            click "a[href*=\"batches/new\"]"
             andThen -> done()
 
           it "should take me to the new pallet batch page", ->
@@ -300,7 +307,7 @@ describe 'Acceptance: MainWorkflow', ->
               .to.be.ok
 
             it "should be properly loaded", ->
-              expected @batch.get "isLoaded"
+              expect @batch.get "isLoaded"
               .to.be.true
 
             it "should have the correct appointmentId", ->
@@ -363,5 +370,20 @@ describe 'Acceptance: MainWorkflow', ->
                       .to.equal "going to exit"
 
                   it "should redirect to the dock index", ->
-                    expect currentPath
+                    expect currentPath()
                     .to.equal "docks.dock.index"
+
+  context "exit station", ->
+    before (done) ->
+      visit "/"
+      click "a[href=\"/stations\"]"
+      andThen -> done()
+
+    it "should land me in the stations index", ->
+      expect currentPath()
+      .to.equal "stations.index"
+
+    describe "going to exit station", ->
+      before (done) ->
+        click ".exit-stations a"
+        andThen -> done()

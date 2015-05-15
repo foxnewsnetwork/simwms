@@ -1,19 +1,32 @@
-%h1.instructions-to-driver
-  %span.colon driver, go to dock number
-  %span.highlight= @weighticket.target_dock
+%h1
+  - if @weighticket.complete?
+    %span complete weight ticket
+  - else
+    %span incomplete weight ticket
+%h2.instructions-to-driver
+  - unless @weighticket.complete?
+    %span.colon driver, go to dock number
+    %span.highlight= @weighticket.target_dock
 %dl
   %dt appointment number
   %dd= @weighticket.appointment_number
   %dt issuer id
   %dd= @weighticket.issuer_id
-  %dt pounds
-  %dd= @weighticket.pounds
+  %dt entering weight
+  %dd
+    %span= @weighticket.pounds
+    %span lbs
+  %dt exit weight
+  %dd
+    %span= @weighticket.finish_pounds
+    %span lbs
   %dt license plate
   %dd= @weighticket.license_plate
   %dt target dock
   %dd= @weighticket.target_dock
   %dt createdAt
   %dd= @weighticket.created_at
-  
+  %dt bale count
+  %dd= @weighticket.bale_count
   %dt notes
   %dd= @weighticket.notes

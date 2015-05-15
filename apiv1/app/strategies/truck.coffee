@@ -18,7 +18,7 @@ assertExistence = (fireTruck) ->
 # Throws an error if your archive is already filled
 TruckStrategy = DSC.Strategy.extend DSC.CreativeDelegationTactic,
   beforeDestroy: (master) ->
-    master.get("rail")
+    DSC.Arrows.promiseLift master.get("rail")
     .then (railTruck) ->
       assertNonexistence railTruck
       master.get "fire"
@@ -26,6 +26,8 @@ TruckStrategy = DSC.Strategy.extend DSC.CreativeDelegationTactic,
       assertExistence fireTruck
       @store.createRecord "rail/truck", DSC.getAttributes fireTruck
       .save()
+      .then ->
+        fireTruck.destroyRecord()
 
   
 `export default TruckStrategy`

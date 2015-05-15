@@ -44,6 +44,10 @@ FireTruck = DSC.ModelComplex.extend
     @get "dock"
     .then (dock) ->
       dock.releaseTruck()
+
+  prepareToLeave: (scale) ->
+    @set "exitScale", scale
+    @save()
       
 
   arrivedAtAgo: Ember.computed "arrivedAt", ->

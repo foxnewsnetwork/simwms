@@ -1,0 +1,17 @@
+.row
+  .col-xs-12
+    .panel.panel-default
+      .panel-heading.instruction-line
+        span.fa confirm truck departure
+          
+      .panel-body.instruction-line
+        p Before the truck can leave, it must be given an exit weighticket.
+        p It is also possible to skip weighing truck and let it go as is.
+        
+        .btn-group
+          promise-button model=model classNames="btn btn-success btn-hover btn-lg" action="weighTruck"
+            i.fa.fa-book
+            span.capitalize weigh truck first
+          promise-button model=model class="btn btn-danger btn-hover btn-lg" action="exitTruck"
+            i.fa.fa-sign-out
+            span.capitalize let truck leave
