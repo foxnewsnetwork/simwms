@@ -1,12 +1,11 @@
 `import Ember from 'ember'`
 `import validate from 'apiv1/validators/batch'`
+`import AtomicMixin from 'apiv1/mixins/atomic'`
 
-throttle = (ctx, time, action) -> Ember.run.throttle ctx, action, time
-
-DocksTruckBatchesNewController = Ember.Controller.extend
+DocksTruckBatchesNewController = Ember.Controller.extend AtomicMixin,
   actions:
     batch: ->
-      throttle @, 150, ->
+      @atomically =>
         validate @get 'model'
         .then (model) ->
           model.save()

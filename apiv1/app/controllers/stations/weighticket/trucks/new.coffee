@@ -1,14 +1,14 @@
 `import Ember from 'ember'`
 `import validate from 'apiv1/validators/truck'`
+`import AtomicMixin from 'apiv1/mixins/atomic'`
 
-throttle = (ctx, time, action) -> Ember.run.throttle ctx, action, time
 
-StationsWeighticketTrucksNewController = Ember.Controller.extend
+StationsWeighticketTrucksNewController = Ember.Controller.extend AtomicMixin,
   truck: Ember.computed.alias "model"
     
   actions:
     finish: ->
-      throttle @, 200, ->
+      @atomically =>
         @get("truck").save()
         .then (truck) ->
           truck.gotoDock()

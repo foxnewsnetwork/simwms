@@ -1,12 +1,12 @@
 `import Ember from 'ember'`
 `import validate from 'apiv1/validators/weighticket'`
+`import AtomicMixin from 'apiv1/mixins/atomic'`
 
-throttle = (ctx, time, action) -> Ember.run.throttle ctx, action, time
 invalidMsg = """
 You expected your weighticket to correctly save, but it didn't do that.
 This is definitely your fault.
 """
-StationsStationWeighticketsNewController = Ember.Controller.extend
+StationsStationWeighticketsNewController = Ember.Controller.extend AtomicMixin,
   queryParams: ["appointment"]
   appointment: null
   dockChoices: Ember.computed.mapBy "iogrid.barns", "selectChoice"
@@ -18,7 +18,7 @@ StationsStationWeighticketsNewController = Ember.Controller.extend
 
   actions:
     newTicket: ->
-      throttle @, 150, ->
+      @atomically =>
         validate @get "model"
         .then (weighticket) ->
           weighticket.save()

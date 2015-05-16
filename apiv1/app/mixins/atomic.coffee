@@ -19,9 +19,11 @@ AtomicMixin = Ember.Mixin.create
   atomically: (action) ->
     return if @get "isBusy"
     Ember.run =>
+      @send "controllerWorking", @
       @set "isBusy", true
       assertThenable action()
       .finally =>
         @set "isBusy", false
+        @send "controllerFinished", @
 
 `export default AtomicMixin`

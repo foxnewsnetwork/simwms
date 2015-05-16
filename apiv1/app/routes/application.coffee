@@ -1,6 +1,9 @@
 `import Ember from 'ember'`
-`import PixiCamera from '../utils/pixi-camera'`
-ApplicationRoute = Ember.Route.extend
+
+ApplicationRoute = Ember.Route.extend 
+  isBusy: Ember.computed.alias "controllerPen.isBusy"
+  isPending: Ember.computed.alias "isBusy"
+
   model: ->
     # camera: PixiCamera.create(x: 250, y: 280, zoom: 0.8)
     Ember.RSVP.hash
@@ -8,6 +11,12 @@ ApplicationRoute = Ember.Route.extend
       trucks: @iotrucks
 
   actions:
+    controllerWorking: (controller) ->
+      @controllerPen.makeBusy controller
+
+    controllerFinished: (controller) ->
+      @controllerPen.makeFree controller
+
     openModal: (modalName, model) ->
       if model?
         id = Ember.get(model, "id")

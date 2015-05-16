@@ -4,6 +4,7 @@
 `import startApp from '../helpers/start-app'`
 `import moment from 'moment'`
 
+
 application = null
 container = null
 store = null
@@ -17,6 +18,7 @@ workFlow =
   dockId: null
   exitId: null
   batchIds: []
+
 wait = (time, action) ->
   Ember.run.later action, time
 rightNow = -> moment().format "YYYY-MM-DDTHH:mm"
@@ -40,7 +42,7 @@ describe 'Acceptance: MainWorkflow', ->
       click "a[href=\"/logistics\"]"
 
     it "should land me in the logistics page", ->
-      andThen ->
+      andAfterward ->
         expect(currentPath()).to.equal "logistics.appointments.index"
 
     describe "going to new appointments", ->
@@ -48,7 +50,7 @@ describe 'Acceptance: MainWorkflow', ->
         click "a[href^=\"/logistics/appointments/new\"]"
 
       it "should land me on the new appointments page", ->
-        andThen ->
+        andAfterward ->
           expect currentPath()
           .to.equal "logistics.appointments.new"
 
@@ -60,7 +62,7 @@ describe 'Acceptance: MainWorkflow', ->
           fillIn "textarea[name=\"notes\"]", "notes - #{trackSeed}"
           click "button[type=\"submit\"]"
           @appointment = container.lookup("controller:logistics/appointments/new").get "model"
-          andThen => 
+          andAfterward => 
             workFlow.appointmentId = @appointment.get "id"
             done()
 
@@ -95,7 +97,7 @@ describe 'Acceptance: MainWorkflow', ->
     before (done) ->
       visit "/"
       click "a[href=\"/stations\"]"
-      andThen -> done()
+      andAfterward -> done()
 
     it "should land me in the stations index page", ->
       expect currentPath()
@@ -104,7 +106,7 @@ describe 'Acceptance: MainWorkflow', ->
     describe "going to entry station", ->
       before (done) ->
         click ".entry-stations a"
-        andThen -> 
+        andAfterward -> 
           workFlow.entranceId = container.lookup("controller:stations/station").get("model.id")
           done()
 
@@ -127,7 +129,7 @@ describe 'Acceptance: MainWorkflow', ->
       describe "a truck has arrived for its appointment", ->
         before (done) ->
           click "tr[data-appointment-id=\"#{workFlow.appointmentId}\"]"
-          andThen -> done()
+          andAfterward -> done()
 
         it "should land me in the weighticket creation page", ->
           expect currentPath()
@@ -149,7 +151,7 @@ describe 'Acceptance: MainWorkflow', ->
             fillIn "textarea[name=\"notes\"]", "weighticket notes of #{trackSeed}"
             click "button[type=\"submit\"]"
             @weighticket = container.lookup("controller:stations/station/weightickets/new").get "model"
-            andThen => 
+            andAfterward => 
               workFlow.weighticketId = @weighticket.get "id"
               done()
 
@@ -180,7 +182,7 @@ describe 'Acceptance: MainWorkflow', ->
           describe "giving the ticket to the driver", ->
             before (done) ->
               click ".btn-primary"
-              andThen -> done()
+              andAfterward -> done()
 
             it 'should take me page where I am presented with instructions', ->
               expect currentPath()
@@ -190,7 +192,7 @@ describe 'Acceptance: MainWorkflow', ->
               before (done) ->
                 click ".btn-success"
                 @truck = container.lookup("controller:stations/weighticket/trucks/new").get "model"
-                andThen =>
+                andAfterward =>
                   workFlow.truckId = @truck.get "id"
                   @truck.get "fire"
                   .then (fire) ->
@@ -234,7 +236,7 @@ describe 'Acceptance: MainWorkflow', ->
     before (done) ->
       visit "/"
       click "a[href=\"/docks\"]"
-      andThen -> done()
+      andAfterward -> done()
 
     it "should land me in the docks index", ->
       expect currentPath()
@@ -247,7 +249,7 @@ describe 'Acceptance: MainWorkflow', ->
     describe "going to my dock", ->
       before (done) ->
         click "a[href=\"/docks/dock/#{workFlow.dockId}\"]"
-        andThen => 
+        andAfterward => 
           @dock = container.lookup("controller:docks/dock").get "model"
           done()
 
@@ -278,7 +280,7 @@ describe 'Acceptance: MainWorkflow', ->
       describe "going to the truck", ->
         before (done) ->
           click "a.btn-success"
-          andThen -> done()
+          andAfterward -> done()
 
         it "should take me to the truck arrival page", ->
           expect currentPath()
@@ -291,7 +293,7 @@ describe 'Acceptance: MainWorkflow', ->
         describe "unloading a pallet", ->
           before (done) ->
             click "a[href*=\"batches/new\"]"
-            andThen -> done()
+            andAfterward -> done()
 
           it "should take me to the new pallet batch page", ->
             expect currentPath()
@@ -302,7 +304,7 @@ describe 'Acceptance: MainWorkflow', ->
               fillIn "textarea[name=\"description\"]", "batch description - #{trackSeed}"
               click "button[type=\"submit\"]"
               @batch = container.lookup("controller:docks/truck/batches/new").get "model"
-              andThen =>
+              andAfterward =>
                 workFlow.batchIds.pushObject @batch.get "id"
                 done()
 
@@ -337,7 +339,7 @@ describe 'Acceptance: MainWorkflow', ->
             describe "back to the truck", ->
               before (done) ->
                 click "a[href^=\"/docks/truck\"]"
-                andThen -> done()
+                andAfterward -> done()
 
               it "should take me back to the truck arrival page", ->
                 expect currentPath()
@@ -346,7 +348,7 @@ describe 'Acceptance: MainWorkflow', ->
               describe "readying truck for departure", ->
                 before (done) ->
                   click "a[href$=\"/depart\"]"
-                  andThen -> done()
+                  andAfterward -> done()
 
                 it "should take me to depart instruction page", ->
                   expect currentPath()
@@ -357,7 +359,7 @@ describe 'Acceptance: MainWorkflow', ->
                     click "button.btn-success"
                     @dock = container.lookup("controller:docks/dock/index").get "model"
                     @truck = container.lookup("controller:docks/truck/depart").get "model"
-                    andThen -> done()
+                    andAfterward -> done()
 
                   it "the dock should no longer be busy", ->
                     expect @dock.get "isInUse"
@@ -381,7 +383,7 @@ describe 'Acceptance: MainWorkflow', ->
     before (done) ->
       visit "/"
       click "a[href=\"/stations\"]"
-      andThen -> done()
+      andAfterward -> done()
 
     it "should land me in the stations index", ->
       expect currentPath()
@@ -390,7 +392,7 @@ describe 'Acceptance: MainWorkflow', ->
     describe "going to exit station", ->
       before (done) ->
         click ".exit-stations a"
-        andThen -> done()
+        andAfterward -> done()
 
       it "should land me at the exit station", ->
         expect currentPath()
@@ -407,7 +409,7 @@ describe 'Acceptance: MainWorkflow', ->
       describe "going to truck", ->
         before (done) ->
           click "tr[data-truck-id=\"#{workFlow.truckId}\"]"
-          andThen -> done()
+          andAfterward -> done()
 
         it "should lead me to the departure page", ->
           expect currentPath()
@@ -416,7 +418,7 @@ describe 'Acceptance: MainWorkflow', ->
         describe "weighing the truck again", ->
           before (done) ->
             click "button.btn-success"
-            andThen -> done()
+            andAfterward -> done()
 
           it "should take me to the completion page", ->
             expect currentPath()
@@ -427,7 +429,7 @@ describe 'Acceptance: MainWorkflow', ->
               fillIn "input[name=\"finishPounds\"]", 45000
               click "button[type=\"submit\"]"
               @truck = container.lookup("controller:stations.truck.complete").get "model"
-              andThen -> done()
+              andAfterward -> done()
 
             it "should take me to the exit page", ->
               expect currentPath()
@@ -442,20 +444,22 @@ describe 'Acceptance: MainWorkflow', ->
             describe "killing the truck", ->
               before (done) ->
                 click "button.btn-default"
-                andThen -> done()
+                andAfterward -> done()
 
               it "should redirect me the index", ->
                 expect currentPath()
                 .to.equal "stations.station.index"
 
               it "should destroy the truck from firebase", ->
-                store.find "truck", workFlow.truckId
-                .catch (error) ->
-                  expect error.message
-                  .to.have.string "no record was found"
+                Ember.run ->
+                  store.find "truck", workFlow.truckId
+                  .catch (error) ->
+                    expect error.message
+                    .to.have.string "no record was found"
 
               it "should destroy the fire truck from firebase also", ->
-                store.find "fire/truck", workFlow.fireTruckId
-                .catch (error) ->
-                  expect error.message
-                  .to.have.string "no record was found"
+                Ember.run ->
+                  store.find "fire/truck", workFlow.fireTruckId
+                  .catch (error) ->
+                    expect error.message
+                    .to.have.string "no record was found"
