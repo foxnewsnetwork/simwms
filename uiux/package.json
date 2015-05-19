@@ -1,7 +1,7 @@
 {
-  "name": "apiv1",
+  "name": "uiux",
   "version": "0.0.0",
-  "description": "Small description for apiv1 goes here",
+  "description": "The front-end ui / ux component of simwms",
   "private": true,
   "directories": {
     "doc": "doc",

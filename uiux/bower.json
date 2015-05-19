@@ -1,5 +1,5 @@
 {
-  "name": "apiv1",
+  "name": "uiux",
   "dependencies": {
     "jquery": "^1.11.1",
     "ember": "1.11.1",

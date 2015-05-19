@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'apiv1',
+    modulePrefix: 'uiux',
     environment: environment,
     contentSecurityPolicy: { 
       'connect-src': "'self' wss://*.firebaseio.com",
