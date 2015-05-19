@@ -1,5 +1,5 @@
 `import Ember from 'ember'`
-`import FunEx from 'apiv1/utils/fun-ex'`
+`import FunEx from 'uiux/utils/fun-ex'`
 
 MessageProblemController = Ember.Controller.extend
   modalName: FunEx.computed "model.permatype", ->

@@ -1,6 +1,6 @@
 `import Ember from 'ember'`
-`import validate from 'apiv1/validators/truck'`
-`import AtomicMixin from 'apiv1/mixins/atomic'`
+`import validate from 'uiux/validators/truck'`
+`import AtomicMixin from 'uiux/mixins/atomic'`
 
 
 StationsWeighticketTrucksNewController = Ember.Controller.extend AtomicMixin,

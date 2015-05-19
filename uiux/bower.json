@@ -20,6 +20,7 @@
     "firebase": "^2.1.0",
     "jquery-timeago": "~1.4.1",
     "ember-mocha": "~0.6.2",
-    "ember-cli-moment-shim": "~0.1.0"
+    "ember-cli-moment-shim": "~0.1.0",
+    "d3": "~3.5.5"
   }
 }

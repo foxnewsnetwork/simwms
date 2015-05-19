@@ -1,5 +1,5 @@
 `import Ember from 'ember'`
-`import FunEx from 'apiv1/utils/fun-ex'`
+`import FunEx from 'uiux/utils/fun-ex'`
 
 StationsIndexController = Ember.Controller.extend
   entryStation: FunEx.computed "model.@each", ->

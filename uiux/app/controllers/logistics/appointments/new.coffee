@@ -1,6 +1,6 @@
 `import Ember from 'ember'`
-`import validate from 'apiv1/validators/appointment'`
-`import AtomicMixin from 'apiv1/mixins/atomic'`
+`import validate from 'uiux/validators/appointment'`
+`import AtomicMixin from 'uiux/mixins/atomic'`
 `import moment from 'moment'`
 
 get = Ember.get

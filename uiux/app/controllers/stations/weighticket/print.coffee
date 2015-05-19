@@ -1,5 +1,5 @@
 `import Ember from 'ember'`
-`import config from 'apiv1/config/environment'`
+`import config from 'uiux/config/environment'`
 `import EmberCPM from 'ember-cpm'`
 StationsWeighticketPrintController = Ember.Controller.extend
   weighticket: Ember.computed.alias "model"

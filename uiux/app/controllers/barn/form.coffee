@@ -1,6 +1,6 @@
 `import Ember from 'ember'`
-`import FunEx from 'apiv1/utils/fun-ex'`
-`import DebugEx from 'apiv1/utils/debug-ex'`
+`import FunEx from 'uiux/utils/fun-ex'`
+`import DebugEx from 'uiux/utils/debug-ex'`
 BarnFormController = Ember.Controller.extend
   barn: FunEx.computed "model", ->
     @get("model")

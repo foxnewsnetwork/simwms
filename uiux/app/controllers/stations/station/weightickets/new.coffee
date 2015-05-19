@@ -1,6 +1,6 @@
 `import Ember from 'ember'`
-`import validate from 'apiv1/validators/weighticket'`
-`import AtomicMixin from 'apiv1/mixins/atomic'`
+`import validate from 'uiux/validators/weighticket'`
+`import AtomicMixin from 'uiux/mixins/atomic'`
 
 invalidMsg = """
 You expected your weighticket to correctly save, but it didn't do that.

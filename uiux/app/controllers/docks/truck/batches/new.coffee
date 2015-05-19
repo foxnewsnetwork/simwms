@@ -1,6 +1,6 @@
 `import Ember from 'ember'`
-`import validate from 'apiv1/validators/batch'`
-`import AtomicMixin from 'apiv1/mixins/atomic'`
+`import validate from 'uiux/validators/batch'`
+`import AtomicMixin from 'uiux/mixins/atomic'`
 
 DocksTruckBatchesNewController = Ember.Controller.extend AtomicMixin,
   actions:

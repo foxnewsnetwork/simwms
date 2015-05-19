@@ -1,5 +1,5 @@
 `import Ember from 'ember'`
-`import InventoriesIndexController from 'apiv1/controllers/inventories/index'`
+`import InventoriesIndexController from 'uiux/controllers/inventories/index'`
 `import gridMaker from 'table-grid-2d/utils/grid-maker'`
 
 LogisticsInventoriesIndexController = InventoriesIndexController.extend

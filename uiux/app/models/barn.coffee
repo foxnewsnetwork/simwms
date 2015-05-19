@@ -1,6 +1,6 @@
 `import DS from 'ember-data'`
 `import DSC from 'ember-data-complex'`
-`import APM from 'apiv1/utils/async-property-macros'`
+`import APM from 'uiux/utils/async-property-macros'`
 alias = Ember.computed.alias
 
 Barn = DSC.ModelComplex.extend

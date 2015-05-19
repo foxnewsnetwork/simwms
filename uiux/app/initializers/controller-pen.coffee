@@ -1,4 +1,4 @@
-`import ControllerPen from 'apiv1/utils/controller-pen'`
+`import ControllerPen from 'uiux/utils/controller-pen'`
 
 # Takes two parameters: container and app
 initialize = (ctn, app) ->

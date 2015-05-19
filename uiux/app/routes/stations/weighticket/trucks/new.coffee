@@ -1,5 +1,5 @@
 `import Ember from 'ember'`
-`import { promiseFilterBy, lll } from 'apiv1/utils/prelude'`
+`import { promiseFilterBy, lll } from 'uiux/utils/prelude'`
 
 get = Ember.get
 

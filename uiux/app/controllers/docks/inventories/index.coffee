@@ -1,5 +1,5 @@
 `import Ember from 'ember'`
-`import InventoriesIndexController from 'apiv1/controllers/inventories/index'`
+`import InventoriesIndexController from 'uiux/controllers/inventories/index'`
 
 DocksInventoriesIndexController = InventoriesIndexController.extend
   actions:

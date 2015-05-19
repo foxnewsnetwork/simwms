@@ -23,21 +23,10 @@ var app = new EmberApp({
 // along with the exports of each module as its value.
 app.import('bower_components/bootstrap/dist/css/bootstrap.css');
 app.import('bower_components/bootstrap/dist/css/bootstrap.css.map', { destDir: "assets" });
-app.import('bower_components/jquery/dist/jquery.js');
 app.import('bower_components/jquery-timeago/jquery.timeago.js');
 app.import("bower_components/lodash/lodash.min.js",{
   exports: {
     "lodash": ["_"]
-  }
-});
-app.import("bower_components/pixi.js/bin/pixi.dev.js", {
-  exports: {
-    "PIXI": ["PIXI"]
-  }
-});
-app.import("vendor/youtube/iframe-api.js", {
-  exports: {
-    "YT": ["YT"]
   }
 });
 app.import('vendor/video-js/video.js', {
@@ -50,6 +39,7 @@ app.import("bower_components/js-priority-queue/priority-queue.js", {
     "PriorityQueue": ["PriorityQueue"]
   }
 });
+app.import("bower_components/d3/d3.min.js");
 app.import("bower_components/fontawesome/css/font-awesome.css");
 app.import("bower_components/fontawesome/fonts/fontawesome-webfont.eot", { destDir: "fonts" });
 app.import("bower_components/fontawesome/fonts/fontawesome-webfont.svg", { destDir: "fonts" });

@@ -1,5 +1,5 @@
 `import Ember from 'ember'`
-`import AtomicMixin from 'apiv1/mixins/atomic'`
+`import AtomicMixin from 'uiux/mixins/atomic'`
 
 DocksTruckDepartController = Ember.Controller.extend AtomicMixin,
   truck: Ember.computed.alias "model"

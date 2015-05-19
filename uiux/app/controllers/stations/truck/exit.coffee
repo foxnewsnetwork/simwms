@@ -1,7 +1,7 @@
 `import Ember from 'ember'`
 `import CPM from 'ember-cpm'`
-`import AtomicMixin from 'apiv1/mixins/atomic'`
-`import config from 'apiv1/config/environment'`
+`import AtomicMixin from 'uiux/mixins/atomic'`
+`import config from 'uiux/config/environment'`
 
 StationsTruckExitController = Ember.Controller.extend AtomicMixin,
   truck: Ember.computed.alias "model"
