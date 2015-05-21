@@ -1,0 +1,2 @@
+each dock in models
+  span= dock.status

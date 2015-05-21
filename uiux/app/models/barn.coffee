@@ -17,10 +17,11 @@ Barn = DSC.ModelComplex.extend
 
   truckId: alias "fire.truckId"
   dockNumber: alias "rail.dockNumber"
+  dockNumberAsync: APM.alias "rail.dockNumber"
   isOkay: alias "fire.isOkay"
   willBeOkay: APM.promiseDelegate "fire.isOkay"
-  isInUse: alias "fire.isInUse"
   willBeInUse: APM.promiseDelegate "fire.isInUse"
+  isInUse: alias "fire.isInUse"
   isProblem: alias "fire.isProblem"
   isWaiting: alias "fire.isWaiting"
   status: alias "fire.status"

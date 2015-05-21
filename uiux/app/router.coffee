@@ -47,6 +47,9 @@ Router.map ->
       
 
   @resource "manager", path: "/manager", ->    
+    @resource "manager.dock", path: "/dock/:dockId", ->
+    @resource "manager.station", path: "/station/:stationId", ->
+      
     @resource "messages", path: "/messages", ->
     @resource "message", path: "/message/:message_id", ->
       @route Ember.String.dasherize "truck arrived on site"
@@ -66,9 +69,5 @@ Router.map ->
       @route "options"
     @resource "cameras", path: "/cameras", ->
     @resource "truck", path: "/truck/:truck_id", ->
-    @resource "scale", path: "/scale/:scale_id", ->
-      @route "form"
-    @resource "barn", path: "/barn/:barn_id", ->
-      @route "form"
 
 `export default Router`

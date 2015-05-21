@@ -10,10 +10,10 @@
               span.fa Weight Station #
               span.fa= model.id
             ul.nav.nav-pills
-              li
-                link-to "scale" model.id class="active"
+              li.active
+                link-to "manager.station" model.id
                   span.capitalize home
               li
-                link-to "scale.form" model.id
-                  span.capitalize form
+                link-to "stations.station" model.id
+                  span.capitalize go to station
             == outlet

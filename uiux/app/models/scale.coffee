@@ -17,4 +17,6 @@ Scale = DSC.ModelComplex.extend
   isEntryStation: Ember.computed.alias "rail.isEntryStation"
   status: EmberCPM.Macros.ifNull "fireStatus", 'free'
 
+  x: Ember.computed.alias "rail.x"
+  y: Ember.computed.alias "rail.y"
 `export default Scale`

@@ -1,3 +1,8 @@
+section#game
+  d3-vector-canvas
+    d3-docks models=iogrid.barns action="clickDock"
+    d3-stations models=iogrid.scales action="clickStation"
+
 section#sidebar
   .btn-group-vertical.btn-group-lg.side-nav
     link-to "contracts" class="btn btn-default square"
@@ -33,5 +38,6 @@ footer#footer.footer
               i.fa.fa-exchange
             span.fa.info-data 24
           .col-lg-3.info-box
-            span.fa.info-data= rightNow
+            span.fa.info-data= moment rightNow
+            
 == outlet
