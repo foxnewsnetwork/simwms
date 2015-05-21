@@ -17,6 +17,8 @@ presentTransformPosition = (element) ->
 D3VectorCanvasComponent = Ember.Component.extend
   classNames: ['d3-vector-canvas']
   attributeBindings: ["width", "height"]
+  pxPerWidth: 55
+  pxPerHeight: 55
 
   init: ->
     @_super arguments...
@@ -36,8 +38,8 @@ D3VectorCanvasComponent = Ember.Component.extend
       .attr "transform", ->
         [x0, y0] = presentTransformPosition @
         {dx, dy} = d3.event
-        x1 = x0 - dx / 2
-        y1 = y0 - dy / 2
+        x1 = x0 + dx / 2
+        y1 = y0 + dy / 2
         "translate(#{x1}, #{y1})"
 
   buildCanvas: ->
@@ -52,7 +54,7 @@ D3VectorCanvasComponent = Ember.Component.extend
     x = @canvasHalfWidth() - 125
     y = @canvasHalfHeight() + 125
     "translate(#{x}, #{y})"
-    
+
   canvasHalfWidth: ->
     assertNumericality @$().width() / 2
     

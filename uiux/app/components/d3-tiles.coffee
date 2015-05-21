@@ -1,15 +1,13 @@
 `import Ember from 'ember'`
-
+`import CPM from 'ember-cpm'`
 D3TilesComponent = Ember.Component.extend
-  width: 75
-  height: 75
   classNames: ['hidden']
 
   normalize: (models=[]) ->
     models.map (model) =>
       model: model
-      x: @width * model.get "x"
-      y: @height * (model.get("y") - 7)
+      x: @get("parentView.pxPerWidth") * model.get "x"
+      y: @get("parentView.pxPerHeight") * (model.get("y") - 7)
       id: model.get "id"
       status: model.get "status"
 
@@ -20,11 +18,17 @@ D3TilesComponent = Ember.Component.extend
   willDestroyElement: ->
     @get("layer")?.remove?()
 
+  widthPx: CPM.Macros.product "parentView.pxPerWidth", "width"
+    
+  heightPx: CPM.Macros.product "parentView.pxPerHeight", "height"
+
   positionGroup: (group) ->
     group
     .attr "class", @svgClassName
     .attr "transform", ({x,y}) => 
-      "translate(#{x - @width / 2}, #{y - @height / 2})"
+      w = @get "widthPx"
+      h = @get "heightPx"
+      "translate(#{x - w / 2}, #{y - h / 2})"
 
   setupText: (group) ->
     group.append "text"
@@ -33,12 +37,12 @@ D3TilesComponent = Ember.Component.extend
 
   setupRect: (group) ->
     group.append @get "svgTagName"
-    .attr "x", - @width / 2
-    .attr "y", - @height / 2
+    .attr "x", - @get("widthPx") / 2
+    .attr "y", - @get("heightPx") / 2
     .attr "rx", 10
     .attr "ry", 10
-    .attr "width", @width - 1
-    .attr "height", @height - 1
+    .attr "width", @get("widthPx") - 1
+    .attr "height", @get("heightPx") - 1
     .attr "stroke", ({status}) -> 
       switch status
         when "ok" then "#33691e"

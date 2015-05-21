@@ -2,8 +2,8 @@
 `import D3TilesComponent from './d3-tiles'`
 D3DocksComponent = D3TilesComponent.extend
   classNames: ['hidden']
-  width: 105
-  height: 65
+  width: 2
+  height: 1
   svgClassName: 'dock'
   svgTagName: "rect"
   

@@ -1,8 +1,8 @@
 `import Ember from 'ember'`
 `import D3TilesComponent from './d3-tiles'`
 D3StationsComponent = D3TilesComponent.extend
-  width: 125
-  height: 75
+  width: 2.25
+  height: 1
   classNames: ['hidden']
   svgClassName: 'station'
   svgTagName: "rect"
