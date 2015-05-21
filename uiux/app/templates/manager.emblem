@@ -2,7 +2,7 @@ section#game
   d3-vector-canvas
     d3-docks models=iogrid.barns action="clickDock"
     d3-stations models=iogrid.scales action="clickStation"
-
+    d3-roads models=iogrid.roads
 section#sidebar
   .btn-group-vertical.btn-group-lg.side-nav
     link-to "contracts" class="btn btn-default square"

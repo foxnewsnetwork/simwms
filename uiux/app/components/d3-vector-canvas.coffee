@@ -51,8 +51,8 @@ D3VectorCanvasComponent = Ember.Component.extend
     .attr "transform", @defaultCanvasTransform()
 
   defaultCanvasTransform: ->
-    x = @canvasHalfWidth() - 125
-    y = @canvasHalfHeight() + 125
+    x = @canvasHalfWidth() / 1.5
+    y = @canvasHalfHeight() / 2
     "translate(#{x}, #{y})"
 
   canvasHalfWidth: ->

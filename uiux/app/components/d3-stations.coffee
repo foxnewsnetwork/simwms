@@ -7,7 +7,7 @@ D3StationsComponent = D3TilesComponent.extend
   svgClassName: 'station'
   svgTagName: "rect"
 
-  watchDrawSVG: Ember.observer "layer", "models.@each.x", ->
+  watchDrawSVG: Ember.observer "layer", "models.@each.x", "models.@each.status", ->
     Ember.run.throttle @, @drawSVG, 200, false
 
   drawSVG: ->

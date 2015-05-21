@@ -7,7 +7,7 @@ D3TilesComponent = Ember.Component.extend
     models.map (model) =>
       model: model
       x: @get("parentView.pxPerWidth") * model.get "x"
-      y: @get("parentView.pxPerHeight") * (model.get("y") - 7)
+      y: @get("parentView.pxPerHeight") * model.get("y")
       id: model.get "id"
       status: model.get "status"
 

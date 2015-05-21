@@ -11,8 +11,7 @@ RailRoad = DS.Model.extend
 
   position: Ember.computed "x", "y", "z", ->
     return unless @get("x")? and @get("y")?
-    PixiPosition.create 
-      x: @get("x") 
-      y: @get("y")
-      constant: @get("z")
+    x: @get("x") 
+    y: @get("y")
+    constant: @get("z")
 `export default RailRoad`
