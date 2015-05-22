@@ -3,13 +3,15 @@ section#game
     d3-docks models=iogrid.barns action="clickDock"
     d3-stations models=iogrid.scales action="clickStation"
     d3-roads models=iogrid.roads
+    d3-warehouses models=iogrid.warehouses action="clickInventory"
+
 section#sidebar
   .btn-group-vertical.btn-group-lg.side-nav
     link-to "contracts" class="btn btn-default square"
       img.icon-nav src="images/contracts.png" alt="contracts"
     link-to "employees" class="btn btn-default square"
       img.icon-nav src="images/worker.png" alt="employees"
-    link-to "inventories" class="btn btn-default square"
+    link-to "manager.inventories" class="btn btn-default square"
       img.icon-nav src="images/inventory.png" alt="inventory"
     link-to "statuses" class="btn btn-default square"
       img.icon-nav src="images/status.png" alt="status"

@@ -11,5 +11,11 @@ ManagerController = Ember.Controller.extend
 
     clickStation: (station) ->
       @transitionToRoute "manager.station", station.get "id"
+
+    clickInventory: ->
+      @transitionToRoute "manager.inventories"
+
+    clickTruck: (truck) ->
+      @transitionToRoute "manager.truck", truck.get "id"
   
 `export default ManagerController`

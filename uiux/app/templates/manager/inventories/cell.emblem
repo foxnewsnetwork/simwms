@@ -5,7 +5,7 @@ h2.modal-title
 
 .row
   .col-xs-12
-    link-to "inventories.index" class="btn btn-lg btn-default"
+    link-to "manager.inventories.index" class="btn btn-lg btn-default"
       i.fa.fa-caret-left
       span.fa.capitalize.prespace back to inventory
 .row.info

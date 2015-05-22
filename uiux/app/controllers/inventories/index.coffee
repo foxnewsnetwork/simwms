@@ -8,6 +8,6 @@ InventoriesIndexController = Ember.Controller.extend
 
   actions:
     touchCell: (cell) ->
-      @transitionToRoute "inventories.cell", cell.get("id")
+      throw new Error "unimplemented"
 
 `export default InventoriesIndexController`

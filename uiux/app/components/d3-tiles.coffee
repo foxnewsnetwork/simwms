@@ -30,11 +30,6 @@ D3TilesComponent = Ember.Component.extend
       h = @get "heightPx"
       "translate(#{x - w / 2}, #{y - h / 2})"
 
-  setupText: (group) ->
-    group.append "text"
-    .text ({id, status}) -> 
-      "tile no.#{id}"
-
   setupRect: (group) ->
     group.append @get "svgTagName"
     .attr "x", - @get("widthPx") / 2
@@ -56,6 +51,11 @@ D3TilesComponent = Ember.Component.extend
     group
     .on "click", ({model}) =>
       @sendAction "action", model
+
+  setupText: (group) ->
+    group.append "text"
+    .text ({id, status}) -> 
+      "tile no.#{id}"
 
   d3Models: ->
     @get "layer"

@@ -11,7 +11,6 @@ D3RoadsComponent = D3TilesComponent.extend
 
   d3Models: ->
     data = @normalize @get "models"
-    console.log data
     @get "layer"
     .selectAll ".#{@svgClassName}"
     .data data
@@ -28,7 +27,7 @@ D3RoadsComponent = D3TilesComponent.extend
     .attr "transform", ({x,y}) => 
       w = @get "widthPx"
       h = @get "heightPx"
-      "translate(#{x - w}, #{y - h / 2.5 })"
+      "translate(#{x - w}, #{y - h / 2.5})"
 
   setupRect: (group) ->
     group.append @get "svgTagName"

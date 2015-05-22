@@ -49,6 +49,8 @@ Router.map ->
   @resource "manager", path: "/manager", ->    
     @resource "manager.dock", path: "/dock/:dockId", ->
     @resource "manager.station", path: "/station/:stationId", ->
+    @resource "manager.inventories", path: "/inventories", ->
+      @resource "manager.inventories.cell", path: "/cell/:cell_id", ->
       
     @resource "messages", path: "/messages", ->
     @resource "message", path: "/message/:message_id", ->
@@ -62,8 +64,6 @@ Router.map ->
       @route Ember.String.dasherize "miscellanious"
     @resource "contracts", path: "/contracts", ->
     @resource "employees", path: "/employees", ->
-    @resource "inventories", path: "/inventories", ->
-      @resource "inventories.cell", path: "/cell/:cell_id", ->
     @resource "statuses", path: "/statuses", ->
       @route "debug"
       @route "options"
