@@ -17,6 +17,10 @@ assertExistence = (fireTruck) ->
 # Employs a DestructiveArchive tactic
 # Throws an error if your archive is already filled
 TruckStrategy = DSC.Strategy.extend DSC.CreativeDelegationTactic,
+  onPush: (master) ->
+    DSC.Arrows.promiseLift master
+    .then (m) ->
+      m.get "firePromise"
   beforeDestroy: (master) ->
     DSC.Arrows.promiseLift master.get("rail")
     .then (railTruck) ->

@@ -6,7 +6,7 @@ alias = Ember.computed.alias
 Barn = DSC.ModelComplex.extend
   fireId: DS.attr "string"
   railId: DS.attr "string"
-
+  firePromise: DSC.promiseTo "fire/barn", foreignKey: "fireId", foreignField: "fire2"
   fire: DSC.belongsTo "fire/barn", "fireId"
   rail: DSC.belongsTo "rail/barn", "railId"
 
@@ -24,7 +24,7 @@ Barn = DSC.ModelComplex.extend
   isInUse: alias "fire.isInUse"
   isProblem: alias "fire.isProblem"
   isWaiting: alias "fire.isWaiting"
-  status: alias "fire.status"
+  status: alias "fire2.status"
 
   selectChoice: Ember.computed "status", "id", ->
     value: @get("id")

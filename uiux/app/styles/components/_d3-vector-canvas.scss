@@ -15,7 +15,8 @@
   .truck {
     cursor: pointer;
     &:hover {
-      rect {
+      rect,
+      circle {
         fill: #1e88e5;
       }
       text {

@@ -1,3 +1,0 @@
-#modal-background
-  .modal-container
-    == partial "modals/marker"

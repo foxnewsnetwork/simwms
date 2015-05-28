@@ -1,0 +1,36 @@
+.panel.panel-default
+  .panel-heading
+    span.fa.capitalize trucks waiting to enter
+  .list-group
+    each truck in iotrucks.enteringTrucks
+      link-to "manager.trucks.truck" truck.id class="list-group-item"
+        span.fa.bold.capitalize truck for appt no.
+        span.prespace= truck.fire2.appointmentId
+        span.parantheses= truck.position
+    else
+      .list-group-item
+        span.fa.capitalize no truck is waiting to enter
+
+  .panel-heading
+    span.fa.capitalize on site trucks
+  .list-group
+    each truck in iotrucks.onSiteTrucks
+      link-to "manager.trucks.truck" truck.id class="list-group-item"
+        span.fa.bold.capitalize truck for appt no.
+        span.prespace= truck.fire2.appointmentId
+        span.parantheses= truck.position
+    else
+      .list-group-item
+        span.fa.capitalize no truck is on site
+
+  .panel-heading
+    span.fa.capitalize trucks trying to leave
+  .list-group
+    each truck in iotrucks.exitingTrucks
+      link-to "manager.trucks.truck" truck.id class="list-group-item"
+        span.fa.bold.capitalize truck for appt no.
+        span.prespace= truck.fire2.appointmentId
+        span.parantheses= truck.position
+    else
+      .list-group-item
+        span.fa.capitalize no truck is trying to leave

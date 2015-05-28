@@ -12,6 +12,7 @@
 @import "logistics";
 @import "messages";
 @import "cell";
+@import "manager";
 html {
   background-color: #eee;
 }
@@ -94,9 +95,13 @@ $material-blue: #BBDEFB;
   }
   .info-title {
     font-weight: bold;
-    margin-right: 15px;
+    margin-right: 10px;
+    margin-left: 10px;
     &::after {
       content: ":";
     }
+  }
+  .info-data {
+    padding-right: 10px;
   }
 }

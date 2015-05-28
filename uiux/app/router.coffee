@@ -51,6 +51,8 @@ Router.map ->
     @resource "manager.station", path: "/station/:stationId", ->
     @resource "manager.inventories", path: "/inventories", ->
       @resource "manager.inventories.cell", path: "/cell/:cell_id", ->
+    @resource "manager.trucks", path: "/trucks", ->
+      @resource "manager.trucks.truck", path: "/truck/:id", ->
       
     @resource "messages", path: "/messages", ->
     @resource "message", path: "/message/:message_id", ->
@@ -68,6 +70,5 @@ Router.map ->
       @route "debug"
       @route "options"
     @resource "cameras", path: "/cameras", ->
-    @resource "truck", path: "/truck/:truck_id", ->
 
 `export default Router`
