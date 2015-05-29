@@ -128,6 +128,7 @@ describe 'Acceptance: MainWorkflow', ->
 
       describe "a truck has arrived for its appointment", ->
         before (done) ->
+          console.log "tr[data-appointment-id=\"#{workFlow.appointmentId}\"]"
           click "tr[data-appointment-id=\"#{workFlow.appointmentId}\"]"
           andAfterward -> done()
 
@@ -195,6 +196,7 @@ describe 'Acceptance: MainWorkflow', ->
                 andAfterward =>
                   workFlow.truckId = @truck.get "id"
                   @truck.get "fire"
+                  @truck.get "firePromise"
                   .then (fire) ->
                     workFlow.fireTruckId = fire.get "id"
                     done()

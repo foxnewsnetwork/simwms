@@ -7,7 +7,7 @@ section#game
 
 section#sidebar
   .btn-group-vertical.btn-group-lg.side-nav
-    link-to "contracts" class="btn btn-default square"
+    link-to "manager.appointments" class="btn btn-default square"
       img.icon-nav src="images/contracts.png" alt="contracts"
     link-to "employees" class="btn btn-default square"
       img.icon-nav src="images/worker.png" alt="employees"

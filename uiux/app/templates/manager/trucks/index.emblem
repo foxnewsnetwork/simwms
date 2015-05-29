@@ -5,7 +5,7 @@
     each truck in iotrucks.enteringTrucks
       link-to "manager.trucks.truck" truck.id class="list-group-item"
         span.fa.bold.capitalize truck for appt no.
-        span.prespace= truck.fire2.appointmentId
+        span.prespace= truck.appointmentNumber
         span.parantheses= truck.position
     else
       .list-group-item
@@ -17,7 +17,7 @@
     each truck in iotrucks.onSiteTrucks
       link-to "manager.trucks.truck" truck.id class="list-group-item"
         span.fa.bold.capitalize truck for appt no.
-        span.prespace= truck.fire2.appointmentId
+        span.prespace= truck.appointmentNumber
         span.parantheses= truck.position
     else
       .list-group-item
@@ -29,7 +29,7 @@
     each truck in iotrucks.exitingTrucks
       link-to "manager.trucks.truck" truck.id class="list-group-item"
         span.fa.bold.capitalize truck for appt no.
-        span.prespace= truck.fire2.appointmentId
+        span.prespace= truck.appointmentNumber
         span.parantheses= truck.position
     else
       .list-group-item

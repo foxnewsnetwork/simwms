@@ -18,15 +18,16 @@ StationsWeighticketTrucksNewRoute = Ember.Route.extend
       truck
   newTruckFor: (weighticket) ->
     @iogrid.then =>
-      @store.createRecord "truck",
-        weighticket: weighticket
+      truck = @store.createRecord "truck",
         fire:
           speed: 1
-          position: "entrance"
+          position: "at entrance"
           entryScaleId: get weighticket, "issuerId"
           dockId: get weighticket, "targetDock"
           appointmentId: get weighticket, 'appointmentNumber'
           weighticketId: get weighticket, "id"
           arrivedAt: get weighticket, "createdAt"
+      truck.weighticket = weighticket
+      truck
 
 `export default StationsWeighticketTrucksNewRoute`

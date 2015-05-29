@@ -8,4 +8,5 @@
               i.fa.fa-times
             h2.modal-title
               span.fa all trucks
+              span.fa.parantheses= iotrucks.length
             == outlet

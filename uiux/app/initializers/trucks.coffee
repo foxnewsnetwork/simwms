@@ -4,6 +4,9 @@ Trucks = DS.PromiseArray.extend
   enteringTrucks: Ember.computed.filterBy "content", "isWaitingToEnter"
   exitingTrucks: Ember.computed.filterBy "content", "isLeavingSite"
   onSiteTrucks: Ember.computed.filterBy "content", "isOnSite"
+  findByAppointmentNumber: (apptNo) ->
+    @get "content"
+    .findBy "appointmentNumber", apptNo
 
 initialize = (ctn, app) ->
   store = ctn.lookup("store:main")

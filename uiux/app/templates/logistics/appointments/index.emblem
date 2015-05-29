@@ -19,37 +19,38 @@
       link-to "logistics.appointments" (query-params macro="problem") classNames="btn btn-default"
         span.fa has problems
 
-  each appointment in content
-    link-to "logistics.appointment" appointment.id class="list-group-item"
-      h4.list-group-item-heading
-        if appointment.statusIsPlanned
-          i.fa.fa-calendar
-        if appointment.statusIsProblem
-          i.fa.fa-warning
-        if appointment.statusIsExpected
-          i.fa.fa-spinner.fa-spin
-        if appointment.statusIsFulfilled
-          i.fa.fa-check
-        if appointment.statusIsCancelled
-          i.fa.fa-times
-        if appointment.statusIsVanished
-          i.fa.fa-exclamation-circle
-        if appointment.statusIsUnknown
-          i.fa.fa-question-circle
-        span= appointment.id
-      p.list-group-item-text
-        .segment
-          span.segment-title company
-          span.segment-info= appointment.company
-        .segment
-          span.segment-title description
-          span.segment-info= appointment.materialDescription
-        .segment
-          span.segment-title ETA
-          span.segment-info= appointment.expectedAtAgo
-        .segment
-          span.segment-title status
-          span.segment-info= appointment.status
+  .list-group
+    each appointment in content
+      link-to "logistics.appointment" appointment.id class="list-group-item"
+        h4.list-group-item-heading
+          if appointment.statusIsPlanned
+            i.fa.fa-calendar
+          if appointment.statusIsProblem
+            i.fa.fa-warning
+          if appointment.statusIsExpected
+            i.fa.fa-spinner.fa-spin
+          if appointment.statusIsFulfilled
+            i.fa.fa-check
+          if appointment.statusIsCancelled
+            i.fa.fa-times
+          if appointment.statusIsVanished
+            i.fa.fa-exclamation-circle
+          if appointment.statusIsUnknown
+            i.fa.fa-question-circle
+          span= appointment.id
+        p.list-group-item-text
+          .segment
+            span.segment-title company
+            span.segment-info= appointment.company
+          .segment
+            span.segment-title description
+            span.segment-info= appointment.materialDescription
+          .segment
+            span.segment-title ETA
+            span.segment-info= appointment.expectedAtAgo
+          .segment
+            span.segment-title status
+            span.segment-info= appointment.status
 
   .panel-footer
     page-numbers content=content

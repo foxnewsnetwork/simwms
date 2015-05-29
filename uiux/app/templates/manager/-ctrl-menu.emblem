@@ -7,7 +7,7 @@
     span.fa.info-data= iotrucks.enteringTrucks.length
     span.info-title
       i.fa.fa-truck
-    span.fa.info-data= iotrucks.length
+    span.fa.info-data= iotrucks.onSiteTrucks.length
     span.info-title
       i.fa.fa-sign-out
     span.fa.info-data= iotrucks.exitingTrucks.length

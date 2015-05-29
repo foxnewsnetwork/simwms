@@ -53,7 +53,8 @@ Router.map ->
       @resource "manager.inventories.cell", path: "/cell/:cell_id", ->
     @resource "manager.trucks", path: "/trucks", ->
       @resource "manager.trucks.truck", path: "/truck/:id", ->
-      
+    @resource "manager.appointments", path: "/appointments", ->
+
     @resource "messages", path: "/messages", ->
     @resource "message", path: "/message/:message_id", ->
       @route Ember.String.dasherize "truck arrived on site"

@@ -4,6 +4,7 @@ class Apiv1::Weightickets::ShowController < ApplicationController
   end
   private
   def _weighticket
-    Apiv1::Weighticket.find params[:id]
+    @weighticket ||= Apiv1::Weighticket.find_by_appointment_number params[:id]
+    @weighticket ||= Apiv1::Weighticket.find params[:id]
   end
 end

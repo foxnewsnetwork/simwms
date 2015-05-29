@@ -12,10 +12,14 @@
           th material description
           th ETA
       tbody
-        each appointment in appointments
+        each appointment in truckAwareAppointments
           tr.pointer data-appointment-id=appointment.id click="'truckArrived' appointment"
-            td data-label="status" 
-              span.fa= appointment.status
+            td data-label="status"
+              if appointment.hasTruckOnSite
+                i.fa.fa-truck
+                span.fa on site
+              else
+                span.fa= appointment.status
             td data-label="appointment number" 
               span.fa= appointment.id
             td data-label="company" 

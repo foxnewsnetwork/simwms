@@ -8,11 +8,19 @@ StationsStationWeighticketsNewRoute = Ember.Route.extend
   queryParams:
     appointment: true
   model: ({appointment}) ->
+    @lookForExistingWeighticket appointment
+    .then (weighticket) =>
+      @transitionTo "stations.weighticket.trucks.new", weighticket.get "id"
+    .catch =>
+      @makeNewWeighticket appointment
+  lookForExistingWeighticket: (appointmentNumber) ->
+    @store.find "weighticket", appointmentNumber
+  makeNewWeighticket: (appointmentNumber) ->
     Ember.RSVP.hash grid: @iogrid, station: @modelFor("stations.station")
     .then ({grid, station}) =>
-      window.weighticket = @store.createRecord "weighticket",
+      @store.createRecord "weighticket",
         issuerId: Ember.get(station, "id")
-        appointmentNumber: appointment
+        appointmentNumber: appointmentNumber
         targetDock: grid.get("oldestAvailableDock.id")
 
   killRecord: (model) ->

@@ -25,7 +25,7 @@ TruckStrategy = DSC.Strategy.extend DSC.CreativeDelegationTactic,
     DSC.Arrows.promiseLift master.get("rail")
     .then (railTruck) ->
       assertNonexistence railTruck
-      master.get "fire"
+      master.get "firePromise"
     .then (fireTruck) =>
       assertExistence fireTruck
       @store.createRecord "rail/truck", DSC.getAttributes fireTruck

@@ -2,6 +2,7 @@
 `import DS from 'ember-data'`
 `import DSC from 'ember-data-complex'`
 `import CPM from 'ember-cpm'`
+`import D from 'uiux/utils/debug-ex'`
 M = CPM.Macros
 
 Positions = [
@@ -28,14 +29,11 @@ FireTruck = DSC.ModelComplex.extend
   appointmentId: DS.attr "string"
   weighticketId: DS.attr "string"
 
-  appointment: DSC.belongsTo "appointment", "appointmentId"  
-  weighticket: DSC.belongsTo "weighticket", "weighticketId"  
-  entryScale: DSC.belongsTo 'scale', "entryScaleId"
-  exitScale: DSC.belongsTo 'scale', "exitScaleId"
-  dock: DSC.belongsTo 'barn', "dockId"
-  dockPromise: DSC.promiseTo "barn", foreignKey: "dockId", foreignField: "dock2"
-  entryScalePromise: DSC.promiseTo "scale", foreignKey: "entryScaleId", foreignField: "entryScale2"
-  exitScalePromise: DSC.promiseTo "scale", foreignKey: "exitScaleId", foreignField: "exitScale2"
+  appointment: DSC.belongsTo2 "appointment", foreignKey: "appointmentId", promiseField: "appointmentPromise"
+  weighticket: DSC.belongsTo2 "weighticket", foreignKey: "weighticketId", promiseField: "weighticketPromise"
+  entryScale: DSC.belongsTo2 'scale', foreignKey: "entryScaleId", promiseField: "entryScalePromise"
+  exitScale: DSC.belongsTo2 'scale', foreignKey: "exitScaleId", promiseField: "exitScalePromise"
+  dock: DSC.belongsTo2 'barn', foreignKey: "dockId", promiseField: "dockPromise"
 
   isWaitingToEnter: M.among "position", "going to entrance", "at entrance", "entrance"
   isOnSite: M.among "position", "going to dock", "at dock", "leaving dock"
@@ -43,19 +41,13 @@ FireTruck = DSC.ModelComplex.extend
   isMoving: M.among "position", "going to entrance", "going to dock", "leaving dock", "going to exit"
   isStill: M.among "position", "at entrance", "at dock", "at exit"
 
-  deepSeq: -> 
-    @get "dockPromise"
-    @get "entryScalePromise"
-    @get "exitScalePromise"
-
   isFullyEvaluated: Ember.computed.and "dock2", "entryScale2", "exitScale2"
 
   gotoDock: (truck) ->
-    truck.set "position", "going to dock"
-    truck.save()
-    .then (truck) ->
-      truck.get "dock"
-    .then (dock) ->
+    @set "position", "going to dock"
+    @save()
+    
+    @forceDock().then (dock) ->
       dock.waitForTruck truck
 
   gotoExit: ->
@@ -63,12 +55,15 @@ FireTruck = DSC.ModelComplex.extend
     @save()
 
   leaveDock: ->
-    truck.set "position", "leaving dock"
-    truck.save()
-    .then (truck) ->
-      truck.get "dock"
-    .then (dock) ->
+    @set "position", "leaving dock"
+    @save()
+
+    @forceDock().then (dock) ->
       dock.releaseTruck()
+
+  forceDock: ->
+    @get "dock"
+    @get "dockPromise"
 
   prepareToLeave: (scale) ->
     @set "position", "at exit"

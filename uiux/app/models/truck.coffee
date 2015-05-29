@@ -24,44 +24,39 @@ Truck = DSC.ModelComplex.extend
   fireId: DS.attr "string"
   railId: DS.attr "string"
 
-  firePromise: DSC.promiseTo "fire/truck", foreignKey: "fireId", foreignField: "fire2"
-  fire: DSC.belongsTo "fire/truck", "fireId"
-  rail: DSC.belongsTo "rail/truck", "railId"
+  firePromise: DSC.promiseTo "fire/truck", foreignKey: "fireId", foreignField: "fire"
+  rail: DSC.belongsTo2 "rail/truck", foreignKey: "railId", promiseField: "railPromise"
 
-  dock: alias "fire2.dock2"
-  position: alias "fire2.position"
-  dockId: alias "fire2.dockId"
-  entryScaleId: alias "fire2.entryScaleId"
-  weighticketId: alias "fire2.weighticketId"
-  entryScaleIdPromise: APM.promiseDelegate "fire.entryScaleId"
-  exitScaleIdPromise: APM.promiseDelegate "fire.exitScaleId"
-  weighticketIdPromise: APM.promiseDelegate "fire.weighticketId"
-  appointmentNumber: alias "fire2.appointmentId"
-  arrivedAtAgo: alias "fire2.arrivedAtAgo"
-  weighticket: alias "fire2.weighticket"
-  weighticketPromise: APM.promiseDelegate "fire.weighticket"
-  appointment: alias "fire2.appointment"
+  dock: alias "fire.dock"
+  position: alias "fire.position"
+  dockId: alias "fire.dockId"
+  entryScaleId: alias "fire.entryScaleId"
+  weighticketId: alias "fire.weighticketId"
+  entryScaleIdPromise: APM.promiseDelegate "firePromise.entryScaleId"
+  exitScaleIdPromise: APM.promiseDelegate "firePromise.exitScaleId"
+  weighticketIdPromise: APM.promiseDelegate "firePromise.weighticketId"
+  appointmentNumber: alias "fire.appointmentId"
+  arrivedAtAgo: alias "fire.arrivedAtAgo"
+  weighticket: alias "fire.weighticket"
+  weighticketPromise: APM.promiseDelegate "firePromise.weighticket"
+  appointment: alias "fire.appointment"
 
-  isMoving: alias "fire2.isMoving"
-  isStill: alias "fire2.isStill"
-  isWaitingToEnter: alias "fire2.isWaitingToEnter"
-  isOnSite: alias "fire2.isOnSite"
-  isLeavingSite: alias "fire2.isLeavingSite"
+  isMoving: alias "fire.isMoving"
+  isStill: alias "fire.isStill"
+  isWaitingToEnter: alias "fire.isWaitingToEnter"
+  isOnSite: alias "fire.isOnSite"
+  isLeavingSite: alias "fire.isLeavingSite"
   motionStatus: Ember.computed "isWaitingToEnter", "isOnSite", "isLeavingSite", "isMoving", "isStill", ->
     switch
       when @get "isWaitingToEnter" then "waiting"
       when @get "isOnSite" then "on site"
       when @get "isLeavingSite" then "leaving"
       else "unknown"
-
-  deepSeq: ->
-    @get "firePromise"
-    .then (fire) -> fire.deepSeq()
     
-  isFullyEvaluated: Ember.computed.alias "fire2.isFullyEvaluated"
+  isFullyEvaluated: Ember.computed.alias "fire.isFullyEvaluated"
 
   gotoDock: ->
-    @get "fire"
+    @get "firePromise"
     .then (fire) =>
       fire.gotoDock @
     .then (fire) =>
@@ -70,21 +65,21 @@ Truck = DSC.ModelComplex.extend
       @
 
   gotoExit: ->
-    @get "fire"
+    @get "firePromise"
     .then (fire) =>
       fire.gotoExit()
     .then =>
       @
 
   prepareToLeave: (scale) ->
-    @get "fire"
+    @get "firePromise"
     .then (fire) =>
       fire.prepareToLeave scale
     .then =>
       @
 
   leaveDock: ->
-    @get "fire"
+    @get "firePromise"
     .then (fire) ->
       fire.leaveDock()
     .then =>
