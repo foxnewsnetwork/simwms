@@ -22,7 +22,7 @@ FireBarn = DSC.ModelComplex.extend
   dockNumber: Ember.computed.alias("tileName")
   isOkay: Ember.computed.not "isBusy"
   isBusy: Ember.computed.or "isInUse", "isProblem"
-  isInUse: Ember.computed.and "truck"
+  isInUse: Ember.computed.and "truckId"
   isProblem: Ember.computed.and "message"
 
   status: Ember.computed "isOkay", "isBusy", "isInUse", "isProblem", ->

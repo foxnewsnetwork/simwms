@@ -12,7 +12,7 @@
           th material description
           th ETA
       tbody
-        each appointment in truckAwareAppointments
+        each appointment in appointments
           tr.pointer data-appointment-id=appointment.id click="'truckArrived' appointment"
             td data-label="status"
               if appointment.hasTruckOnSite

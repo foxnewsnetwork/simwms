@@ -7,7 +7,7 @@ D3DocksComponent = D3TilesComponent.extend
   svgClassName: 'dock'
   svgTagName: "rect"
   
-  watchDrawSVG: Ember.observer "layer", "models.@each.status", ->
+  watchDrawSVG: Ember.observer "layer", "models.@each.isDirty", "trucks.@each", ->
     Ember.run.throttle @, @drawSVG, 200, false
 
   drawSVG: ->

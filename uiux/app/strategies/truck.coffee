@@ -21,6 +21,7 @@ TruckStrategy = DSC.Strategy.extend DSC.CreativeDelegationTactic,
     DSC.Arrows.promiseLift master
     .then (m) ->
       m.get "firePromise"
+
   beforeDestroy: (master) ->
     DSC.Arrows.promiseLift master.get("rail")
     .then (railTruck) ->
