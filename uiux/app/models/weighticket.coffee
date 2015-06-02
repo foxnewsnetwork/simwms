@@ -9,7 +9,6 @@ Weighticket = DSC.ModelComplex.extend
   pounds: DS.attr "number"
   licensePlate: DS.attr "string"
   targetDock: DS.attr "string"
-  pictures: DS.hasMany "picture"
   updatedAt: DS.attr "date"
   createdAt: DS.attr "date"
   status: DS.attr "string"
@@ -17,6 +16,9 @@ Weighticket = DSC.ModelComplex.extend
   finisherId: DS.attr "string"
   finishPounds: DS.attr "number"
 
+  files: DS.attr "files"
+
+  pictures: DS.hasMany "picture"
   appointment: DSC.belongsTo "appointment", foreignKey: 'appointmentNumber'
   entryScale: DSC.belongsTo "scale", foreignKey: 'issuerId'
   stationNumber: Ember.computed.alias "entryScale.stationNumber"

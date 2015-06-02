@@ -43,6 +43,12 @@ FireTruck = DSC.ModelComplex.extend
 
   isFullyEvaluated: Ember.computed.and "dock2", "entryScale2", "exitScale2"
 
+  cleanupAppointment: ->
+    @get "appointment"
+    @get "appointmentPromise"
+    .then (appointment) ->
+      appointment.fulfill()
+
   gotoDock: (truck) ->
     @set "position", "going to dock"
     @save()

@@ -15,12 +15,11 @@
     "bootstrap": "~3.3.2",
     "lodash": "~3.5.0",
     "fontawesome": "~4.3.0",
-    "pixi.js": "~2.2.7",
-    "js-priority-queue": "~0.1.1",
     "firebase": "^2.1.0",
     "jquery-timeago": "~1.4.1",
     "ember-mocha": "~0.6.2",
     "ember-cli-moment-shim": "~0.1.0",
-    "d3": "~3.5.5"
+    "d3": "~3.5.5",
+    "webcamjs": "*"
   }
 }

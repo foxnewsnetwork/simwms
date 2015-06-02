@@ -1,6 +1,6 @@
 class Apiv1::Weightickets::ShowController < ApplicationController
   def show
-    render json: { weighticket: _weighticket }
+    render json: _weighticket.ember_json
   end
   private
   def _weighticket

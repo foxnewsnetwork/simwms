@@ -17,6 +17,8 @@ StationsStationWeighticketsNewController = Ember.Controller.extend AtomicMixin,
     ticket.set "targetDock", @get("iogrid.oldestAvailableDock.id")
 
   actions:
+    killPic: (uri) ->
+      @get("model.dataUris")?.removeObject uri
     newTicket: ->
       @atomically =>
         validate @get "model"

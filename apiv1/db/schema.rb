@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150515000214) do
+ActiveRecord::Schema.define(version: 20150531212713) do
 
   create_table "apiv1_appointments", force: :cascade do |t|
     t.string   "permalink",            limit: 255
@@ -65,6 +65,17 @@ ActiveRecord::Schema.define(version: 20150515000214) do
     t.datetime "deleted_at"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+  end
+
+  create_table "apiv1_pictures", force: :cascade do |t|
+    t.integer  "imageable_id",     limit: 4
+    t.string   "imageable_type",   limit: 255
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.string   "pic_file_name",    limit: 255
+    t.string   "pic_content_type", limit: 255
+    t.integer  "pic_file_size",    limit: 4
+    t.datetime "pic_updated_at"
   end
 
   create_table "apiv1_tiles", force: :cascade do |t|

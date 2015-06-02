@@ -28,8 +28,3 @@
               span.fa= appointment.materialDescription
             td data-label="ETA" 
               span.fa= appointment.expectedAtAgo
-            
-    .btn-group.btn-lg
-      link-to "stations.station.weightickets.new" station.id class="btn btn-default btn-lg btn-hover"
-        i.fa.fa-truck
-        span.fa.nav-title truck without appointment has arrived

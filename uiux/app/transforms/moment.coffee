@@ -6,7 +6,6 @@ MomentTransform = DS.Transform.extend
     moment serialized
 
   serialize: (deserialized) ->
-    deserialized
-    .format()
+    deserialized?.format()
 
 `export default MomentTransform`

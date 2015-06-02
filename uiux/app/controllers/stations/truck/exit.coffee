@@ -12,7 +12,7 @@ StationsTruckExitController = Ember.Controller.extend AtomicMixin,
         @get "truck.exitScaleIdPromise"
         .then (exitScaleId) =>
           @get "truck"
-          .destroyRecord()
+          .destroyAndCleanup()
           .then ->
             exitScaleId
         .then (scaleId) =>

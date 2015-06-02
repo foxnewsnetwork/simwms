@@ -34,10 +34,9 @@ app.import('vendor/video-js/video.js', {
     "videojs": ["videojs"]
   }
 });
-app.import("bower_components/js-priority-queue/priority-queue.js", {
-  exports: {
-    "PriorityQueue": ["PriorityQueue"]
-  }
+app.import(app.bowerDirectory + "/webcamjs/webcam.min.js");
+app.import(app.bowerDirectory + "/webcamjs/webcam.swf", {
+  destDir: "assets"
 });
 app.import("bower_components/d3/d3.min.js");
 app.import("bower_components/fontawesome/css/font-awesome.css");

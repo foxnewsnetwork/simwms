@@ -2,6 +2,13 @@ em-form-for model=model mistakes=mistakes action="newTicket" classNames="panel-b
   em-form-input name="appointmentNumber" type="text" label="appointment number"
     span.help-block get this from the driver
 
+  em-form-input name="files" type="webcam" label="camera pictures" classNames="webcam-240-hack"
+    span.help-block click the video to take picture
+  .row
+    each uri in model.files
+      .col-lg-4.col-md-4.col-sm-6.col-xs-6
+        img.thumbnail.bound.click-to-kill.pointer click="'killPic' uri" src=uri
+
   em-form-input name="licensePlate" type="text" label="license plate number"
     span.help-block read this off the truck
   

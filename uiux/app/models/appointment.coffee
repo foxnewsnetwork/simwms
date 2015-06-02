@@ -9,7 +9,7 @@ Appointment = DS.Model.extend
   createdAt: DS.attr "date"
   updatedAt: DS.attr "date"
   expectedAt: DS.attr "moment"
-  fulfilledAt: DS.attr "date"
+  fulfilledAt: DS.attr "moment"
   cancelledAt: DS.attr "date"
   explodedAt: DS.attr "date"
 
@@ -38,4 +38,8 @@ Appointment = DS.Model.extend
   isCancellable: Ember.computed.or "statusIsPlanned", "statusIsProblem", "statusIsUnknown", "statusIsExpected", "statusIsVanished"
 
   canReschedule: Ember.computed.not "statusIsFulfilled"
+
+  fulfill: ->
+    @set "fulfilledAt", moment()
+    @save()
 `export default Appointment`

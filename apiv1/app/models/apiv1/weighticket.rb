@@ -24,6 +24,21 @@ class Apiv1::Weighticket < ActiveRecord::Base
   has_many :batches,
     class_name: 'Apiv1::Batch'
 
+  has_many :pictures,
+    class_name: "Apiv1::Picture",
+    as: :imageable
+
+  def ember_attributes
+    attributes.merge pictures: pictures.map(&:id)
+  end
+
+  def ember_json
+    {
+      weighticket: ember_attributes,
+      pictures: pictures.map(&:ember_attributes)
+    }
+  end
+
   def bale_count
     batches.count.to_i
   end

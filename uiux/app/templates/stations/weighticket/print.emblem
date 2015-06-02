@@ -12,6 +12,11 @@
       else
         span.fa your weighticket isn't ready yet!
 
+    .panel-body
+      .row
+        each picture in weighticket.pictures
+          .col-lg-4.col-md-4.col-sm-6.col-xs-6
+            img.thumbnail.bound src=picture.normal
     .panel-body.instruction-line
       dl
         dt appointment number

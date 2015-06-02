@@ -55,6 +55,12 @@ Truck = DSC.ModelComplex.extend
     
   isFullyEvaluated: Ember.computed.alias "fire.isFullyEvaluated"
 
+  destroyAndCleanup: ->
+    @get "firePromise"
+    .then (fire) ->
+      fire.cleanupAppointment()
+    .then =>
+      @destroyRecord()
   gotoDock: ->
     @get "firePromise"
     .then (fire) =>
