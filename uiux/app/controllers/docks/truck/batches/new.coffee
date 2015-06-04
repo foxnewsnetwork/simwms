@@ -4,6 +4,8 @@
 
 DocksTruckBatchesNewController = Ember.Controller.extend AtomicMixin,
   actions:
+    killPic: (uri) ->
+      @get("model.dataUris")?.removeObject uri
     batch: ->
       @atomically =>
         validate @get 'model'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150531212713) do
+ActiveRecord::Schema.define(version: 20150604003517) do
 
   create_table "apiv1_appointments", force: :cascade do |t|
     t.string   "permalink",            limit: 255
@@ -47,6 +47,17 @@ ActiveRecord::Schema.define(version: 20150531212713) do
   add_index "apiv1_batches", ["appointment_id"], name: "index_apiv1_batches_on_appointment_id", using: :btree
   add_index "apiv1_batches", ["warehouse_id"], name: "index_apiv1_batches_on_warehouse_id", using: :btree
   add_index "apiv1_batches", ["weighticket_id"], name: "index_apiv1_batches_on_weighticket_id", using: :btree
+
+  create_table "apiv1_camera_videoable_relationships", force: :cascade do |t|
+    t.integer  "camera_id",      limit: 4
+    t.integer  "videoable_id",   limit: 4
+    t.string   "videoable_type", limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "apiv1_camera_videoable_relationships", ["camera_id"], name: "index_apiv1_camera_videoable_relationships_on_camera_id", using: :btree
+  add_index "apiv1_camera_videoable_relationships", ["videoable_id", "videoable_type"], name: "by_camera_videoable", using: :btree
 
   create_table "apiv1_cameras", force: :cascade do |t|
     t.string   "permalink",   limit: 255
@@ -145,4 +156,5 @@ ActiveRecord::Schema.define(version: 20150531212713) do
     t.datetime "migrated_on"
   end
 
+  add_foreign_key "apiv1_camera_videoable_relationships", "apiv1_cameras", column: "camera_id"
 end

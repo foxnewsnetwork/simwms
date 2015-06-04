@@ -13,6 +13,12 @@ class Apiv1::Batches::CreateController < ApplicationController
       :entry_dock_id,
       :exit_dock_id
   end
+  def _files_params
+    params.require(:batch).permit files: []
+  end
+  def _pictures_params
+    (_files_params[:files] || []).map { |file| { pic: file } }
+  end
   def _creation_process
     _infer_defaults >> _new_batch >> _decide_validity >> (_output_success ^ _output_failure)
   end
@@ -23,13 +29,21 @@ class Apiv1::Batches::CreateController < ApplicationController
     Arrows.polarize &:valid?
   end
   def _output_success
-    _persist >> _render_out
+    _persist >> 
+    _attempt_pictures >>
+    _render_out
+  end
+  def _attempt_pictures
+    Arrows.lift do |batch|
+      batch.pictures.create! _pictures_params
+      batch
+    end
   end
   def _persist
     Arrows.lift { |batch| batch.tap &:save! }
   end
   def _render_out
-    Arrows.lift { |batch| render json: { batch: batch } }
+    Arrows.lift { |batch| render json: batch.ember_json }
   end
   def _output_failure
     Arrows.lift { |batch| render json: batch.errors, status: :bad_request }
@@ -56,8 +70,11 @@ class Apiv1::Batches::CreateController::Defaulter
 
   private
   def _warehouse_id
-    return @params[:warehouse_id] if @params[:warehouse_id].present?
+    return @params[:warehouse_id] if @params[:warehouse_id].present? && _is_slot_empty?(@params[:warehouse_id])
      _first_empty_warehouse.id
+  end
+  def _is_slot_empty?(id)
+    Apiv1::Warehouse.find_by_id(id).try :not_full?
   end
   def _appointment_id
     return @params[:appointment_id] if @params[:appointment_id].present?

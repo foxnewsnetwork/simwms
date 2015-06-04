@@ -14,6 +14,9 @@ Batch = DSC.ModelComplex.extend
   quantity: DS.attr "string"
   createdAt: DS.attr "date"
 
+  files: DS.attr "files"
+  pictures: DS.hasMany "picture"
+
   appointment: DSC.belongsTo "appointment", foreignKey: "appointmentId"
   weighticket: DSC.belongsTo "weighticket", foreignKey: "weighticketId"
   warehouse: DSC.belongsTo "warehouse", foreignKey: "warehouseId"

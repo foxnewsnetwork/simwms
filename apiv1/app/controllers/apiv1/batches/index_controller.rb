@@ -1,8 +1,16 @@
 class Apiv1::Batches::IndexController < ApplicationController
   def index
-    render json: { batches: _batches }
+    render json: _batches_json
   end
   private
+  def _batches_json
+    _batches.inject({batches: [], pictures: []}) do |hash, batch|
+      batch_json, picture_jsons = batch.ember_json.values_at :batch, :pictures
+      hash[:batches].push batch_json
+      hash[:pictures] += picture_jsons
+      hash
+    end
+  end
   def _search_params
     params.permit :warehouse_id, :per, :page, ids: []
   end

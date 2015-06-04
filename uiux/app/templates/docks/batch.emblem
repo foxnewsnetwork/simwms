@@ -20,6 +20,8 @@
         span.fa tag and store this bale
       .panel-body 
         p
+          img.thumbnail.bound src="images/barcode.png"
+        p
           span.fa this bale belongs in section
           span.highlight= model.squareName
 

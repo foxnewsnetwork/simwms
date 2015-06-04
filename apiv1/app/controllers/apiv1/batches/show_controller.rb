@@ -1,6 +1,6 @@
 class Apiv1::Batches::ShowController < ApplicationController
   def show
-    render json: { batch: _batch }
+    render json: { batch: _batch.ember_json }
   end
   private
   def _batch

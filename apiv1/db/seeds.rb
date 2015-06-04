@@ -259,6 +259,18 @@ ActiveRecord::Base.transaction do
   Apiv1::Appointment.create({"cancelled_at"=>nil, "company"=>"Poka Poka Co", "company_permalink"=>"pk-pk-c", "created_at"=>"2015-05-29T23:07:32.000Z", "deleted_at"=>nil, "expected_at"=>"2015-05-29T23:07:16.000Z", "exploded_at"=>nil, "fire_id"=>nil, "fulfilled_at"=>nil, "id"=>22, "material_description"=>"just trash", "material_permalink"=>nil, "notes"=>"2fasdf", "permalink"=>"pk-pk-c-22", "updated_at"=>"2015-05-29T23:07:32.000Z"})
 
   Apiv1::Appointment.create({"cancelled_at"=>nil, "company"=>"yukitoki to issho ni", "company_permalink"=>"ktk-t-ssh-n", "created_at"=>"2015-05-29T23:14:09.000Z", "deleted_at"=>nil, "expected_at"=>"2015-05-29T23:13:45.000Z", "exploded_at"=>nil, "fire_id"=>nil, "fulfilled_at"=>nil, "id"=>23, "material_description"=>"haru ni kawatte iku yo", "material_permalink"=>nil, "notes"=>"azare ao sagasu yo", "permalink"=>"ktk-t-ssh-n-23", "updated_at"=>"2015-05-29T23:14:09.000Z"})
+
+  Apiv1::Appointment.create({"cancelled_at"=>nil, "company"=>"sadfasdf", "company_permalink"=>"sdfsdf", "created_at"=>"2015-06-01T04:00:56.000Z", "deleted_at"=>nil, "expected_at"=>"2015-06-01T04:00:52.000Z", "exploded_at"=>nil, "fire_id"=>nil, "fulfilled_at"=>nil, "id"=>24, "material_description"=>"fasdf", "material_permalink"=>nil, "notes"=>"asdf", "permalink"=>"sdfsdf-24", "updated_at"=>"2015-06-01T04:00:56.000Z"})
+
+  Apiv1::Appointment.create({"cancelled_at"=>nil, "company"=>"Some Dumb Company", "company_permalink"=>"sm-dmb-cmpn", "created_at"=>"2015-06-01T17:39:14.000Z", "deleted_at"=>nil, "expected_at"=>"2015-06-01T17:38:58.000Z", "exploded_at"=>nil, "fire_id"=>nil, "fulfilled_at"=>nil, "id"=>25, "material_description"=>"asdfndjasflj", "material_permalink"=>nil, "notes"=>"asdf", "permalink"=>"sm-dmb-cmpn-25", "updated_at"=>"2015-06-01T17:39:14.000Z"})
+
+  Apiv1::Appointment.create({"cancelled_at"=>nil, "company"=>"fasdgfasg", "company_permalink"=>"fsdgfsg", "created_at"=>"2015-06-01T18:09:38.000Z", "deleted_at"=>nil, "expected_at"=>"2015-06-01T18:09:33.000Z", "exploded_at"=>nil, "fire_id"=>nil, "fulfilled_at"=>nil, "id"=>26, "material_description"=>"452354", "material_permalink"=>nil, "notes"=>"adsfads", "permalink"=>"fsdgfsg-26", "updated_at"=>"2015-06-01T18:09:38.000Z"})
+
+  Apiv1::Appointment.create({"cancelled_at"=>nil, "company"=>"hibikaze", "company_permalink"=>"hbkz", "created_at"=>"2015-06-01T18:50:01.000Z", "deleted_at"=>nil, "expected_at"=>"2015-06-01T18:49:52.000Z", "exploded_at"=>nil, "fire_id"=>nil, "fulfilled_at"=>nil, "id"=>27, "material_description"=>"asdkj1", "material_permalink"=>nil, "notes"=>"asdfasdf", "permalink"=>"hbkz-27", "updated_at"=>"2015-06-01T18:50:01.000Z"})
+
+  Apiv1::Appointment.create({"cancelled_at"=>nil, "company"=>"gahdfhdfgas asf gasfg ", "company_permalink"=>"ghdfhdfgs-sf-gsfg", "created_at"=>"2015-06-01T22:57:49.000Z", "deleted_at"=>nil, "expected_at"=>"2015-06-01T22:57:41.000Z", "exploded_at"=>nil, "fire_id"=>nil, "fulfilled_at"=>nil, "id"=>28, "material_description"=>"23422tasdf", "material_permalink"=>nil, "notes"=>"asdf", "permalink"=>"ghdfhdfgs-sf-gsfg-28", "updated_at"=>"2015-06-01T22:57:49.000Z"})
+
+  Apiv1::Appointment.create({"cancelled_at"=>nil, "company"=>"Today Test Company", "company_permalink"=>"td-tst-cmpn", "created_at"=>"2015-06-02T18:48:53.000Z", "deleted_at"=>nil, "expected_at"=>"2015-06-02T18:48:18.000Z", "exploded_at"=>nil, "fire_id"=>nil, "fulfilled_at"=>nil, "id"=>29, "material_description"=>"HDPE Milk Jugs", "material_permalink"=>nil, "notes"=>"20 tons of milk jugs", "permalink"=>"td-tst-cmpn-29", "updated_at"=>"2015-06-02T18:48:53.000Z"})
   ActiveRecord::Base.connection.reset_pk_sequence!('apiv1_appointments')
 end
 

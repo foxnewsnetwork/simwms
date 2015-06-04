@@ -26,6 +26,21 @@ class Apiv1::Batch < ActiveRecord::Base
     class_name: 'Apiv1::Warehouse'
   after_create :_create_permalink
 
+  has_many :pictures,
+    class_name: "Apiv1::Picture",
+    as: :imageable
+
+  def ember_json
+    {
+      batch: ember_attributes,
+      pictures: pictures.map(&:ember_attributes)
+    }
+  end
+
+  def ember_attributes
+    attributes.merge pictures: pictures.map(&:id)
+  end
+
   private
   def _create_permalink
     self.permalink ||= description.to_s.to_url.slice(0, 15) + "-#{id}"

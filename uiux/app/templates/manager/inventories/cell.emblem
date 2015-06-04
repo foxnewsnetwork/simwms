@@ -26,7 +26,11 @@ h2.modal-title
             td= batch.quantity
             td= batch.createdAt
             td= batch.appointmentId
-  
+.row
+  each batch in model.batches
+    each picture in batch.pictures
+      .col-lg-4.col-md-4.col-sm-6.col-xs-6
+        img.thumbnail.bound src=picture.thumbnail  
 .actions
   button.btn.btn-primary.close-button click="closeModal"
     i.fa.fa-times

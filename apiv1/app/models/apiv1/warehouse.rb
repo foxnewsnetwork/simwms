@@ -27,6 +27,10 @@ class Apiv1::Warehouse < Apiv1::Tile
   scope :empty_warehouse,
     -> { order(updated_at: :desc).where("#{self.table_name}.status = ? || #{self.table_name}.status is null", :empty) }
 
+  def not_full?
+    status.to_s != "empty"
+  end
+
   def master_attributes
     super.merge x: x, y: y
   end

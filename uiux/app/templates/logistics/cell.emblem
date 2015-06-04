@@ -26,3 +26,9 @@ h2.section-title
             td= batch.quantity
             td= batch.createdAt
             td= batch.appointment.id
+
+.row
+  each batch in model.batches
+    each picture in batch.pictures
+      .col-lg-4.col-md-4.col-sm-6.col-xs-6
+        img.thumbnail.bound src=picture.normal
