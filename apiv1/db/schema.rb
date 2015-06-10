@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150604003517) do
+ActiveRecord::Schema.define(version: 20150607002443) do
 
   create_table "apiv1_appointments", force: :cascade do |t|
     t.string   "permalink",            limit: 255
@@ -48,24 +48,17 @@ ActiveRecord::Schema.define(version: 20150604003517) do
   add_index "apiv1_batches", ["warehouse_id"], name: "index_apiv1_batches_on_warehouse_id", using: :btree
   add_index "apiv1_batches", ["weighticket_id"], name: "index_apiv1_batches_on_weighticket_id", using: :btree
 
-  create_table "apiv1_camera_videoable_relationships", force: :cascade do |t|
-    t.integer  "camera_id",      limit: 4
-    t.integer  "videoable_id",   limit: 4
-    t.string   "videoable_type", limit: 255
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-  end
-
-  add_index "apiv1_camera_videoable_relationships", ["camera_id"], name: "index_apiv1_camera_videoable_relationships_on_camera_id", using: :btree
-  add_index "apiv1_camera_videoable_relationships", ["videoable_id", "videoable_type"], name: "by_camera_videoable", using: :btree
-
   create_table "apiv1_cameras", force: :cascade do |t|
-    t.string   "permalink",   limit: 255
-    t.string   "camera_name", limit: 255
-    t.string   "mac_address", limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "permalink",    limit: 255
+    t.string   "camera_name",  limit: 255
+    t.string   "mac_address",  limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "camera_style", limit: 255
+    t.integer  "tile_id",      limit: 4
   end
+
+  add_index "apiv1_cameras", ["tile_id"], name: "index_apiv1_cameras_on_tile_id", using: :btree
 
   create_table "apiv1_inventories", force: :cascade do |t|
     t.string   "material",    limit: 255
@@ -96,10 +89,12 @@ ActiveRecord::Schema.define(version: 20150604003517) do
     t.integer  "x",          limit: 4
     t.integer  "y",          limit: 4
     t.integer  "z",          limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.datetime "deleted_at"
     t.string   "fire_id",    limit: 255
+    t.decimal  "width",                  precision: 10, scale: 6
+    t.decimal  "height",                 precision: 10, scale: 6
   end
 
   create_table "apiv1_trucks", force: :cascade do |t|
@@ -156,5 +151,5 @@ ActiveRecord::Schema.define(version: 20150604003517) do
     t.datetime "migrated_on"
   end
 
-  add_foreign_key "apiv1_camera_videoable_relationships", "apiv1_cameras", column: "camera_id"
+  add_foreign_key "apiv1_cameras", "apiv1_tiles", column: "tile_id"
 end

@@ -13,6 +13,8 @@
 #  updated_at :datetime         not null
 #  deleted_at :datetime
 #  fire_id    :string(255)
+#  width      :decimal(10, 6)
+#  height     :decimal(10, 6)
 #
 
 require 'rails_helper'

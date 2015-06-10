@@ -8,6 +8,7 @@
 #  mac_address :string(255)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  tile_id     :integer
 #
 
 require 'rails_helper'

@@ -12,15 +12,15 @@ defmodule Apiv2.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", Apiv2 do
+  scope "/config", Apiv2 do
     pipe_through :browser # Use the default browser stack
-
     get "/", PageController, :index
   end
 
   scope "/apiv2", Apiv2 do
     pipe_through :api
-
+    resources "/cameras", CameraController
+    resources "/tiles", TileController
     resources "/appointments", AppointmentController    
   end
 end

@@ -5,7 +5,30 @@ import {Socket} from "phoenix"
 // socket.join("topic:subtopic", {}).receive("ok", chan => {
 // })
 
-let App = {
-}
+// function drawTile(svg) {
+//   svg.append()
+// };
 
+// function drawSVG(data) {
+//   d3.select("#svg-canvas")
+//   .data(data)
+//   .enter()
+//   .call(drawTile);
+// };
+
+// function requestData() {
+//   return $.ajax("/apiv2/tiles");
+// };
+
+// let App = {
+//   run() {
+//     requestData()
+//     .then(function(data){
+//       drawSVG(data);
+//     })
+//   }
+// };
+
+// App.run();
+let App = {};
 export default App

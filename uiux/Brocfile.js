@@ -38,7 +38,7 @@ app.import(app.bowerDirectory + "/webcamjs/webcam.min.js");
 app.import(app.bowerDirectory + "/webcamjs/webcam.swf", {
   destDir: "assets"
 });
-app.import("bower_components/d3/d3.min.js");
+app.import("bower_components/d3/d3.js");
 app.import("bower_components/fontawesome/css/font-awesome.css");
 app.import("bower_components/fontawesome/fonts/fontawesome-webfont.eot", { destDir: "fonts" });
 app.import("bower_components/fontawesome/fonts/fontawesome-webfont.svg", { destDir: "fonts" });
