@@ -1,9 +1,9 @@
 if transitionMode
   md-loader
 section#game
-  d3-vector-canvas
-    d3-interactions mode=currentMode type=buildType action="buildTile"
-    d3-tiles models=model action="clickTile"
+  vector-canvas
+    grid-interactions mode=currentMode type=buildType action="clickBlank"
+    vector-tiles models=model action="clickTile"
 
 section#right-nav
   md-card-collapsible
@@ -32,3 +32,5 @@ section#right-nav
     md-fixed-btn btnClass="grey" btnIcon="fa fa-bomb" action="destroyEverything"
 
 == outlet
+
+span#busy-mouse-flash.hidden busy!!

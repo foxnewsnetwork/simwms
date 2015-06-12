@@ -1,2 +1,0 @@
-each model in models
-  span.hidden= model.status

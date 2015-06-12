@@ -1,4 +1,4 @@
-.d3-vector-canvas {
+.vector-canvas {
   position: absolute;
   top: 0;
   left: 0;
@@ -10,6 +10,7 @@
     cursor: move;
   }
   .dock,
+  .barn,
   .station,
   .warehouse,
   .scale,
@@ -30,7 +31,7 @@
       text-anchor: middle;
     }
   }
-  .interaction {
+  .blank {
     cursor: context-menu;
     text {
       font-size: 18px;

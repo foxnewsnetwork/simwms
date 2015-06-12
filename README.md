@@ -6,7 +6,7 @@ Nothing to say here
 Features to MVP
 ===============
 - implement a real 2d barcode scanner system and printer
-- write up warehouse (dock, station, inventory, etc.) camera and position setup/config page
++ write up warehouse (dock, station, inventory, etc.) camera and position setup/config page
 - write up installation instructions
 - write up marketing site with onboarding workflow
 - have a sampler warehouse on the marketing site

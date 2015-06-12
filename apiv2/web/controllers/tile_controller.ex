@@ -26,7 +26,7 @@ defmodule Apiv2.TileController do
     end
   end
 
-  def update(conn, %{"id" => id, "camera" => tile_params}) do
+  def update(conn, %{"id" => id, "tile" => tile_params}) do
     tile = Repo.get!(Tile, id)
     changeset = Tile.changeset(tile, tile_params)
 
