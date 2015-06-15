@@ -35,6 +35,10 @@ class Apiv1::Tile < ActiveRecord::Base
   scope :living_stations,
     -> { where tile_type: :station }
 
+  has_many :cameras,
+    class_name: "Apiv1::Camera",
+    dependent: :destroy
+
   def master_attributes
     {
       id: id,
@@ -42,6 +46,21 @@ class Apiv1::Tile < ActiveRecord::Base
       fire_id: fire_id,
       x: x,
       y: y
+    }
+  end
+
+  def ember_attributes
+    attributes.to_h.tap do |a|
+      a[:width] ||= 1
+      a[:height] ||= 1
+      a[:cameras] ||= cameras.map(&:id)
+    end
+  end
+
+  def ember_json
+    {
+      tile: ember_attributes,
+      cameras: cameras.map(&:ember_attributes)
     }
   end
 end

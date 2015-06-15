@@ -53,4 +53,9 @@ Rails.application.routes.draw do
     resources :warehouses, only: [:create], controller: 'warehouses/create'
     resources :warehouses, only: [:update], controller: 'warehouses/update'
   end
+
+  namespace :apiv2 do
+    resources :tiles, only: [:show, :index, :create, :update, :destroy]
+    resources :cameras, only: [:show, :create, :update, :destroy]
+  end
 end

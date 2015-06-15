@@ -7,4 +7,4 @@ proxy.on 'error', (err, req) ->
 module.exports = (app) ->
   app.use proxyPath, (req, res, next) ->
     req.url = proxyPath + '/' + req.url
-    proxy.web req, res, target: 'http://localhost:4000'
+    proxy.web req, res, target: 'http://localhost:3000'
