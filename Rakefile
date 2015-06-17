@@ -3,6 +3,7 @@ require "logger"
 require "thor"
 namespace :simwms do
 
+  desc "packages the product rails slug for use"
   task :package do
     Rake::Task["simwms:build"].invoke
     Rake::Task["simwms:release"].invoke
@@ -57,17 +58,17 @@ namespace :simwms do
   end
 
   desc "moves all the ember dist from ./uiux into the tmp folder"
-  desc store_uiux: [:ensure_tmp] do
+  task store_uiux: [:ensure_tmp] do
     FileUtils.mv "uiux/dist", "tmp/"
   end
 
   desc "ensures the tmp work directory is present"
-  desc :ensure_tmp do
+  task :ensure_tmp do
     FileUtils.mkdir_p "tmp"
   end
 
   desc "moves all the ember dist from ./config into the tmp folder"
-  desc store_config: [:ensure_tmp] do
+  task store_config: [:ensure_tmp] do
     FileUtils.mv "config/dist", "tmp/"
   end
 
@@ -93,12 +94,15 @@ class Commands < Thor
       puts "done"
     end
   end
+  desc "dist_apiv1", "moves apiv1"
   def dist_apiv1
     directory "tmp/apiv1", "."
   end
+  desc "dist_uiux", "moves uiux"
   def dist_uiux
     directory "tmp/uiux/dist", "./public"
   end
+  desc "dist_config", "moves config"
   def dist_config
     directory "tmp/config/dist", "./public"
     FileUtils.mv "public/index.html", "public/config.html"
