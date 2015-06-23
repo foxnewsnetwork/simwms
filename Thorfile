@@ -33,11 +33,15 @@ class Simwms < Thor
 
   desc "release DIR", "puts together the release branch and puts the complete application from the temporary directory (defaults to tmp) to it"
   def release(directory="tmp")
-    @@git.checkout "release"
+    fresh_release_branch!
     clean_stage
     directory "tmp", ".", force: true
   end
   private
+  def fresh_release_branch!
+    release.delete if release = @@git.branches[:release]
+    @@git.branch('release').checkout
+  end
   def clean_stage
     StagePurger.new.invoke :purge
   end
@@ -69,7 +73,8 @@ class StagePurger < Thor
     _append_gitignore dir
 
     _files_in(dir).each do |file|
-      remove_file file
+      # remove_file file
+      say "removing: " + file
     end
 
     _directories_in(dir).each do |dir|
