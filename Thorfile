@@ -73,8 +73,7 @@ class StagePurger < Thor
     _append_gitignore dir
 
     _files_in(dir).each do |file|
-      # remove_file file
-      say "removing: " + file
+      remove_file file
     end
 
     _directories_in(dir).each do |dir|
