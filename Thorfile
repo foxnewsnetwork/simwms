@@ -35,7 +35,7 @@ class Simwms < Thor
   def release(directory="tmp")
     @@git.checkout "release"
     clean_stage
-    # directory "tmp", "."
+    directory "tmp", ".", force: true
   end
   private
   def clean_stage
@@ -69,8 +69,7 @@ class StagePurger < Thor
     _append_gitignore dir
 
     _files_in(dir).each do |file|
-      # remove_file file
-      say "removing: " + file
+      remove_file file
     end
 
     _directories_in(dir).each do |dir|
@@ -79,8 +78,8 @@ class StagePurger < Thor
   end
   private
   def _append_gitignore(dir)
-    return unless File.exists? File.join(dir, ".gitignore")
     @gitignore_patterns ||= []
+    return unless File.exists? File.join(dir, ".gitignore")
     ignores = _parse_gitignore File.read File.join(dir, ".gitignore")
     absolute_ignores = ignores.map { |i| File.join(dir, i) }
     @gitignore_patterns += absolute_ignores
