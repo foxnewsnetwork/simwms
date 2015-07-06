@@ -1,9 +1,6 @@
 section#game
-  d3-vector-canvas
-    d3-docks models=iogrid.barns trucks=iotrucks action="clickDock"
-    d3-stations models=iogrid.scales action="clickStation"
-    d3-roads models=iogrid.roads
-    d3-warehouses models=iogrid.warehouses action="clickInventory"
+  vector-canvas
+    vector-tiles models=tiles action="clickTile"
 
 section#sidebar
   .btn-group-vertical.btn-group-lg.side-nav
@@ -17,7 +14,7 @@ section#sidebar
       img.icon-nav src="images/status.png" alt="status"
 
 section#corner
-  link-to "cameras"
+  link-to "manager.cameras"
     img.icon-nav src="images/camera.png" alt="cameras"
 
 footer#footer.footer

@@ -1,17 +1,22 @@
 `import DS from 'ember-data'`
 `import moment from 'moment'`
+`import { startOfWorkday, finishOfWorkday } from '../utils/punch-card'`
 
 Appointment = DS.Model.extend
+  appointmentType: DS.attr "string", defaultValue: "dropoff"
+  permalink: DS.attr "string"
   materialDescription: DS.attr "string"
   company: DS.attr "string"
   notes: DS.attr "string"
-  status: DS.attr "string"
   createdAt: DS.attr "date"
   updatedAt: DS.attr "date"
   expectedAt: DS.attr "moment"
   fulfilledAt: DS.attr "moment"
-  cancelledAt: DS.attr "date"
-  explodedAt: DS.attr "date"
+  cancelledAt: DS.attr "moment"
+  explodedAt: DS.attr "moment"
+  weighticket: DS.belongsTo "weighticket"
+  truck: DS.belongsTo "truck"
+  externalReference: DS.attr "string"
 
   expectedAtISO: Ember.computed "expectedAt", (key, date) ->
     if arguments.length > 1
@@ -27,6 +32,17 @@ Appointment = DS.Model.extend
     return if Ember.isBlank @get "expectedAt"
     @get("expectedAt").fromNow()
 
+  status: Ember.computed "expectedAt", "fulfilledAt", "cancelledAt", "explodedAt", ->
+    return "fulfilled" if @get("fulfilledAt")?
+    return "cancelled" if @get("cancelledAt")?
+    return "problem" if @get("explodedAt")?
+    return "problem" unless @get("expectedAt")?
+    return "onsite" if @get("truck")?
+    return "vanished" if @get("expectedAt") < startOfWorkday()
+    return "planned" if finishOfWorkday() < @get("expectedAt")
+    return "expected" if startOfWorkday() < @get("expectedAt") < finishOfWorkday()
+    "unknown"
+
   statusIsPlanned: Ember.computed.equal "status", "planned"
   statusIsProblem: Ember.computed.equal "status", "problem"
   statusIsExpected: Ember.computed.equal "status", "expected"
@@ -34,6 +50,7 @@ Appointment = DS.Model.extend
   statusIsCancelled: Ember.computed.equal "status", "cancelled"
   statusIsVanished: Ember.computed.equal "status", "vanished"
   statusIsUnknown: Ember.computed.equal "status", "unknown"
+  statusIsOnsite: Ember.computed.equal "status", "onsite"
 
   isCancellable: Ember.computed.or "statusIsPlanned", "statusIsProblem", "statusIsUnknown", "statusIsExpected", "statusIsVanished"
 

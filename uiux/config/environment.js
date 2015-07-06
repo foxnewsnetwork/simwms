@@ -5,15 +5,14 @@ module.exports = function(environment) {
     modulePrefix: 'uiux',
     environment: environment,
     contentSecurityPolicy: { 
-      'connect-src': "'self' wss://*.firebaseio.com",
+      'connect-src': "'self' ws://localhost:4000",
       "img-src": "'self' http://192.168.0.101",
       "media-src": "'self' http://localhost:*",
       "font-src": "http://fonts.gstatic.com 'self'",
-      "style-src": "'self' http://fonts.googleapis.com",
+      "style-src": "'self' http://fonts.googleapis.com 'unsafe-inline'",
       "script-src": "'self' https://s.ytimg.com",
       "frame-src": "'self' https://www.youtube.com"
     },
-    firebase: 'https://simwms-apiv2.firebaseio.com/',
     print: 'http://localhost:4200/apiv0',
     baseURL: '/',
     locationType: 'auto',

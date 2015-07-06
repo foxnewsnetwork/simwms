@@ -1,7 +1,11 @@
 `import Ember from 'ember'`
 
 DocksDockIndexController = Ember.Controller.extend
-  truck: Ember.computed.alias "model.truck"
+  trucks: Ember.computed.filterBy "model.loadingTrucks", "undockedAt", null
+
+  alreadyDockedTrucks: Ember.computed.filterBy "trucks", "dockedAt"
+
+  comingDockedTrucks: Ember.computed.filterBy "trucks", "dockedAt", null
 
   problemResolvedMessage: ->
     archtype: "problem resolved"
@@ -14,9 +18,8 @@ DocksDockIndexController = Ember.Controller.extend
     resolveProblem: ->
       @model.resolveProblem()
 
-    truckArrived: ->
-      @model.workOnTruck()
-      .then =>
-        @transitionToRoute "docks.truck.arrive", @get("model.truckId")
+    arrive: (truck) ->
+      truck.set "dockedAt", moment()
+      truck.save()
 
 `export default DocksDockIndexController`

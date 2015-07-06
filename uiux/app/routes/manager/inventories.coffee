@@ -2,6 +2,6 @@
 
 ManagerInventoriesRoute = Ember.Route.extend
   model: ->
-    @iogrid.then => @store.all "warehouse"
+    @store.filter "tile", (tile) -> tile.get("tileType") is "warehouse"
 
 `export default ManagerInventoriesRoute`

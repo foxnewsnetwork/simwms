@@ -2,6 +2,7 @@
 
 LogisticsInventoriesRoute = Ember.Route.extend
   model: ->
-    @iogrid.then => @store.all "warehouse"
+    @store
+    .findAll "batch"
 
 `export default LogisticsInventoriesRoute`

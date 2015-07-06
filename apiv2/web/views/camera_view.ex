@@ -19,7 +19,7 @@ defmodule Apiv2.CameraView do
       permalink: camera.permalink,
       camera_name: camera.camera_name,
       mac_address: camera.mac_address,
-      created_at: camera.created_at,
+      created_at: camera.inserted_at,
       updated_at: camera.updated_at,
       camera_style: camera.camera_style,
       tile_id: camera.tile_id

@@ -20,19 +20,21 @@
     .panel-body.instruction-line
       dl
         dt appointment number
-        dd= weighticket.appointmentNumber
-        dt issuer id
-        dd= weighticket.issuerId
+        dd= weighticket.appointment.permalink
+        dt appointment type
+        dd= weighticket.appointment.appointmentType
+        dt issuer
+        dd= weighticket.issuer.nameOrId
         dt pounds
         dd= weighticket.pounds
         dt license plate
         dd= weighticket.licensePlate
         dt target dock
-        dd= weighticket.targetDock
+        dd= weighticket.dock.nameOrId
         dt createdAt
-        dd= weighticket.createdAt
-        dt status
-        dd= weighticket.status
+        dd= moment weighticket.createdAt
+        dt appointment status
+        dd= weighticket.appointment.status
         dt notes
         dd= weighticket.notes
       .btn-group

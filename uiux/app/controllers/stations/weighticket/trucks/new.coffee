@@ -10,12 +10,8 @@ StationsWeighticketTrucksNewController = Ember.Controller.extend AtomicMixin,
     finish: ->
       @atomically =>
         @get("truck").save()
-        .then (truck) ->
-          truck.gotoDock()
-        .then (truck) ->
-          truck.save()
-          truck.get "entryScaleIdPromise"
-        .then (entryScaleId) =>
+        .then (truck) =>
+          entryScaleId = truck.get("entryScale.id")
           Ember.assert "there is a entry scale id #{entryScaleId}", Ember.isPresent entryScaleId
           @transitionToRoute "stations.station", entryScaleId
       

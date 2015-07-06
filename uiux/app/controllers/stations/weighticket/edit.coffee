@@ -1,7 +1,8 @@
 `import Ember from 'ember'`
+`import validate from 'uiux/validators/weighticket'`
 
 StationsWeighticketEditController = Ember.Controller.extend
-  dockChoices: Ember.computed.mapBy "iogrid.barns", "selectChoice"
+  dockChoices: Ember.computed.alias "model.docks.dockChoices"
 
   actions:
     newTicket: ->

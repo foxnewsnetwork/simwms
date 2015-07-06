@@ -1,0 +1,12 @@
+.list-group
+  each camera in model
+    link-to "manager.cameras.camera" camera.id classNames="list-group-item"
+      span.fa.bold.capitalize= camera.cameraName
+      span.predash.fa= camera.cameraStyle
+      span.predash.fa= camera.tile.tileType
+      span.predash.fa= camera.tile.id
+
+.actions
+  button.btn.btn-primary.close-button click="closeModal"
+    i.fa.fa-times
+    span.prespace.upcase dismiss

@@ -2,6 +2,8 @@
 
 ManagerRoute = Ember.Route.extend
   model: ->
-    @store.find "message"
+    Ember.RSVP.hash
+      tiles: @store.findAll "tile"
+      trucks: @store.findAll "truck"
 
 `export default ManagerRoute`

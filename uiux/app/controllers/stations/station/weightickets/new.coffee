@@ -9,12 +9,12 @@ This is definitely your fault.
 StationsStationWeighticketsNewController = Ember.Controller.extend AtomicMixin,
   queryParams: ["appointment"]
   appointment: null
-  dockChoices: Ember.computed.mapBy "iogrid.barns", "selectChoice"
+  dockChoices: Ember.computed.alias "model.docks.dockChoices"
 
-  watchForOldestDock: Ember.observer "iogrid.oldestAvailableDock.id", ->
-    return if Ember.isBlank @get "iogrid.oldestAvailableDock.id"
+  watchForOldestDock: Ember.observer "model.firstAvailableDock.id", ->
+    return if Ember.isBlank @get "model.firstAvailableDock.id"
     ticket = @get "model"
-    ticket.set "targetDock", @get("iogrid.oldestAvailableDock.id")
+    ticket.set "targetDock", @get("model.firstAvailableDock.id")
 
   actions:
     killPic: (uri) ->
@@ -24,9 +24,9 @@ StationsStationWeighticketsNewController = Ember.Controller.extend AtomicMixin,
         validate @get "model"
         .then (weighticket) ->
           weighticket.save()
-        .then (weighticket) =>
-          @transitionToRoute "stations.weighticket.print", weighticket.get("id")
         .catch (errors) =>
           @set "mistakes", errors
           Ember.assert invalidMsg, errors?
+        .then (weighticket) =>
+          @transitionToRoute "stations.weighticket.print", weighticket.get("id")
 `export default StationsStationWeighticketsNewController`

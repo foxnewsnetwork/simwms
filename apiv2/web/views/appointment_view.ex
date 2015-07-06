@@ -1,24 +1,46 @@
 defmodule Apiv2.AppointmentView do
   use Apiv2.Web, :view
-  
-  def render("index.json", %{appointments: appointments}) do
-    %{appointments: render_many(appointments, "appointment.json")}
+  def render("index.json", %{appointments: appointments, meta: meta}) do
+    %{
+      appointments: render_many(appointments, "appointment.json"),
+      trucks: render_trucks(appointments),
+      weightickets: render_weightickets(appointments),
+      meta: meta
+    }
   end
 
   def render("show.json", %{appointment: appointment}) do
-    %{appointment: render_one(appointment, "appointment.json")}
+    %{
+      appointment: render_one(appointment, "appointment.json"),
+      trucks: render_trucks([appointment]),
+      weightickets: render_weightickets([appointment])
+    }
   end
 
   def render("appointment.json", %{appointment: appointment}) do
-    ember_attributes appointment
+    appointment |> ember_attributes |> Apiv2.DictExt.reject_blank_keys
+  end
+
+  def render_trucks(appointments) do 
+    appointments
+    |> Enum.map(fn appointment -> appointment.truck end)
+    |> Enum.reject(&is_nil/1)
+    |> render_many("truck.json")
+  end
+
+  def render_weightickets(appointments) do
+    appointments
+    |> Enum.map(fn appointment -> appointment.weighticket end) 
+    |> Enum.reject(&is_nil/1)
+    |> render_many("weighticket.json")
   end
 
   defp ember_attributes(appointment) do
     %{
-      id: appointment.permalink,
-      database_id: appointment.id,
+      id: appointment.id,
+      permalink: appointment.permalink,
       company_permalink: appointment.company_permalink,
-      created_at: appointment.created_at,
+      created_at: appointment.inserted_at,
       updated_at: appointment.updated_at,
       expected_at: appointment.expected_at,
       fulfilled_at: appointment.fulfilled_at,
@@ -27,50 +49,8 @@ defmodule Apiv2.AppointmentView do
       material_description: appointment.material_description,
       company: appointment.company,
       notes: appointment.notes,
-      status: calculate_status appointment
+      external_reference: appointment.external_reference
     }
   end
 
-  defp calculate_status(appointment) do
-    cond do
-      appointment.fulfilled_at -> :fulfilled
-      appointment.cancelled_at -> :cancelled
-      is_nil(appointment.exploded_at) and is_nil(appointment.expected_at) -> :problem
-      expected_within_current_work_day?(appointment) -> :expected
-      expected_yesterday_or_earlier?(appointment) -> :vanished
-      expected_tomorrow_or_later?(appointment) -> :planned
-      true -> :unknown
-    end
-  end
-
-  defp from_now(time, :hours) do
-    alias Timex.Date
-    Date.shift Date.now, hours: time
-  end
-
-  defp ago(time, unit) do
-    from_now -time, unit
-  end
-
-  defp expected_within_current_work_day?(%{expected_at: nil}) do 
-    false
-  end
-  defp expected_within_current_work_day?(%{expected_at: expected_at}) do
-    ago(4, :hours) < expected_at and expected_at < from_now(12, :hours)
-  end
-
-  defp expected_yesterday_or_earlier?(%{expected_at: nil}) do 
-    false
-  end
-  defp expected_yesterday_or_earlier?(%{expected_at: expected_at}) do
-    ago(4, :hours) > expected_at
-  end
-
-  defp expected_tomorrow_or_later?(%{expected_at: nil}) do 
-    false
-  end
-  defp expected_tomorrow_or_later?(%{expected_at: expected_at}) do
-    from_now(12, :hours) < expected_at
-  end
 end
-

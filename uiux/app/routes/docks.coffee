@@ -2,6 +2,8 @@
 
 DocksRoute = Ember.Route.extend
   model: ->
-    @iogrid.then => @store.all "barn"
+    @store.findAll("tile")
+    .then (tiles) ->
+      tiles.filterBy "tileType", "barn"
 
 `export default DocksRoute`

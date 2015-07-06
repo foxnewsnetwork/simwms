@@ -11,7 +11,7 @@ config :logger, level: :warn
 
 # Configure your database
 config :apiv2, Apiv2.Repo,
-  adapter: Ecto.Adapters.Postgres,
+  adapter: Ecto.Adapters.MySQL,
   username: "root",
   password: "",
   database: "simwms_test",

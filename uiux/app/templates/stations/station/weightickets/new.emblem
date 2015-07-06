@@ -8,10 +8,10 @@
         == partial 'stations/station/weightickets/form'
       .hidden-xs.hidden-sm.col-md-3.col-lg-6
         dl.dl-horizontal
-          each barn in iogrid.barns
+          each barn in model.docks
             dt
               span.fa.bold dock no.
-              span.fa.bold= barn.id
+              span.fa.bold= barn.nameOrId
             dd= barn.status
 
     .list-group

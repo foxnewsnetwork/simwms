@@ -2,42 +2,52 @@ defmodule Apiv2.TileView do
   use Apiv2.Web, :view
 
   def render("index.json", %{tiles: tiles}) do
-    tiles 
-    |> Enum.map(&dictify(&1)) 
-    |> (fn dicts -> %{cameras: extract_cameras(dicts), tiles: simplify(dicts)} end).()
+    %{
+      tiles: render_many(tiles, "tile.json"), 
+      cameras: render_cameras(tiles),
+      trucks: render_trucks(tiles),
+      batches: render_batches(tiles)
+    }
   end
 
   def render("show.json", %{tile: tile}) do
-    tile
-    |> dictify
-    |> (fn dict -> %{cameras: extract_cameras([dict]), tile: identify_camera(dict)} end).()
+    %{
+      tile: render_one(tile, "tile.json"),
+      cameras: render_cameras([tile]),
+      trucks: render_trucks([tile]),
+      batches: render_batches([tile])
+    }
   end
 
-  def extract_cameras(dicts) do
-    dicts
-    |> Enum.flat_map(fn %{cameras: cameras} -> cameras end)
+  def render("tile.json", %{tile: tile}) do
+    tile 
+    |> ember_attributes
+    |> Apiv2.DictExt.reject_blank_keys
   end
 
-  def simplify(dicts) do
-    dicts
-    |> Enum.map &identify_camera(&1)
+  def render_batches(tiles) do
+    tiles
+    |> Enum.flat_map(fn tile -> tile.batches end)
+    |> render_many("batch.json")
   end
 
-  def identify_camera(dict) do
-    dict
-    |> Dict.update :cameras, [], &get_ids(&1)
+  def render_trucks(tiles) do
+    []
+    |> Enum.concat(tiles |> Enum.flat_map(fn tile -> tile.entering_trucks end))
+    |> Enum.concat(tiles |> Enum.flat_map(fn tile -> tile.exiting_trucks end))
+    |> Enum.concat(tiles |> Enum.flat_map(fn tile -> tile.loading_trucks end))
+    |> render_many("truck.json")
   end
 
-  def get_ids(cameras) do
-    cameras
-    |> Enum.map &get_id(&1)
+  def render_cameras(tiles) do
+    tiles
+    |> Enum.flat_map(fn tile -> tile.cameras end)
+    |> render_many("camera.json")
   end
 
-  def get_id(%{id: id}) do
-    id
-  end
 
-  def dictify(tile) do
+  def ember_attributes(tile) do
+    import Apiv2.RecExt
     %{
       id: tile.id,
       tile_type: tile.tile_type,
@@ -49,17 +59,13 @@ defmodule Apiv2.TileView do
       width: tile.width,
       height: tile.height,
       deleted_at: tile.deleted_at,
-      fire_id: tile.fire_id,
-      created_at: tile.created_at,
-      updated_at: tile.updated_at
+      created_at: tile.inserted_at,
+      updated_at: tile.updated_at,
+      cameras: just_ids(tile.cameras),
+      batches: just_ids(tile.batches),
+      entering_trucks: just_ids(tile.entering_trucks),
+      exiting_trucks: just_ids(tile.exiting_trucks),
+      loading_trucks: just_ids(tile.loading_trucks)
     }
-    |> Dict.merge(Apiv2.CameraView.render("index.json", %{cameras: tile.cameras}))
-    |> reject_blank_keys
   end
-
-  def reject_blank_keys(dict) do
-    bad_keys = Dict.keys(dict) |> Enum.filter(fn key -> is_nil(Dict.get dict, key) end)
-    Dict.drop dict, bad_keys
-  end
-
 end

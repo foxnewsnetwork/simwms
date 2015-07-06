@@ -46,4 +46,5 @@ app.import("bower_components/fontawesome/fonts/fontawesome-webfont.ttf", { destD
 app.import("bower_components/fontawesome/fonts/fontawesome-webfont.woff", { destDir: "fonts" });
 app.import("bower_components/fontawesome/fonts/fontawesome-webfont.woff2", { destDir: "fonts" });
 app.import("bower_components/fontawesome/fonts/FontAwesome.otf", { destDir: "fonts" });
+
 module.exports = app.toTree();

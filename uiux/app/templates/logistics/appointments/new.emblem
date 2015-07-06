@@ -8,13 +8,22 @@ h2.section-title
       span.capitalize.bold back
 
 .row
-  .col-xs-12.col-sm-12.col-md-9.col-lg-6
+  .col-xs-12.col-sm-12.col-md-9.col-lg-6.col-lg-push-6
+  .col-xs-12.col-sm-12.col-md-9.col-lg-6.col-lg-pull-6
     em-form-for mistakes=appointmentError action="create" model=appointment
+      em-form-input name="appointmentType" label="type of appointment" type="select" content=appointmentChoices optionValuePath='content.value' optionLabelPath='content.presentation'
+
       em-form-input name="company" label="company" type="text"
       
       em-form-input name="materialDescription" label="material description" type="text"
       
       em-form-input name="expectedAtISO" label="ETA" type="datetime"
+        unless withinWorkingHours
+          p.bg-warning
+            i.fa.fa-warning
+            span.fa are you sure you want to set an expected time outside work hours?
+
+      em-form-input name="externalReference" label="external reference number" type="string"
       
       em-form-input name="notes" label="notes" type="textarea"
       

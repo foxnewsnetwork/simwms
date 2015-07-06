@@ -12,15 +12,23 @@ defmodule Apiv2.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/config", Apiv2 do
-    pipe_through :browser # Use the default browser stack
-    get "/", PageController, :index
-  end
+  # scope "/config", Apiv2 do
+  #   pipe_through :browser # Use the default browser stack
+  #   get "/", PageController, :index
+  # end
 
   scope "/apiv2", Apiv2 do
     pipe_through :api
-    resources "/cameras", CameraController
-    resources "/tiles", TileController
-    resources "/appointments", AppointmentController    
+    resources "/cameras", CameraController, except: [:edit, :new]
+    resources "/tiles", TileController, except: [:edit, :new]
+    resources "/appointments", AppointmentController, except: [:edit, :new]
+    resources "/trucks", TruckController, except: [:edit, :new]
+    resources "/weightickets", WeighticketController, except: [:edit, :new]
+    resources "/batches", BatchController, except: [:edit, :new]
+  end
+
+  socket "/apiv2", Apiv2 do
+    channel "trucks:*", TruckChannel
+    channel "appointments:*", AppointmentChannel
   end
 end

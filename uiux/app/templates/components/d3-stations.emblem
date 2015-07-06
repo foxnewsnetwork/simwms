@@ -1,3 +1,0 @@
-each station in models
-  span= station.x
-  span= station.y

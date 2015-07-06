@@ -1,8 +1,7 @@
 `import Ember from 'ember'`
 
 StationsStationRoute = Ember.Route.extend
-  model: (station_id: id) ->
-    @iogrid.then =>
-      @store.find "scale", id
+  model: ({id}) ->
+    @store.find "tile", id
 
 `export default StationsStationRoute`

@@ -2,17 +2,23 @@
 `import validate from 'uiux/validators/appointment'`
 `import AtomicMixin from 'uiux/mixins/atomic'`
 `import moment from 'moment'`
+`import {withinWorkingHours} from 'uiux/utils/punch-card'`
 
 get = Ember.get
 invalidMsg = """
 Your new appointment did not pass validation, tough break kid.
 """
-lll = (x) ->
-  console.log x
-  x
+appointmentChoices = Ember.A ["dropoff", "pickup", "both"]
+.map (v) -> 
+  value: v
+  presentation: v
 
 LogisticsAppointmentsNewController = Ember.Controller.extend AtomicMixin,
+  appointmentChoices: appointmentChoices
   appointment: Ember.computed.alias "model"
+  withinWorkingHours: Ember.computed "appointment.expectedAt", ->
+    withinWorkingHours @get "appointment.expectedAt"
+
   validateModel: ->
     validate @get "model"
   actions:
@@ -21,12 +27,13 @@ LogisticsAppointmentsNewController = Ember.Controller.extend AtomicMixin,
         @validateModel()
         .then (appointment) ->
           appointment.save()
+        .catch ({errors}) =>
+          @set "appointmentError", errors
+          Ember.assert invalidMsg, errors
         .then (appointment) =>
           @transitionToRoute "logistics.appointments.index",
             queryParams:
               macro: "today"
-        .catch (errors) =>
-          @set "appointmentError", errors
-          Ember.assert invalidMsg, errors
+          @send "updateAppointments"
 
 `export default LogisticsAppointmentsNewController`

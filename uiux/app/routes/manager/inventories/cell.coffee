@@ -2,6 +2,6 @@
 
 ManagerInventoriesCellRoute = Ember.Route.extend
   model: (cell_id: id)->
-    @iogrid.then => @store.find "warehouse", id
+    @store.find "tile", id
 
 `export default ManagerInventoriesCellRoute`

@@ -2,34 +2,26 @@
 `import FunctionalValidation from 'ember-functional-validation'`
 
 ensureRealAppointment = (model) ->
-  store = model.store
-  appno = model.get("appointmentNumber")
-  return if Ember.isBlank appno
-  store.find "appointment", appno
-  .then ->
-    null
-  .catch ->
-    "the appointment number: #{appno} doesn't exist"
+  store = model.store  
+  return if (appointment = model.get("appointment"))?
+  "the appointment number: #{appno} doesn't exist"
 
 ensureFreeDock = (model) ->
   store = model.store
-  dockno = model.get "targetDock"
-  return if Ember.isBlank dockno
-  store.find "barn", dockno
-  .then (barn) ->
-    "the dock number: #{dockno} is not free, please select another dock" unless barn.get("isOkay")?
-  .catch ->
-    "the dock number: #{dockno} doesn't exist"
+  dock = model.get "dock"
+  return "the dock number: #{dock.get 'nameOrId'} doesn't exist" unless dock?
+  return "the dock number: #{dock.get 'nameOrId'} is not free, please select another dock" unless dock.get("isFree")
+    
 
 weighticketValidator = FunctionalValidation.create
-  appointmentNumber:
+  appointment:
     presence: true
     custom: ensureRealAppointment
   pounds: 
     presence: true
   licensePlate: 
     presence: true
-  targetDock: 
+  dock: 
     presence: true
     custom: ensureFreeDock
 

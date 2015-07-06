@@ -1,4 +1,4 @@
-.d3-vector-canvas {
+.vector-canvas {
   position: absolute;
   top: 0;
   left: 0;
@@ -10,9 +10,12 @@
     cursor: move;
   }
   .dock,
+  .barn,
   .station,
   .warehouse,
-  .truck {
+  .scale,
+  .road,
+  .tile {
     cursor: pointer;
     &:hover {
       rect,
@@ -26,6 +29,19 @@
     text {
       font-size: 18px;
       text-anchor: middle;
+    }
+  }
+  .blank {
+    cursor: context-menu;
+    text {
+      font-size: 18px;
+      text-anchor: middle;
+      fill: #fff; 
+    }
+    &:hover {
+      rect {
+        fill: #ccc;
+      }
     }
   }
 }

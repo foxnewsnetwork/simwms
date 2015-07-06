@@ -21,7 +21,7 @@ Router.map ->
       @route "print"
       @resource "stations.weighticket.trucks", path: "/trucks", ->
         @route "new"
-    @resource "stations.station", path: "/station/:station_id", ->
+    @resource "stations.station", path: "/station/:id", ->
       @resource "stations.station.weightickets", path: "/weightickets", ->
         @route "new"
       @route "status"
@@ -54,6 +54,9 @@ Router.map ->
     @resource "manager.trucks", path: "/trucks", ->
       @resource "manager.trucks.truck", path: "/truck/:id", ->
     @resource "manager.appointments", path: "/appointments", ->
+    @resource "manager.cameras", path: "/cameras", ->
+      @resource "manager.cameras.camera", path: "/camera/:id", ->
+      @route "overview"
 
     @resource "messages", path: "/messages", ->
     @resource "message", path: "/message/:message_id", ->
@@ -70,6 +73,5 @@ Router.map ->
     @resource "statuses", path: "/statuses", ->
       @route "debug"
       @route "options"
-    @resource "cameras", path: "/cameras", ->
 
 `export default Router`

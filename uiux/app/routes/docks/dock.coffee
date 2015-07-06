@@ -2,7 +2,7 @@
 
 DocksDockRoute = Ember.Route.extend
   model: (dock_id: id) ->
-    @iogrid.then => @store.find "barn", id
+    @store.find "tile", id
   actions:
     exitRole: ->
       @transitionTo "index"

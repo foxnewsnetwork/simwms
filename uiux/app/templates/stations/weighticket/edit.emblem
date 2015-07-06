@@ -4,8 +4,19 @@
       i.fa.fa-check
       span.fa edit weight ticket for the truck
 
-    .panel-body.instruction-line
-      == partial "stations/station/weightickets/form"
+    .row
+      .col-xs-12.col-sm-12.col-md-9.col-lg-6
+        == partial 'stations/station/weightickets/form'
+      .hidden-xs.hidden-sm.col-md-3.col-lg-6
+        h4
+          span.fa.capitalize.colon selected dock
+          span.fa= model.dock.nameOrId
+        ul
+          each barn in model.docks
+            li
+              span.fa.bold dock no.
+              span.fa.bold.colon= barn.nameOrId
+              span.fa.prespace= barn.status
 
     .list-group
       link-to "stations.weighticket.print" model.id class="list-group-item instruction-line"

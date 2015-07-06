@@ -4,12 +4,6 @@ ApplicationRoute = Ember.Route.extend
   isBusy: Ember.computed.alias "controllerPen.isBusy"
   isPending: Ember.computed.alias "isBusy"
 
-  model: ->
-    # camera: PixiCamera.create(x: 250, y: 280, zoom: 0.8)
-    Ember.RSVP.hash
-      grid: @iogrid
-      trucks: @iotrucks
-
   actions:
     controllerWorking: (controller) ->
       @controllerPen.makeBusy controller

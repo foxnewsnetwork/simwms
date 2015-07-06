@@ -1,21 +1,20 @@
 `import Ember from 'ember'`
 
 ManagerController = Ember.Controller.extend
-  iomessages: Ember.computed.alias("model")
-
+  tiles: Ember.computed.alias "model.tiles"
+  trucks: Ember.computed.alias "model.trucks"
   rightNow: Ember.computed.alias("clock.rightNow")
 
   actions:
-    clickDock: (dock) ->
-      @transitionToRoute "manager.dock", dock.get "id"
-
-    clickStation: (station) ->
-      @transitionToRoute "manager.station", station.get "id"
-
-    clickInventory: ->
-      @transitionToRoute "manager.inventories"
-
-    clickTruck: (truck) ->
-      @transitionToRoute "manager.truck", truck.get "id"
+    clickTile: (tile) ->
+      switch tile.get "tileType"
+        when "dock", "barn"
+          @transitionToRoute "manager.dock", tile.get "id"
+        when "warehouse"
+          @transitionToRoute "manager.inventories.cell", tile.get "id"
+        when "station", "scale"
+          @transitionToRoute "manager.station", tile.get "id"
+        else
+          @transitionToRoute "manager.trucks"
   
 `export default ManagerController`

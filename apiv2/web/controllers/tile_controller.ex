@@ -3,13 +3,19 @@ defmodule Apiv2.TileController do
   alias Apiv2.Tile
   plug :action
 
-  def index(conn, _params) do
-    tiles = Tile |> Repo.all |> Repo.preload [:cameras]
+  @preload_fields ~w(cameras entering_trucks exiting_trucks loading_trucks batches)a
+  def index(conn, params) do
+    tiles = params 
+    |> Apiv2.TileQuery.index 
+    |> Repo.all
+    |> Repo.preload(@preload_fields)
     render conn, "index.json", tiles: tiles
   end
 
   def show(conn, %{"id" => id}) do
-    tile = Tile |> Repo.get!(id) |> Repo.preload [:cameras]
+    tile = Tile 
+    |> Repo.get!(id) 
+    |> Repo.preload(@preload_fields)
     render conn, "show.json", tile: tile
   end
 
@@ -17,7 +23,7 @@ defmodule Apiv2.TileController do
     changeset = Tile.changeset(%Tile{}, tile_params)
 
     if changeset.valid? do
-      tile = Repo.insert(changeset) |> Repo.preload [:cameras]
+      tile = Repo.insert(changeset) |> Repo.preload(@preload_fields)
       render(conn, "show.json", tile: tile)
     else
       conn
@@ -31,7 +37,7 @@ defmodule Apiv2.TileController do
     changeset = Tile.changeset(tile, tile_params)
 
     if changeset.valid? do
-      tile = Repo.update(changeset) |> Repo.preload [:cameras]
+      tile = Repo.update(changeset) |> Repo.preload(@preload_fields)
       render(conn, "show.json", tile: tile)
     else
       conn
@@ -41,7 +47,7 @@ defmodule Apiv2.TileController do
   end
 
   def delete(conn, %{"id" => id}) do
-    tile = Repo.get!(Tile, id) |> Repo.preload [:cameras]
+    tile = Repo.get!(Tile, id)
     tile = Repo.delete(tile)
     render(conn, "show.json", tile: tile)
   end

@@ -1,10 +1,5 @@
 .row
-  .col-md-6.col-sm-12.col-xs-12
-    .list-group
-      each dock in leftDocks
-        == partial "docks/slice"
-
-  .col-md-6.col-sm-12.col-xs-12
-    .list-group
-      each dock in rightDocks
-        == partial "docks/slice"
+  each dock in model
+    .col-xs-12.col-sm-6.col-md-4.col-lg-4
+      .list-group
+          == partial "docks/slice"

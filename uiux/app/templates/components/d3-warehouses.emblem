@@ -1,2 +1,0 @@
-each warehouse in warehouses
-  span= warehouse.x

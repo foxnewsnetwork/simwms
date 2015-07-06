@@ -9,6 +9,11 @@ defmodule Apiv2.CameraController do
     render conn, "show.json", camera: camera
   end
 
+  def index(conn, _) do
+    cameras = Repo.all(Camera)
+    render conn, "index.json", cameras: cameras
+  end
+
   def create(conn, %{"camera" => camera_params}) do
     changeset = Camera.changeset(%Camera{}, camera_params)
 

@@ -1,0 +1,10 @@
+.row
+  each camera in model
+    .col-lg-3.col-md-4.col-sm-12.col-xs-12
+      adaptive-camera camera=camera
+      
+
+.actions
+  button.btn.btn-primary.close-button click="closeModal"
+    i.fa.fa-times
+    span.prespace.upcase dismiss

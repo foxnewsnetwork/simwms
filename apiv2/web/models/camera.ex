@@ -1,14 +1,14 @@
 defmodule Apiv2.Camera do
   use Apiv2.Web, :model
 
-  schema "apiv1_cameras" do
+  schema "apiv2_cameras" do
     field :permalink, :string
     field :camera_name, :string
     field :mac_address, :string
     field :camera_style, :string
 
     belongs_to :tile, Apiv2.Tile
-    timestamps inserted_at: :created_at
+    timestamps 
   end
 
   @required_fields ~w(camera_name tile_id camera_style)

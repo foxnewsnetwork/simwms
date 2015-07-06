@@ -1,9 +1,0 @@
-#modal-background
-  .modal-container
-    .container-fluid
-      .row
-        .col-lg-12.col-md-12.col-sm-12.col-xs-12
-          #cameras-modal.modal-box
-            .close-button-top.pointer.close-button click="closeModal"
-              i.fa.fa-times
-            == partial "cameras/overview"

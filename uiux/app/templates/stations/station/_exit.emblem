@@ -1,30 +1,23 @@
 .panel.panel-default.instructions-set
   .panel-heading.instruction-line
-    span.fa.capitalize free exit weight station
+    span.fa.capitalize exiting trucks
   .panel-body
-    if iotrucks
-      p.capitalize the following trucks are currently on site
-      table.table.table-hover
-        thead
-          tr
-            th.capitalize appt no
-            th.capitalize origin
-            th.capitalize material
-            th.capitalize arrival time
-            th.capitalize status
-            th.capitalize ticket
-        tbody
-          each truck in iotrucks
-            tr.pointer data-truck-id=truck.id click="'truckDeparted' truck"
-              td= truck.appointmentNumber
-              td= truck.appointment.company
-              td= truck.appointment.materialDescription
-              td= truck.arrivedAtAgo
-              td= truck.position
-              td= truck.weighticket.id
-              
-    else
-      p.capitalize there are currently no trucks on site
-      link-to "stations.station.problem" station.id class="btn btn-danger btn-lg btn-hover"
-          i.fa.fa-warning
-          span.fa.bold.nav-title report problem
+    p.capitalize the following trucks are trying to leave
+    table.table.table-hover
+      thead
+        tr
+          th.capitalize appt no
+          th.capitalize origin
+          th.capitalize material
+          th.capitalize arrival time
+          th.capitalize status
+          
+      tbody
+        each truck in trucks
+          tr.pointer data-truck-id=truck.id click="'depart' truck"
+            td= truck.appointment.permalink
+            td= truck.appointment.company
+            td= truck.appointment.materialDescription
+            td= ago truck.undockedAt
+            td= truck.position
+            

@@ -9,4 +9,6 @@
         span.fa.prespace= appointment.id
         span.fa.bold.capitalize.prespace.colon from
         span.fa.prespace= appointment.company
-        
+    else
+      .list-group-item
+        span.fa.bold your warehouse has no appointments today

@@ -4,27 +4,23 @@
 `import DSC from 'ember-data-complex'`
 
 Weighticket = DSC.ModelComplex.extend
-  appointmentNumber: DS.attr "string"
-  issuerId: DS.attr "string"
   pounds: DS.attr "number"
   licensePlate: DS.attr "string"
-  targetDock: DS.attr "string"
-  updatedAt: DS.attr "date"
-  createdAt: DS.attr "date"
   status: DS.attr "string"
   notes: DS.attr "string"
-  finisherId: DS.attr "string"
   finishPounds: DS.attr "number"
+  
+  updatedAt: DS.attr "moment"
+  createdAt: DS.attr "moment"
 
   files: DS.attr "files"
 
   pictures: DS.hasMany "picture"
-  appointment: DSC.belongsTo "appointment", foreignKey: 'appointmentNumber'
-  entryScale: DSC.belongsTo "scale", foreignKey: 'issuerId'
-  stationNumber: Ember.computed.alias "entryScale.stationNumber"
-  barn: DSC.belongsTo "barn", foreignKey: 'targetDock'
-  dockNumber: Ember.computed.alias "barn.dockNumber"
-
+  appointment: DS.belongsTo "appointment"
+  truck: DS.belongsTo "truck"
+  issuer: DS.belongsTo "tile"
+  finisher: DS.belongsTo "tile"
+  dock: DS.belongsTo "tile"
   netWeight: EmberCPM.Macros.difference "pounds", "finishPounds"
   
 `export default Weighticket`

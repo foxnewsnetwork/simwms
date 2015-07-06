@@ -2,6 +2,6 @@
 
 StationsTruckRoute = Ember.Route.extend
   model: ({truckId}) ->
-    @iotrucks.then => @store.find "truck", truckId
+    @store.find "truck", truckId
 
 `export default StationsTruckRoute`

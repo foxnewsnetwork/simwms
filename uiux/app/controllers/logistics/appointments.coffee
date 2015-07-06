@@ -1,4 +1,5 @@
 `import Ember from 'ember'`
+`import {withinWorkingHours} from 'uiux/utils/punch-card'`
 
 LogisticsAppointmentsController = Ember.ArrayController.extend
   queryParams:[
@@ -12,5 +13,9 @@ LogisticsAppointmentsController = Ember.ArrayController.extend
   pageBinding: "content.page"
   perPageBinding: "content.perPage"
   totalPagesBinding: "content.totalPages"
+
+  withinWorkingHours: Ember.computed "clock.rightNow", ->
+    withinWorkingHours moment @get "clock.rightNow"
+
 
 `export default LogisticsAppointmentsController`

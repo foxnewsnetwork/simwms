@@ -3,6 +3,7 @@
 `import AtomicMixin from 'uiux/mixins/atomic'`
 
 DocksTruckBatchesNewController = Ember.Controller.extend AtomicMixin,
+  warehouseChoices: Ember.computed.alias("model.warehouses.warehouseChoices")
   actions:
     killPic: (uri) ->
       @get("model.dataUris")?.removeObject uri
@@ -11,9 +12,9 @@ DocksTruckBatchesNewController = Ember.Controller.extend AtomicMixin,
         validate @get 'model'
         .then (model) ->
           model.save()
+        .catch (errors) =>
+          @set "batchErrors", errors
         .then (model) =>
           @transitionToRoute "docks.batch", model.get("id")
-        .catch (errors) ->
-          @set "batchErrors", errors
 
 `export default DocksTruckBatchesNewController`

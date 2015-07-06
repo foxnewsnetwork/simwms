@@ -3,18 +3,14 @@
 StationsStationIndexController = Ember.Controller.extend
   appointments: Ember.computed.alias("model.appointments")
   station: Ember.computed.alias("model.station")
-
-  isEntryStation: Ember.computed.alias("station.isEntryStation")
+  trucks: Ember.computed.alias("station.exitingTrucks")
 
   actions:
-    truckArrived: (appointment) ->
-      @transitionToRoute "stations.station.weightickets.new", @get("station.id"), 
-        queryParams:
-          appointment: appointment.get("id")
+    depart: (truck) ->
+      truck.set "exitScale", @get("station")
+      truck.save()
+      .then =>
+        @transitionToRoute "stations.truck.departure", truck.get("id")
 
-    truckDeparted: (truck) ->
-      truck.prepareToLeave @get "station"
-      .then (truck) =>
-        @transitionToRoute "stations.truck.departure", truck.get "id"
 
 `export default StationsStationIndexController`

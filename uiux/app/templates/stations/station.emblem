@@ -6,10 +6,7 @@
         span.fa.nav-title dash
       link-to "stations.station.status" model.id class="btn btn-default"
         i.fa.fa-camera
-        span.fa.nav-title status
-      link-to "stations.station.weightickets.new" model.id class="btn btn-default"
-        i.fa.fa-sign-in
-        span.fa.nav-title truck arrived
+        span.fa.nav-title camera
       link-to "stations.station.problem" model.id class="btn btn-default"
         i.fa.fa-warning
         span.fa.nav-title problem

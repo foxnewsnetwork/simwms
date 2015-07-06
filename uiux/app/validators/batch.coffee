@@ -3,17 +3,12 @@
 
 ensurePersistence = (model) ->
   store = model.store
-  id = Ember.get model, "weighticketId"
-  return if Ember.isBlank id
-  store.find "weighticket", id
-  .then (ticket) ->
-    return if ticket?
-    "wasn't able to find the weighticket, and instead got #{ticket}"
-  .catch (errors) ->
-    "there is no weighticket with id:#{id}\n  #{errors}"
+  appointment = Ember.get model, "appointment"
+  return if Ember.isPresent appointment
+  "no appointment found"
 
 batchValidator = FunctionalValidation.create
-  weighticketId:
+  appointment:
     presence: true
     custom: ensurePersistence
 

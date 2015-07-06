@@ -36,10 +36,5 @@ $material-orange: #FF5722;
   .example-pic {
     max-width: 450px;
   }
-  .panel-body {
-    @include display-flex;
-    @include align-items(center);
-    @include justify-content(center);
-    @include flex-direction(column);
-  }
+
 }

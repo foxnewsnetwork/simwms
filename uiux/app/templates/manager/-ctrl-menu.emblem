@@ -1,16 +1,10 @@
 .row
-  news-ticker class="col-xs-12" messages=iomessages
+  news-ticker class="col-xs-12"
 .row
   link-to "manager.trucks" classNames="col-lg-3 info-box"
     span.info-title
-      i.fa.fa-sign-in
-    span.fa.info-data= iotrucks.enteringTrucks.length
-    span.info-title
       i.fa.fa-truck
-    span.fa.info-data= iotrucks.onSiteTrucks.length
-    span.info-title
-      i.fa.fa-sign-out
-    span.fa.info-data= iotrucks.exitingTrucks.length
+    span.fa.info-data= trucks.length
   .col-lg-3.info-box
     span.fa.info-title
       i.fa.fa-cubes

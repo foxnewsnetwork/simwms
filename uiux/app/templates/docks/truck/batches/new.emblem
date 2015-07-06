@@ -1,43 +1,44 @@
 .panel.panel-default.instructions-set
   .panel-heading.instruction-line
-    span.fa material bale from truck with weighticket
-    span.highlight= model.weighticketId
-    
-  em-form-for model=model mistakes=batchErrors action="batch" classNames="panel-body instruction-line"
-    dl.hidden
-      dt appointmentId
-      dd= model.appointmentId
-      dt warehouseId
-      dd= model.warehouseId
-      dt weighticketId
-      dd= model.weighticketId
-      dt entryDockId
-      dd= model.entryDockId
-      dt exitDockId
-      dd= model.exitDockId
-      dt permalink
-      dd= model.permalink
-      dt description
-      dd= model.description
-      dt quantity
-      dd= model.quantity
-      dt createdAt
-      dd= model.createdAt
-
-    em-form-input name="files" type="webcam" label="camera pictures" classNames="webcam-240-hack"
-      span.help-block click the video to take picture
+    span.fa material bale from truck with appointment number
+    span.highlight= model.appointment.permalink
+  
+  .panel-body.instruction-line
     .row
-      each uri in model.files
-        .col-lg-4.col-md-4.col-sm-6.col-xs-6
-          img.thumbnail.bound.click-to-kill.pointer click="'killPic' uri" src=uri
-          
-    em-form-input name="description" type="textarea" label="description"
-      span.help-block any additional notes
+      .col-xs-12.col-sm-12.col-md-9.col-lg-9
+        em-form-for model=model mistakes=batchErrors action="batch"
+          .row
+            each uri in model.files
+              .col-lg-4.col-md-4.col-sm-6.col-xs-6
+                img.thumbnail.bound.click-to-kill.pointer click="'killPic' uri" src=uri
+                
+          em-form-input name="quantity" type="text" label="quantity"
+            span.help-block about how much material is in this batch?
 
-    .btn-group
-      promise-button model=model classNames="btn btn-success btn-hover btn-lg" type="submit"
-        i.fa.fa-check
-        span.capitalize submit
-      link-to "docks.truck.arrive" model.truck.id class="btn btn-default btn-hover btn-lg"
-        i.fa.fa-times
-        span.capitalize back
+          em-form-input name="warehouse" type="select" label="target storage section" content=warehouseChoices optionValuePath='content.value' optionLabelPath='content.presentation'
+            span.help-block if you don't like the suggested storage section, please change it
+
+          em-form-input name="description" type="textarea" label="description"
+            span.help-block any additional notes
+
+          .btn-group
+            promise-button model=model classNames="btn btn-success btn-hover btn-lg" type="submit"
+              i.fa.fa-check
+              span.capitalize submit
+            link-to "docks.truck.arrive" model.truck.id class="btn btn-default btn-hover btn-lg"
+              i.fa.fa-times
+              span.capitalize back
+      .col-xs-12.col-sm-12.col-md-3.col-lg-3
+        ul
+          li
+            span.fa.bold.colon truck license plate
+            span.fa= model.truck.weighticket.licensePlate
+          li
+            span.fa.bold.colon loading dock
+            span.fa= model.dock.nameOrId
+          li
+            span.fa.bold.colon arrived at
+            span.fa= ago model.arrivedAt
+          li
+            span.fa.bold.colon target storage section
+            span.fa= model.warehouse.nameOrId

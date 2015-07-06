@@ -11,7 +11,7 @@
         span.fa= model.id
       dt.capitalize appointment number
       dd
-        span.fa= model.id
+        span.fa= model.permalink
       dt.capitalize material description
       dd
         span.fa= model.materialDescription
@@ -26,13 +26,13 @@
         span.fa= model.status
       dt.capitalize createdAt
       dd
-        span.fa= model.createdAt
+        span.fa= moment model.createdAt
       dt.capitalize updatedAt
       dd
-        span.fa= model.updatedAt
+        span.fa= moment model.updatedAt
       dt.capitalize expectedAt
       dd
-        span.fa= model.expectedAt
+        span.fa= moment model.expectedAt
   .col-xs-12.col-sm-12.col-md-6.col-lg-4
     .list-group
       if model.canReschedule
