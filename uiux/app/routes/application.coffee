@@ -4,6 +4,8 @@ ApplicationRoute = Ember.Route.extend
   isBusy: Ember.computed.alias "controllerPen.isBusy"
   isPending: Ember.computed.alias "isBusy"
 
+  model: ->
+    @store.find "tile"
   actions:
     controllerWorking: (controller) ->
       @controllerPen.makeBusy controller

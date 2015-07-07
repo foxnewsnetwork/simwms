@@ -1,17 +1,12 @@
 `import Ember from 'ember'`
 `import Docks from 'uiux/collections/docks'`
 
-lll = (x) -> 
-  console.log x
-  x
-
 StationsStationWeighticketsNewRoute = Ember.Route.extend
   queryParams:
     appointment: true
   model: ({appointment}) ->
-    @store.findAll("tile")
-    .then (tiles) =>
-      @setupWeighticket(appointment, Docks.fromTiles(tiles))
+    tiles = @modelFor("application")
+    @setupWeighticket(appointment, Docks.fromTiles(tiles))
 
   setupWeighticket: (apptId, docks) ->
     @store.find("appointment", apptId)

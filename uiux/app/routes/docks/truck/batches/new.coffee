@@ -13,17 +13,16 @@ DocksTruckBatchesNewRoute = Ember.Route.extend
       @setupBatch()
 
   setupBatch: (tile) ->
-    @store.findAll("tile")
-    .then (tiles) => 
-      warehouses = Warehouses.fromTiles tiles
-      truck = @modelFor "docks.truck"
-      @store.createRecord "batch",
-        appointment: truck.get("appointment")
-        dock: truck.get("dock")
-        warehouse: tile or warehouses.get("firstEmptyWarehouse")
-        arrivedAt: moment()
-        truck: truck
-        warehouses: warehouses
+    tiles = @modelFor "application"
+    warehouses = Warehouses.fromTiles tiles
+    truck = @modelFor "docks.truck"
+    @store.createRecord "batch",
+      appointment: truck.get("appointment")
+      dock: truck.get("dock")
+      warehouse: tile or warehouses.get("firstEmptyWarehouse")
+      arrivedAt: moment()
+      truck: truck
+      warehouses: warehouses
       
   tearDown: Ember.on "deactivate", ->
     model = @controller.get "model"

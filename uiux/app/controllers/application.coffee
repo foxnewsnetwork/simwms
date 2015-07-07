@@ -1,8 +1,6 @@
 `import Ember from 'ember'`
 
-ApplicationController = Ember.Controller.extend
-  trucks: Ember.computed.alias "model.trucks"
-  grid: Ember.computed.alias "model.grid"
+ApplicationController = Ember.Controller.extend()
 
 
 `export default ApplicationController`

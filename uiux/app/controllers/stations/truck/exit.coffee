@@ -6,16 +6,5 @@
 StationsTruckExitController = Ember.Controller.extend AtomicMixin,
   truck: Ember.computed.alias "model"
   printTicketLink: CPM.Macros.fmt "truck.weighticketId", "#{config.print}/weightickets/%@"
-  actions:
-    killTruck: ->
-      @atomically =>
-        @get "truck.exitScaleIdPromise"
-        .then (exitScaleId) =>
-          @get "truck"
-          .destroyAndCleanup()
-          .then ->
-            exitScaleId
-        .then (scaleId) =>
-          @transitionToRoute "stations.station", scaleId
 
 `export default StationsTruckExitController`

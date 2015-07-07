@@ -5,4 +5,3 @@ link-to "docks.dock.index" dock.id class="list-group-item"
   .dock-status
     span.dash.bold status
     span.fa= dock.status
-    

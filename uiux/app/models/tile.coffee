@@ -1,6 +1,7 @@
 `import Ember from 'ember'`
 `import DS from 'ember-data'`
 `import CPM from 'ember-cpm'`
+`import D from '../utils/debug-ex'`
 Macros = CPM.Macros
 
 AlphabetExt = "abcdefghijklmnopqrstuvwxyzαβγδεζηθικλμνξοπρστυφχψω".split("")
