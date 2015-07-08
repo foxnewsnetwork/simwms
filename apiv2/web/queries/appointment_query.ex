@@ -46,9 +46,16 @@ defmodule Apiv2.AppointmentQuery do
   end
 
   def show(%{"id" => id}) do
-    from a in Appointment,
-      where: a.id == ^id or
-             a.permalink == ^id,
-      select: a
+    try do
+      String.to_integer(id)
+      from a in Appointment,
+        where: a.id == ^id,
+        select: a
+    rescue
+      error in ArgumentError ->
+        from a in Appointment,
+          where: a.permalink == ^id,
+          select: a
+    end
   end
 end

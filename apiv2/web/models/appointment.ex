@@ -56,9 +56,10 @@ defmodule Apiv2.Appointment do
 
   def create_regular_permalink(changeset) do
     company_permalink = Ecto.Changeset.get_field(changeset, :company_permalink)
+    type = Ecto.Changeset.get_field(changeset, :appointment_type)
     v = :random.uniform(1000000)
     changeset
-    |> Ecto.Changeset.put_change(:permalink, "#{company_permalink}-#{v}")
+    |> Ecto.Changeset.put_change(:permalink, "#{company_permalink}-#{v}-#{type}")
   end
 
   def create_company_permalink(changeset) do

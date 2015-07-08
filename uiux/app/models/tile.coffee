@@ -2,6 +2,8 @@
 `import DS from 'ember-data'`
 `import CPM from 'ember-cpm'`
 `import D from '../utils/debug-ex'`
+`import BatchesCollection from '../collections/batches'`
+`import TrucksCollection from '../collections/trucks'`
 Macros = CPM.Macros
 
 AlphabetExt = "abcdefghijklmnopqrstuvwxyzαβγδεζηθικλμνξοπρστυφχψω".split("")
@@ -31,12 +33,25 @@ Tile = DS.Model.extend
 
   defaultName: Macros.join "colName", "rowName", "-"
   nameOrId: Macros.firstPresent "tileName", "defaultName", "id"
-
+  canonicalName: Ember.computed "tileType", ->
+    switch @get "tileType"
+      when "barn", "dock" then "loading dock"
+      when "warehouse", "storage" then "storage cell"
+      when "road" then "road"
+      when "station", "scale" then "weight station"
+      else "unknown"
+  fullTitle: Macros.join "canonicalName", "nameOrId", ":"
   isFree: Ember.computed.equal "status", "free"
   
-  status: Ember.computed "enteringTrucks.length", "exitingTrucks.length", "loadingTrucks.length", ->
-    return "busy" if @get("enteringTrucks.length") > 0 or @get("loadingTrucks.length") > 0
-    "free"
+  status: Ember.computed.alias "trucksCollection.status"
 
   batchCount: Ember.computed.alias "batches.length"
+
+  batchesCollection: Ember.computed "batches", -> BatchesCollection.fromBatches @get "batches"
+
+  trucksCollection: Ember.computed "enteringTrucks", "exitingTrucks", "loadingTrucks", ->
+    TrucksCollection.fromTile
+      enter: @get("enteringTrucks")
+      exit: @get("exitingTrucks")
+      load: @get("loadingTrucks")
 `export default Tile`

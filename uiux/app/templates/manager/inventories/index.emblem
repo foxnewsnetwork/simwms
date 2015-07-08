@@ -1,7 +1,46 @@
 h2.modal-title
-  span.fa inventory overview
+  span.fa inventory stoarge overview
 
-== partial "inventories/inventory-grid"
+.panel-group
+  each warehouse in model
+    panel-collapsible model=warehouse active=active action="clickPanel" panelTitle=warehouse.fullTitle
+      .panel-body
+        ul.list-inline
+          li
+            span.bold.capitalize.fa.colon total batches
+            span.fa= warehouse.batches.length
+          li
+            span.bold.capitalize.fa.colon cameras
+            each camera in warehouse.cameras
+              i.fa.fa-video-camera
+            else
+              span.parantheses none
+          li
+            span.bold.capitalize.fa.colon last modified
+            span.fa= moment warehouse.updatedAt
+        p 
+          link-to "manager.inventories.cell" warehouse.id
+            span The following 
+            span.bold= warehouse.batchesCollection.uniqAppointmentCount
+            span &nbsp;appointment(s) have loads stored in this section
+      .list-group
+        each batch in warehouse.batchesCollection.uniqAppointmentBatches
+          link-to "manager.inventories.cell" warehouse.id classNames="list-group-item"
+            ul.list-inline
+              li
+                span.bold.capitalize.fa batch no.
+                span.fa= batch.permalink
+              li
+                span.bold.capitalize.fa.colon arrived at
+                span.fa= moment batch.createdAt
+              li
+                span.bold.capitalize.fa.colon description
+                span.fa.ellipsis= batch.description
+        else
+          link-to "manager.inventories.cell" warehouse.id classNames="list-group-item" 
+            span.fa you have no loads here from any appointment
+  else
+    panel-collapsible panelTitle="You have no storage cells!"
 
 .actions
   button.btn.btn-primary.close-button click="closeModal"

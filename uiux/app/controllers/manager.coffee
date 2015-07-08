@@ -3,6 +3,8 @@
 ManagerController = Ember.Controller.extend
   tiles: Ember.computed.alias "model.tiles"
   trucks: Ember.computed.alias "model.trucks"
+  batches: Ember.computed.alias "model.batches"
+  appointments: Ember.computed.alias "model.appointments"
   rightNow: Ember.computed.alias("clock.rightNow")
 
   actions:

@@ -2,6 +2,7 @@
 
 ManagerTrucksRoute = Ember.Route.extend
   model: ->
-    @store.findAll "truck"
+    @modelFor "manager"
+    .trucks
 
 `export default ManagerTrucksRoute`

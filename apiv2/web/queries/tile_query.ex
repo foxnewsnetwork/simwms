@@ -1,6 +1,5 @@
 defmodule Apiv2.TileQuery do
   import Ecto.Query
-  import Ecto.Model
   alias Apiv2.Tile
 
   @preload_fields ~w(cameras entering_trucks exiting_trucks loading_trucks batches)a

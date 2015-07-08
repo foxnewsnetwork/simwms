@@ -1,31 +1,37 @@
 h2.modal-title
-  span.fa cell # 
-  span.fa= model.colName
-  span.fa= model.rowName
+  span.fa storage cell # 
+  span.fa= model.nameOrId
 
 .row
   .col-xs-12
-    link-to "manager.inventories.index" class="btn btn-lg btn-default"
+    link-to "manager.inventories.index" (query-params active=model.id) class="btn btn-lg btn-default"
       i.fa.fa-caret-left
       span.fa.capitalize.prespace back to inventory
 .row.info
   .col-xs-12
-    table.table-striped.table-bordered.table
-      thead
-        tr
-          th id
-          th desc
-          th quant
-          th ETA
-          th appt
-      tbody
-        each batch in model.batches
-          tr
-            td= batch.id
-            td= batch.description
-            td= batch.quantity
-            td= batch.createdAt
-            td= batch.appointmentId
+    ember-list items=model.batches height=400 rowHeight=75
+      .batch-data
+        ul.list-inline
+          li
+            span.fa.bold.capitalize.colon id
+            span.fa= id
+          li
+            span.fa.bold.capitalize.colon description
+            span.fa= description
+          li
+            span.fa.bold.capitalize.colon quantity
+            span.fa= quantity
+          li
+            span.fa.bold.capitalize.colon arrived at
+            span.fa= ago createdAt
+          li
+            span.fa.bold.capitalize appt no.
+            span.fa= appointment.permalink
+
+      .batch-pictures
+        span picture goes here
+
+
 .row
   each batch in model.batches
     each picture in batch.pictures

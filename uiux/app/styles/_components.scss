@@ -6,3 +6,12 @@
 @import "components/form-input";
 @import "components/pagination";
 @import "components/responsive-table";
+@import "components/panel-collapsible";
+
+.ember-list-view {
+  overflow: auto;
+  position: relative;
+}
+.ember-list-item-view {
+  position: absolute;
+}

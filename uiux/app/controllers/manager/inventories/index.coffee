@@ -2,8 +2,13 @@
 `import InventoriesIndexController from 'uiux/controllers/inventories/index'`
 
 ManagerInventoriesIndexController = InventoriesIndexController.extend
+  queryParams:["active"]
+  active: null
   actions:
-    touchCell: (cell) ->
-      @transitionToRoute "manager.inventories.cell", cell.get("id")
+    clickPanel: (warehouse) ->
+      if warehouse.get("id") is @get("active")
+        @set "active", null
+      else
+        @set "active", warehouse.get("id")
 
 `export default ManagerInventoriesIndexController`
