@@ -13,6 +13,10 @@ WarehousesCollection = Ember.ArrayProxy.extend
     value: warehouse
     presentation: [warehouse.get("nameOrId"), warehouse.getWithDefault("batchesCount", 0)].join(": ")
 
+  batchCounts: Ember.computed.mapBy "warehouses", "batches.length"
+
+  totalBatches: Ember.computed.sum "batchCounts"
+
 WarehousesCollection.fromTiles = (recordArray) ->
   WarehousesCollection.create content: recordArray.filterBy("tileType", "warehouse")
 

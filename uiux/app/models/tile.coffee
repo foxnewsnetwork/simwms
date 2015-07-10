@@ -6,7 +6,9 @@
 `import TrucksCollection from '../collections/trucks'`
 Macros = CPM.Macros
 
-AlphabetExt = "abcdefghijklmnopqrstuvwxyzαβγδεζηθικλμνξοπρστυφχψω".split("")
+Alphabet = "abcdefghijklmnopqrstuvwxyz"
+AlphabetGr = "αβγδεζηθικλμνξοπρστυφχψω"
+AlphabetExt = Alphabet + AlphabetGr
 
 Tile = DS.Model.extend
   tileType: DS.attr "string"
@@ -25,7 +27,15 @@ Tile = DS.Model.extend
   batches: DS.hasMany "batch", inverse: "warehouse"
 
   colName: Ember.computed "x", ->
-    AlphabetExt[Math.abs(@getWithDefault("x", 0)) % AlphabetExt.length]
+    x = @getWithDefault "x", 0
+    return Alphabet.charAt(x) if x is 0
+    output = if x < 0 then "-" else ""
+    x = Math.abs x
+    until x is 0
+      r = x % Alphabet.length
+      x = Math.floor(x / Alphabet.length)
+      output += Alphabet.charAt r
+    output
     
   rowName: Ember.computed.alias "y"
 

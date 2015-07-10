@@ -2,6 +2,15 @@ h2.modal-title
   span.fa inventory stoarge overview
 
 .panel-group
+  panel-collapsible active=active panelTitle="storage inventory summary" action="clickSummary"
+    .panel-body
+      ul.list-inline
+        li
+          span.bold.capitalize.fa.colon total storage sections
+          span.fa= model.length
+        li
+          span.bold.fa.capitalize.colon total loads in warehouse
+          span.fa= model.totalBatches
   each warehouse in model
     panel-collapsible model=warehouse active=active action="clickPanel" panelTitle=warehouse.fullTitle
       .panel-body

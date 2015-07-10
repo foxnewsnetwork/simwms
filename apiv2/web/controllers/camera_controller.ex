@@ -2,7 +2,7 @@ defmodule Apiv2.CameraController do
   use Apiv2.Web, :controller
   alias Apiv2.Camera
   plug :scrub_params, "camera" when action in [:create, :update]
-  plug :action
+  
 
   def show(conn, %{"id" => id}) do
     camera = Repo.get!(Camera, id)

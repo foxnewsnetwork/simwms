@@ -13,7 +13,7 @@ module.exports = function(environment) {
       "script-src": "'self' https://s.ytimg.com",
       "frame-src": "'self' https://www.youtube.com"
     },
-    print: 'http://localhost:4200/apiv0',
+    printNamespace: "/print",
     baseURL: '/',
     locationType: 'auto',
     EmberENV: {
@@ -50,7 +50,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.printNamespace = "/print"
   }
 
   return ENV;

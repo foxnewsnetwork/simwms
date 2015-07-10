@@ -1,11 +1,28 @@
 defmodule Apiv2.TiExt do
 
+  def american_like?(string) do
+    ~r/^\d{4}\-\d{2}-\d{2}$/ |> Regex.match?(string)
+  end
+  def parse_american(string) do
+    string
+    |> Timex.DateFormat.parse("{YYYY}-{0M}-{0D}")
+    |> (fn {_, timedate} -> timedate end).()
+    |> timex_to_ecto_datetime
+  end
   def parse(string) do
+    cond do
+      american_like?(string) -> parse_american(string)
+      true -> parse_iso(string)
+    end
+  end
+
+  def parse_iso(string) do
     string
     |> Timex.DateFormat.parse("{ISO}")
     |> (fn {_, timedate} -> timedate end).()
     |> timex_to_ecto_datetime
   end
+
   @spec time_ago(integer, atom) :: Ecto.DateTime
   def time_ago({amount, unit}), do: time_ago(amount, unit)
   def time_ago(amount, unit) do

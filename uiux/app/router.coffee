@@ -57,6 +57,13 @@ Router.map ->
     @resource "manager.cameras", path: "/cameras", ->
       @resource "manager.cameras.camera", path: "/camera/:id", ->
       @route "overview"
+    @resource "manager.employees", path: "/employees", ->
+      @route "new"
+    @resource "manager.settings", path: "/settings", ->
+      @route "debug"
+      @route "workflows"
+    @resource "manager.reports", path: "/reports", ->
+      @route "new"
 
     @resource "messages", path: "/messages", ->
     @resource "message", path: "/message/:message_id", ->
@@ -68,8 +75,6 @@ Router.map ->
       @route Ember.String.dasherize "truck has left site"
       @route Ember.String.dasherize "problem"
       @route Ember.String.dasherize "miscellanious"
-    @resource "contracts", path: "/contracts", ->
-    @resource "employees", path: "/employees", ->
     @resource "statuses", path: "/statuses", ->
       @route "debug"
       @route "options"

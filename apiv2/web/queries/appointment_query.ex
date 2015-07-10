@@ -15,13 +15,13 @@ defmodule Apiv2.AppointmentQuery do
     |> expected_at_finish(params["expected_at_finish"])
   end
 
-  defp expected_at_start(query, nil), do: query
-  defp expected_at_start(query, datetime) do
+  def expected_at_start(query, nil), do: query
+  def expected_at_start(query, datetime) do
     query 
     |> where([a], a.expected_at > ^(Apiv2.TiExt.parse datetime))
   end
-  defp expected_at_finish(query, nil), do: query
-  defp expected_at_finish(query, datetime) do
+  def expected_at_finish(query, nil), do: query
+  def expected_at_finish(query, datetime) do
     query 
     |> where([a], a.expected_at < ^(Apiv2.TiExt.parse datetime))
   end
@@ -46,16 +46,14 @@ defmodule Apiv2.AppointmentQuery do
   end
 
   def show(%{"id" => id}) do
+    query = from a in Appointment,
+      select: a
     try do
-      String.to_integer(id)
-      from a in Appointment,
-        where: a.id == ^id,
-        select: a
+      _ = String.to_integer(id)
+      query |> where([a], a.id == ^id)
     rescue
-      error in ArgumentError ->
-        from a in Appointment,
-          where: a.permalink == ^id,
-          select: a
+      _ in ArgumentError ->
+        query |> where([a], a.permalink == ^id)
     end
   end
 end

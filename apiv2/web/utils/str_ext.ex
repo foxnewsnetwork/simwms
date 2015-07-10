@@ -1,4 +1,5 @@
 defmodule Apiv2.StrExt do
+  
   @character_map %{
     "%" => "percent",
     "#" => "hashtag",
@@ -15,6 +16,8 @@ defmodule Apiv2.StrExt do
     "." => "period",
     "+" => "plus"
   }
+
+  
 
   def to_stream(string) do
     string |> Stream.unfold(&String.next_codepoint/1)

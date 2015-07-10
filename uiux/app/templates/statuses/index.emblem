@@ -1,8 +1,0 @@
-.col-lg-10
-  .row
-    == partial "statuses/workflow"
-.col-lg-2
-  ul.nav.nav-pills.nav-stacked
-    li.active 
-      a href="dogs"
-        span.capitalize transload

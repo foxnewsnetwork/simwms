@@ -5,6 +5,8 @@ ManagerInventoriesIndexController = InventoriesIndexController.extend
   queryParams:["active"]
   active: null
   actions:
+    clickSummary: ->
+      @set "active", null
     clickPanel: (warehouse) ->
       if warehouse.get("id") is @get("active")
         @set "active", null

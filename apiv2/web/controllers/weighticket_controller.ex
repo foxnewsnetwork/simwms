@@ -5,7 +5,7 @@ defmodule Apiv2.WeighticketController do
   alias Apiv2.WeighticketQuery
 
   plug :scrub_params, "weighticket" when action in [:create, :update]
-  plug :action
+  
 
   @preload_fields [:appointment, :truck]
   def index(conn, _params) do

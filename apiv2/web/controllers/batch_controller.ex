@@ -4,7 +4,7 @@ defmodule Apiv2.BatchController do
   alias Apiv2.Batch
 
   plug :scrub_params, "batch" when action in [:create, :update]
-  plug :action
+  
 
   @preload_fields ~w(truck appointment)a
   def index(conn, params) do

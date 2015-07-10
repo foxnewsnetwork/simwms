@@ -5,7 +5,7 @@ defmodule Apiv2.AppointmentController do
   alias Apiv2.AppointmentMeta
 
   plug :scrub_params, "appointment" when action in [:create, :update]
-  plug :action
+  
 
   @preload_fields [:truck, :weighticket]
   def index(conn, params) do

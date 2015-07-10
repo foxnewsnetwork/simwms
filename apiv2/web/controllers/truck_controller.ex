@@ -4,7 +4,7 @@ defmodule Apiv2.TruckController do
   alias Apiv2.Truck
 
   plug :scrub_params, "truck" when action in [:create, :update]
-  plug :action
+  
 
   @preload_fields [:appointment, :weighticket, :batches]
   def index(conn, params) do

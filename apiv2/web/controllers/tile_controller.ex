@@ -1,7 +1,7 @@
 defmodule Apiv2.TileController do
   use Apiv2.Web, :controller
   alias Apiv2.Tile
-  plug :action
+  
 
   def index(conn, params) do
     tiles = params 

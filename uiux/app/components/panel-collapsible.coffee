@@ -1,5 +1,5 @@
 `import Ember from 'ember'`
-
+isBlank = Ember.isBlank
 PanelCollapsibleComponent = Ember.Component.extend
   classNames: ["panel", "panel-collapsible"]
   classNameBindings: ["isActive:panel-primary:panel-default"]
@@ -9,6 +9,7 @@ PanelCollapsibleComponent = Ember.Component.extend
     key = @get "activationKey"
     @isActive = Ember.computed "model.#{key}", "active", ->
       id = @get("model.#{key}")
+      return true if isBlank(@get "model") and isBlank(@get "active")
       id is @get("active")
 
   actions:
