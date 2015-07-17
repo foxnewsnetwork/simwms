@@ -12,6 +12,8 @@
         span.fa planned for future
       link-to "logistics.appointments" (query-params macro="problem") classNames="btn btn-default"
         span.fa has problems
+      link-to "logistics.appointments" (query-params macro="fulfilled") classNames="btn btn-default"
+        span.fa fulfilled
 
   .list-group
     each appointment in content

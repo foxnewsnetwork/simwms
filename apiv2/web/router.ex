@@ -26,6 +26,8 @@ defmodule Apiv2.Router do
     resources "/weightickets", WeighticketController, except: [:edit, :new]
     resources "/batches", BatchController, except: [:edit, :new]
     resources "/employees", EmployeeController, except: [:edit, :new]
+    resources "/batch_relationships", BatchRelationshipController, except: [:edit, :new]
+    resources "/appointment_relationships", AppointmentRelationshipController, except: [:edit, :new]
   end
 
   socket "/apiv2", Apiv2 do

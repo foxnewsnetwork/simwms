@@ -3,7 +3,8 @@
 
 LogisticsAppointmentsNewRoute = Ember.Route.extend
   model: ->
-    @store.createRecord "appointment", expectedAt: moment()
+    @store.createRecord "appointment",
+      expectedAt: moment()
 
   tearDown: Ember.on "deactivate", ->
     model = @controller.get "model"

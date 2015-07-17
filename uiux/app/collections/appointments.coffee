@@ -1,8 +1,18 @@
 `import Ember from 'ember'`
 `import { startOfWorkday, finishOfWorkday } from 'uiux/utils/punch-card'`
+typeChoices = Ember.A []
+typeChoices.pushObject
+  value: "dropoff"
+  presentation: "drop off"
+typeChoices.pushObject
+  value: "pickup"
+  presentation: "pick up"
+typeChoices.pushObject
+  value: "both"
+  presentation: "both"
 
 AppointmentsCollection = Ember.ArrayProxy.extend
-  appointments: Ember.computed.alias "content"
+  appointments: Ember.computed.filterBy "content", "id"
 
 AppointmentsCollection.fromAppointments = (appointments) ->
   AppointmentsCollection.create content: appointments
@@ -10,6 +20,15 @@ AppointmentsCollection.fromAppointments = (appointments) ->
 processMacro = (params) ->
   {macro} = params
   switch macro
+    when "all-dropoffs"
+      params["fulfilled_at"] = true
+      params["dropoff"] = true
+      params["both"] = true
+    when "all"
+      params["fulfilled_at"] = true
+      params["cancelled_at"] = true
+    when "fulfilled"
+      params["fulfilled_at"] = true
     when "future"
       params["expected_at_start"] = finishOfWorkday().format()
     when "today"
@@ -20,9 +39,11 @@ processMacro = (params) ->
   params
 
 AppointmentsCollection.processMacro = processMacro
+AppointmentsCollection.typeChoices = typeChoices
 
 `export default AppointmentsCollection`
 `export {
   AppointmentsCollection,
-  processMacro  
+  processMacro,
+  typeChoices
 }`

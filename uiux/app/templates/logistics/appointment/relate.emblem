@@ -1,0 +1,12 @@
+.row
+  .col-xs-12
+    link-to "logistics.appointment.index" appointment.id class="btn btn-default"
+      i.fa.fa-caret-left
+      span.fa.capitalize exit relate
+.row
+  .col-xs-12.col-sm-12.col-md-12.col-lg-12
+    == partial "logistics/appointment/relate/pickup"
+
+#annoyed-flash.hidden
+  h4.alert.alert-warning
+    span.fa.capitalize.bold I'm busy!

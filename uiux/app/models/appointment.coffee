@@ -1,6 +1,7 @@
 `import DS from 'ember-data'`
 `import moment from 'moment'`
 `import { startOfWorkday, finishOfWorkday } from '../utils/punch-card'`
+`import CPM from 'ember-cpm'`
 
 Appointment = DS.Model.extend
   appointmentType: DS.attr "string", defaultValue: "dropoff"
@@ -16,7 +17,15 @@ Appointment = DS.Model.extend
   explodedAt: DS.attr "moment"
   weighticket: DS.belongsTo "weighticket"
   truck: DS.belongsTo "truck"
+  batches: DS.hasMany "batch", inverse: "appointment", async: true
   externalReference: DS.attr "string"
+
+  outgoingBatches: DS.attr "array"
+  pickups: DS.attr "array"
+  dropoffs: DS.attr "array"
+
+  # This is needed for ember list view
+  self: Ember.computed -> @
 
   expectedAtISO: Ember.computed "expectedAt", (key, date) ->
     if arguments.length > 1
@@ -33,10 +42,10 @@ Appointment = DS.Model.extend
     @get("expectedAt").fromNow()
 
   status: Ember.computed "expectedAt", "fulfilledAt", "cancelledAt", "explodedAt", ->
-    return "fulfilled" if @get("fulfilledAt")?
-    return "cancelled" if @get("cancelledAt")?
-    return "problem" if @get("explodedAt")?
-    return "problem" unless @get("expectedAt")?
+    return "fulfilled" if @get("fulfilledAt")?.isValid()
+    return "cancelled" if @get("cancelledAt")?.isValid()
+    return "problem" if @get("explodedAt")?.isValid()
+    return "problem" unless @get("expectedAt")?.isValid()
     return "onsite" if @get("truck")?
     return "vanished" if @get("expectedAt") < startOfWorkday()
     return "planned" if finishOfWorkday() < @get("expectedAt")
@@ -52,6 +61,7 @@ Appointment = DS.Model.extend
   statusIsUnknown: Ember.computed.equal "status", "unknown"
   statusIsOnsite: Ember.computed.equal "status", "onsite"
 
+  isRelateable: CPM.Macros.among "appointmentType", "pickup", "both"
   isCancellable: Ember.computed.or "statusIsPlanned", "statusIsProblem", "statusIsUnknown", "statusIsExpected", "statusIsVanished"
 
   canReschedule: Ember.computed.not "statusIsFulfilled"

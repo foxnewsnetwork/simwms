@@ -8,6 +8,7 @@ Batch = DS.Model.extend
   deletedAt: DS.attr "moment"
   createdAt: DS.attr "moment"
   updatedAt: DS.attr "moment"
+  pickupAppointments: DS.attr "array"
 
   dock: DS.belongsTo "tile"
   warehouse: DS.belongsTo "tile"

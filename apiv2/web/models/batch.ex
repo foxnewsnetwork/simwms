@@ -3,7 +3,7 @@ defmodule Apiv2.Batch do
   @batch_types ~w(incoming outgoing split)
 
   schema "apiv2_batches" do
-    field :batch_type, :string
+    field :outgoing_count, :integer, default: 0
     field :permalink, :string
     field :description, :string
     field :quantity, :string
@@ -12,12 +12,14 @@ defmodule Apiv2.Batch do
     belongs_to :warehouse, Apiv2.Tile, foreign_key: :warehouse_id
     belongs_to :appointment, Apiv2.Appointment, foreign_key: :appointment_id
     belongs_to :truck, Apiv2.Truck, foreign_key: :truck_id
-    belongs_to :batch, Apiv2.Batch, foreign_key: :batch_id
+    has_many :relationships, Apiv2.BatchRelationship, foreign_key: :batch_id
+    has_many :pickup_appointments, through: [:relationships, :appointment]
+    
     timestamps 
   end
 
-  @required_fields ~w(batch_type dock_id appointment_id warehouse_id)
-  @optional_fields ~w(description permalink quantity truck_id batch_id deleted_at)
+  @required_fields ~w(warehouse_id outgoing_count)
+  @optional_fields ~w(dock_id appointment_id description permalink quantity truck_id deleted_at)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -33,10 +35,10 @@ defmodule Apiv2.Batch do
 
   before_insert :create_permalink
   def create_permalink(changeset) do
-    batch_type = changeset |> Ecto.Changeset.get_field(:batch_type)
+    permalink = changeset |> Ecto.Changeset.get_field(:permalink)
     appointment_id = changeset |> Ecto.Changeset.get_field(:appointment_id)
     v = :random.uniform(1000000)
     changeset
-    |> Ecto.Changeset.put_change(:company_permalink, "#{batch_type}-appt-#{appointment_id}-#{v}")
+    |> Ecto.Changeset.put_change(:permalink, "#{v}-#{permalink || appointment_id}")
   end
 end

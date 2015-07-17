@@ -7,11 +7,15 @@ Router = Ember.Router.extend
 Router.map ->
   @resource "logistics", path: "/logistics", ->
     @resource "logistics.inventories", path: "/inventories", ->
+      @resource "logistics.inventories.batch", path: "/batch/:id", ->
       @resource "logistics.cell", path: "/cell/:cell_id", ->
         @route "pictures"
+    
     @resource "logistics.appointments", path: "/appointments", ->
-      @route "new"      
+      @route "new"
+
     @resource "logistics.appointment", path: "/appointment/:appointment_id", ->
+      @route "relate"
       @route "edit"
       @route "reschedule"
   
@@ -75,8 +79,5 @@ Router.map ->
       @route Ember.String.dasherize "truck has left site"
       @route Ember.String.dasherize "problem"
       @route Ember.String.dasherize "miscellanious"
-    @resource "statuses", path: "/statuses", ->
-      @route "debug"
-      @route "options"
 
 `export default Router`

@@ -5,6 +5,7 @@ defmodule Apiv2.AppointmentView do
       appointments: render_many(appointments, "appointment.json"),
       trucks: render_trucks(appointments),
       weightickets: render_weightickets(appointments),
+      batches: render_batches(appointments),
       meta: meta
     }
   end
@@ -13,12 +14,25 @@ defmodule Apiv2.AppointmentView do
     %{
       appointment: render_one(appointment, "appointment.json"),
       trucks: render_trucks([appointment]),
+      batches: render_batches([appointment]),
       weightickets: render_weightickets([appointment])
     }
   end
 
   def render("appointment.json", %{appointment: appointment}) do
     appointment |> ember_attributes |> Apiv2.DictExt.reject_blank_keys
+  end
+
+  def render_batches(appointments) do
+    incoming_batches = appointments
+    |> Enum.flat_map(fn appointment -> appointment.batches end)
+
+    outgoing_batches = appointments
+    |> Enum.flat_map(fn appointment -> appointment.outgoing_batches end)
+
+    (incoming_batches ++ outgoing_batches)
+    |> Enum.reject(&is_nil/1)
+    |> render_many("batch.json")
   end
 
   def render_trucks(appointments) do 
@@ -36,9 +50,11 @@ defmodule Apiv2.AppointmentView do
   end
 
   defp ember_attributes(appointment) do
+    import Apiv2.RecExt, only: [just_ids: 1]
     %{
       id: appointment.id,
       permalink: appointment.permalink,
+      appointment_type: appointment.appointment_type,
       company_permalink: appointment.company_permalink,
       created_at: appointment.inserted_at,
       updated_at: appointment.updated_at,
@@ -46,10 +62,16 @@ defmodule Apiv2.AppointmentView do
       fulfilled_at: appointment.fulfilled_at,
       cancelled_at: appointment.cancelled_at,
       exploded_at: appointment.exploded_at,
+      consumed_at: appointment.consumed_at,
+      coupled_at: appointment.coupled_at,
       material_description: appointment.material_description,
       company: appointment.company,
       notes: appointment.notes,
-      external_reference: appointment.external_reference
+      external_reference: appointment.external_reference,
+      batches: Apiv2.RecExt.just_ids(appointment.batches),
+      outgoing_batches: just_ids(appointment.outgoing_batches),
+      dropoffs: just_ids(appointment.dropoffs),
+      pickups: just_ids(appointment.pickups)
     }
   end
 

@@ -1,6 +1,17 @@
 defmodule Apiv2.AppointmentQuery do
   import Ecto.Query
   alias Apiv2.Appointment
+  @preload_fields [
+    :truck, 
+    :weighticket, 
+    :batches, 
+    :pickups,
+    :dropoffs,
+    outgoing_batches: :pickup_appointments
+  ]
+
+  def preload_fields, do: @preload_fields
+
   def build_pagination_query(query, params) do
     page = String.to_integer(params["page"] || "1")
     per_page = String.to_integer(params["per_page"] || "10")
@@ -28,20 +39,49 @@ defmodule Apiv2.AppointmentQuery do
 
   
   @default_index_query from a in Appointment,
-    where: is_nil(a.fulfilled_at) and
-           is_nil(a.deleted_at) and
-           is_nil(a.cancelled_at),
+    where: is_nil(a.deleted_at),
     order_by: [desc: a.expected_at]
+
   def index(params) do
-    @default_index_query
-    |> build_macro_query(params)
-    |> build_pagination_query(params)
+    params
+    |> index_core
     |> select([a], a)
   end
 
-  def pagination(params) do
+  def index_core(params) do
     @default_index_query
+    |> consider_cancellation(params["cancelled_at"])
+    |> consider_fulfillment(params["fulfilled_at"])
+    |> consider_appointment_type(params)
     |> build_macro_query(params)
+    |> build_pagination_query(params)
+    |> consider_search(params)
+  end
+
+  def consider_appointment_type(query, %{"pickup" => _}) do
+    query |> where([a], a.appointment_type != "pickup")
+  end
+  def consider_appointment_type(query, _), do: query
+
+  def consider_cancellation(query, nil) do
+    query |> where([a], is_nil(a.cancelled_at))
+  end
+
+  def consider_cancellation(query, _) do
+    query |> where([a], not is_nil(a.cancelled_at))
+  end
+
+  def consider_fulfillment(query, nil) do
+    query |> where([a], is_nil(a.fulfilled_at))
+  end
+
+  def consider_fulfillment(query, _) do
+    query |> where([a], not is_nil(a.fulfilled_at))
+  end
+
+  def pagination(params) do
+    params
+    |> index_core
     |> select([a], count(a.id))
   end
 
@@ -56,4 +96,16 @@ defmodule Apiv2.AppointmentQuery do
         query |> where([a], a.permalink == ^id)
     end
   end
+
+  def consider_search(query, %{"search" => ""}), do: query
+  def consider_search(query, %{"search" => search}) do
+    import Apiv2.StrExt, only: [to_url: 1]
+    query
+    |> where([a], like(a.permalink, ^(p to_url search)) or 
+                  like(a.company_permalink, ^(p to_url search)) or 
+                  like(a.external_reference, ^(p search)))
+  end
+  def consider_search(query, _), do: query
+
+  defp p(str), do: "%#{str}%"
 end

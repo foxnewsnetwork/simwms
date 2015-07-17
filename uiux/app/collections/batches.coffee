@@ -13,7 +13,7 @@ BatchesCollection = Ember.ArrayProxy.extend
   uniqAppointmentCount: Ember.computed.alias "uniqAppointmentBatches.length"
   uniqAppointmentBatches: Ember.computed "batches.@each.appointment.id", ->
     @get("batches").reduce(uniqueBy("appointment.id"), Ember.A())
-
+    
 BatchesCollection.fromBatches = (batches) ->
   BatchesCollection.create content: batches
 

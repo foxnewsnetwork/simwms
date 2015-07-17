@@ -18,6 +18,7 @@ DocksTruckBatchesNewRoute = Ember.Route.extend
     truck = @modelFor "docks.truck"
     @store.createRecord "batch",
       appointment: truck.get("appointment")
+      permalink: truck.get("appointment.permalink")
       dock: truck.get("dock")
       warehouse: tile or warehouses.get("firstEmptyWarehouse")
       arrivedAt: moment()

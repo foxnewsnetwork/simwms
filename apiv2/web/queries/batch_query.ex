@@ -1,8 +1,11 @@
 defmodule Apiv2.BatchQuery do
   import Ecto.Query
   alias Apiv2.Batch
-  
+  @preload_fields [:truck, :appointment, pickup_appointments: :outgoing_batches]
+
+  def preload_fields, do: @preload_fields
   @default_query from b in Batch,
+    where: is_nil(b.deleted_at),
     select: b
 
   def index(params) do
@@ -10,7 +13,24 @@ defmodule Apiv2.BatchQuery do
     |> consider_warehouse(params)
     |> consider_dock(params)
     |> consider_truck(params)
+    |> consider_search(params)
   end
+
+  def is_virgin(query) do
+    query
+    |> where([b], b.outgoing_count < 1)
+  end
+
+  def consider_search(query, %{"search" => ""}), do: query
+  def consider_search(query, %{"search" => search}) do
+    import Apiv2.StrExt, only: [to_url: 1]
+    query
+    |> is_virgin
+    |> where([b], b.outgoing_count == 0)
+    |> where([b], like(b.permalink, ^("%#{to_url(search)}%")))
+    |> order_by([b], [desc: b.appointment_id, desc: b.inserted_at])
+  end
+  def consider_search(query, _), do: query
 
   def created_at_start(query, nil), do: query
   def created_at_start(query, datetime) do

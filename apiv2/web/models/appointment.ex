@@ -14,10 +14,20 @@ defmodule Apiv2.Appointment do
     field :cancelled_at, Ecto.DateTime
     field :expected_at, Ecto.DateTime
     field :exploded_at, Ecto.DateTime
+    field :coupled_at, Ecto.DateTime
+    field :consumed_at, Ecto.DateTime
     field :external_reference, :string
-
+    has_many :batches, Apiv2.Batch
+    has_many :batch_relationships, Apiv2.BatchRelationship, foreign_key: :appointment_id
+    has_many :outgoing_batches, through: [:batch_relationships, :batch]
     has_one :weighticket, Apiv2.Weighticket
     has_one :truck, Apiv2.Truck
+
+    has_many :dropoff_relationships, Apiv2.AppointmentRelationship, foreign_key: :pickup_id
+    has_many :dropoffs, through: [:dropoff_relationships, :dropoff]
+
+    has_many :pickup_relationships, Apiv2.AppointmentRelationship, foreign_key: :dropoff_id
+    has_many :pickups, through: [:pickup_relationships, :pickup]
     timestamps 
   end
 
@@ -33,6 +43,8 @@ defmodule Apiv2.Appointment do
     fulfilled_at
     cancelled_at
     exploded_at
+    coupled_at
+    consumed_at
     external_reference)
 
   @doc """

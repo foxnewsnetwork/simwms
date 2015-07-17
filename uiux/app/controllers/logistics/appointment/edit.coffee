@@ -1,6 +1,7 @@
 `import Ember from 'ember'`
-
+`import {typeChoices} from 'uiux/collections/appointments'`
 LogisticsAppointmentEditController = Ember.Controller.extend
+  appointmentChoices: typeChoices
   actions:
     update: ->
       @get("model").save()

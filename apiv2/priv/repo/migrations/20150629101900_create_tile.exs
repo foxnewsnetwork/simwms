@@ -63,6 +63,6 @@ defmodule Apiv2.Repo.Migrations.CreateTile do
     alias Apiv2.Repo
     alias Apiv2.Tile
     Tile.changeset(%Tile{}, tile_params)
-    |> Repo.insert
+    |> Repo.insert!
   end
 end

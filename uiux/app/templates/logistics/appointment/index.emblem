@@ -6,6 +6,16 @@
 .row
   .col-xs-12.col-sm-12.col-md-6.col-lg-4
     dl
+      dt.capitalize appointment type
+      dd
+        span.fa= model.appointmentType
+      unless (eq model.appointmentType "dropoff")
+        dt.capitalize picked up
+        dd
+          span.fa {{num model.outgoingBatches.length}} batch(es)
+      unless (eq model.appointmentType "pickup")
+        dt.capitalize dropped off
+        dd: span.fa {{num model.batches.length}} batch(es)
       dt.capitalize data id
       dd
         span.fa= model.id
@@ -33,8 +43,13 @@
       dt.capitalize expectedAt
       dd
         span.fa= moment model.expectedAt
+
   .col-xs-12.col-sm-12.col-md-6.col-lg-4
     .list-group
+      if model.isRelateable
+        link-to "logistics.appointment.relate" model.id classNames="list-group-item"
+          i.fa.fa-link
+          span.fa relate appointment
       if model.canReschedule
         link-to "logistics.appointment.reschedule" model.id class="list-group-item"
           i.fa.fa-calendar

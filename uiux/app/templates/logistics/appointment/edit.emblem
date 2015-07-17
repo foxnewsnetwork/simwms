@@ -5,10 +5,18 @@
       span.fa.capitalize exit edit
 .row
   .col-xs-12.col-sm-12.col-md-6.col-lg-4
-    form-for submit="update"
-      form-input name="materialDescription" type="text" labelText="material description" value=model.materialDescription
-      form-input name="company" type="text" labelText="company" value=model.company
-      form-input name="notes" type="text" labelText="notes" value=model.notes
+    em-form-for mistakes=appointmentError action="update" model=model
+      em-form-input label="appointment type" name="appointmentType" type="select" content=appointmentChoices optionValuePath='content.value' optionLabelPath='content.presentation'
+        span.help-block Pickup appointments will require us to specify what is to be picked up.
+
+      em-form-input name="company" label="company" type="text"
+      
+      em-form-input name="materialDescription" label="material description" type="text"
+        span.help-block Write a short description for what materials will be transacted in this appointment
+
+      em-form-input name="externalReference" label="external reference number" type="string"
+      
+      em-form-input name="notes" label="notes" type="textarea"
       .actions
         promise-button model=model type="submit" classNames="btn btn-success btn-lg btn-hover"
           i.fa.fa-check

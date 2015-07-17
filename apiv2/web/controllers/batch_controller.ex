@@ -5,15 +5,13 @@ defmodule Apiv2.BatchController do
 
   plug :scrub_params, "batch" when action in [:create, :update]
   
-
-  @preload_fields ~w(truck appointment)a
   def index(conn, params) do
-    batches = params |> Apiv2.BatchQuery.index |> Repo.all |> Repo.preload(@preload_fields)
+    batches = params |> Apiv2.BatchQuery.index |> Repo.all |> Repo.preload(Apiv2.BatchQuery.preload_fields)
     render(conn, "index.json", batches: batches)
   end
 
   def show(conn, %{"id" => id}) do
-    batch = Repo.get!(Batch, id) |> Repo.preload(@preload_fields)
+    batch = Repo.get!(Batch, id) |> Repo.preload(Apiv2.BatchQuery.preload_fields)
     render conn, "show.json", batch: batch
   end
   
@@ -21,7 +19,7 @@ defmodule Apiv2.BatchController do
     changeset = Batch.changeset(%Batch{}, batch_params)
 
     if changeset.valid? do
-      batch = Repo.insert(changeset) |> Repo.preload(@preload_fields)
+      batch = Repo.insert!(changeset) |> Repo.preload(Apiv2.BatchQuery.preload_fields)
       render(conn, "show.json", batch: batch)
     else
       conn
@@ -32,11 +30,11 @@ defmodule Apiv2.BatchController do
 
 
   def update(conn, %{"id" => id, "batch" => batch_params}) do
-    batch = Repo.get(Batch, id)
+    batch = Repo.get!(Batch, id)
     changeset = Batch.changeset(batch, batch_params)
 
     if changeset.valid? do
-      batch = Repo.update(changeset) |> Repo.preload(@preload_fields)
+      batch = Repo.update!(changeset) |> Repo.preload(Apiv2.BatchQuery.preload_fields)
       render(conn, "show.json", batch: batch)
     else
       conn

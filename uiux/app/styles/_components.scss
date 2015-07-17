@@ -7,11 +7,19 @@
 @import "components/pagination";
 @import "components/responsive-table";
 @import "components/panel-collapsible";
+@import "components/ember-list";
 
-.ember-list-view {
-  overflow: auto;
-  position: relative;
-}
-.ember-list-item-view {
-  position: absolute;
+#annoyed-flash {
+  &.hidden {
+    display: none;
+  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 500;
+  @include display-flex;
+  @include justify-content(center);
+  @include align-items(center);
 }
