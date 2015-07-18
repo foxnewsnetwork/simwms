@@ -5,11 +5,6 @@ defmodule Apiv2.AppointmentRelationshipController do
   alias Apiv2.AppointmentRelationshipQuery, as: Q
   plug :scrub_params, "appointment_relationship" when action in [:create, :update]
 
-  def index(conn, %{"dropoff_id" => _, "pickup_id" => _}=params) do
-    appointment_relationship = params |> Q.index |> Repo.one!
-    render(conn, "show.json", appointment_relationship: appointment_relationship)
-  end
-
   def index(conn, params) do
     appointment_relationships = params |> Q.index |> Repo.all
     render(conn, "index.json", appointment_relationships: appointment_relationships)

@@ -8,7 +8,7 @@ defmodule Apiv2.Repo.Migrations.CreateBatchRelationships do
       add :notes, :string
       timestamps
     end
-    create index(:apiv2_batch_relationships, [:appointment_id, :batch_id])
-    create index(:apiv2_batch_relationships, [:batch_id, :appointment_id])
+    create index(:apiv2_batch_relationships, [:appointment_id, :batch_id], unique: true)
+    create index(:apiv2_batch_relationships, [:batch_id, :appointment_id], unique: true)
   end
 end

@@ -1,5 +1,5 @@
 ember-list items=appointmentRelationships height=300 rowHeight=50 classNames="ember-list-panel-group"
-  .list-group-item.pointer click="'toggleAppointment' self"
+  link-to "logistics.appointment.relate.appointment" pickup.id dropoff.id classNames="list-group-item" activeClass="list-group-item-success"
     ul.list-inline
       li
         if isLoaded

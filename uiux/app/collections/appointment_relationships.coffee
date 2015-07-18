@@ -2,6 +2,11 @@
 
 TempObject = Ember.Object.extend
   self: Ember.computed -> @
+  save: (store) ->
+    store.createRecord "appointmentRelationship",
+      dropoff: @get("dropoff")
+      pickup: @get("pickup")
+    .save()
 
 AppointmentRelationshipsCollection = Ember.ArrayProxy.extend
   relationCores: Ember.computed "pickup.id", "content.@each.permaindex", "dropoffs.@each.id", ->
@@ -15,5 +20,5 @@ AppointmentRelationshipsCollection = Ember.ArrayProxy.extend
       dropoff: dropoff
       pickup: pickup
       
-
+`export { TempObject }`
 `export default AppointmentRelationshipsCollection`

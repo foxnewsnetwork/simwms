@@ -36,21 +36,21 @@ defmodule Apiv2.Repo.Migrations.CreateBatch do
     "quantity" => "some amount",
     "appointment_id" => 1,
     "dock_id" => 1,
-    "warehouse_id" => 3
+    "warehouse_id" => 2
   }, %{
     "permalink" => "basic-seed-002",
     "description" => "test batch",
     "quantity" => "some amount",
     "appointment_id" => 1,
     "dock_id" => 1,
-    "warehouse_id" => 3
+    "warehouse_id" => 2
   }, %{
     "permalink" => "basic-seed-003",
     "description" => "test batch",
     "quantity" => "some amount",
     "appointment_id" => 1,
     "dock_id" => 1,
-    "warehouse_id" => 3
+    "warehouse_id" => 2
   }]
   defp seed_batches do
     @seeds

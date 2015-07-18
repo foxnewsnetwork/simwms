@@ -14,23 +14,16 @@ LogisticsAppointmentRelateRoute = Ember.Route.extend
     search:
       refreshModel: false
   model: ({search})->
-    appointment = @modelFor "logistics.appointment"
+    pickup = @modelFor "logistics.appointment"
     Ember.RSVP.hash
-      appointments: @store.find("appointment", processAppointmentSearch search)
-      batches: @store.find("batch", {search})
-      brs: @store.find("batchRelationship", appointment_id: appointment.get("id"))
-      ars: @store.find("appointmentRelationship", pickup_id: appointment.get("id"))
-    .then ({appointments, batches, brs, ars}) =>
-      batchRelationships = BatchRelationshipsCollection.create
-        content: brs
-        appointment: appointment
-        batches: batches
-      appointmentRelationships = AppointmentRelationshipsCollection.create
+      dropoffs: @store.find("appointment", processAppointmentSearch search)
+      ars: @store.find("appointmentRelationship", pickup_id: pickup.get("id"))
+    .then ({dropoffs, ars}) ->
+      pickup: pickup
+      appointmentRelationships: AppointmentRelationshipsCollection.create
         content: ars
-        pickup: appointment
-        dropoffs: appointments
-      
-      {batchRelationships, appointmentRelationships, appointment}
+        pickup: pickup
+        dropoffs: dropoffs
 
   actions:
     refresh: -> @refresh()

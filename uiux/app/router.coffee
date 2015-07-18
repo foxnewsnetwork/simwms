@@ -15,9 +15,11 @@ Router.map ->
       @route "new"
 
     @resource "logistics.appointment", path: "/appointment/:appointment_id", ->
-      @route "relate"
       @route "edit"
       @route "reschedule"
+
+      @resource "logistics.appointment.relate", path: "/relate", ->
+        @resource "logistics.appointment.relate.appointment", path: "/appointment/:id", ->
   
   @resource "stations", path: "/stations", ->
     @resource "stations.weighticket", path: "/weighticket/:weighticketId", ->
