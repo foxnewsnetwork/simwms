@@ -11,9 +11,9 @@ Features to MVP
 - write up marketing site with onboarding workflow
 - have a sampler warehouse on the marketing site
 - implement warehouse monthly payment system
-- fix manager messages view so that it works
-- fix bug where I can't mark truck left properly
-- additional appointment types such as pick up in addition to drop-off
++ fix manager messages view so that it works
++ fix bug where I can't mark truck left properly
++ additional appointment types such as pick up in addition to drop-off
 - replace doge webms with real camera shots
 
 Feature Wishlist

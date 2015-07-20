@@ -8,7 +8,7 @@ Router.map ->
   @resource "logistics", path: "/logistics", ->
     @resource "logistics.inventories", path: "/inventories", ->
       @resource "logistics.inventories.batch", path: "/batch/:id", ->
-      @resource "logistics.cell", path: "/cell/:cell_id", ->
+      @resource "logistics.inventories.cell", path: "/cell/:id", ->
         @route "pictures"
     
     @resource "logistics.appointments", path: "/appointments", ->
@@ -57,6 +57,7 @@ Router.map ->
     @resource "manager.station", path: "/station/:stationId", ->
     @resource "manager.inventories", path: "/inventories", ->
       @resource "manager.inventories.cell", path: "/cell/:cell_id", ->
+      @resource "manager.inventories.batch", path: "/batch/:id", ->
     @resource "manager.trucks", path: "/trucks", ->
       @resource "manager.trucks.truck", path: "/truck/:id", ->
     @resource "manager.appointments", path: "/appointments", ->

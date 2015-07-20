@@ -42,6 +42,11 @@ defmodule Apiv2.AppointmentQuery do
     where: is_nil(a.deleted_at),
     order_by: [desc: a.expected_at]
 
+  def index(%{"everything" => _} = params) do
+    @default_index_query
+    |> build_pagination_query(params)
+    |> select([a], a)
+  end
   def index(params) do
     params
     |> index_core
@@ -58,26 +63,21 @@ defmodule Apiv2.AppointmentQuery do
     |> consider_search(params)
   end
 
-  def consider_appointment_type(query, %{"pickup" => _}) do
+  def consider_appointment_type(query, %{"pickup" => "false"}) do
     query |> where([a], a.appointment_type != "pickup")
+  end
+  def consider_appointment_type(query, %{"pickup" => "true"}) do
+    query |> where([a], a.appointment_type == "pickup")
   end
   def consider_appointment_type(query, _), do: query
 
-  def consider_cancellation(query, nil) do
-    query |> where([a], is_nil(a.cancelled_at))
-  end
+  def consider_cancellation(query, "true"), do: query |> where([a], not is_nil(a.cancelled_at))
+  def consider_cancellation(query, "false"), do: query |> where([a], is_nil(a.cancelled_at))
+  def consider_cancellation(query, _), do: query
 
-  def consider_cancellation(query, _) do
-    query |> where([a], not is_nil(a.cancelled_at))
-  end
-
-  def consider_fulfillment(query, nil) do
-    query |> where([a], is_nil(a.fulfilled_at))
-  end
-
-  def consider_fulfillment(query, _) do
-    query |> where([a], not is_nil(a.fulfilled_at))
-  end
+  def consider_fulfillment(query, "true"), do: query |> where([a], not is_nil(a.fulfilled_at))
+  def consider_fulfillment(query, "false"), do: query |> where([a], is_nil(a.fulfilled_at))
+  def consider_fulfillment(query, _), do: query
 
   def pagination(params) do
     params

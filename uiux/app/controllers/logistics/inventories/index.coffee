@@ -3,9 +3,15 @@
 `import gridMaker from 'table-grid-2d/utils/grid-maker'`
 
 LogisticsInventoriesIndexController = InventoriesIndexController.extend
+  queryParams:["active"]
+  active: null
   actions:
-    touchCell: (cell) ->
-      return if Ember.isBlank cell
-      @transitionToRoute "logistics.cell", cell.get("id")
+    clickSummary: ->
+      @set "active", null
+    clickPanel: (warehouse) ->
+      if warehouse.get("id") is @get("active")
+        @set "active", null
+      else
+        @set "active", warehouse.get("id")
 
 `export default LogisticsInventoriesIndexController`

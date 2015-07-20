@@ -24,6 +24,8 @@ Appointment = DS.Model.extend
   pickups: DS.attr "array"
   dropoffs: DS.attr "array"
 
+  dropoffAppointments: Ember.computed.map "dropoffs", (id) ->
+
   # This is needed for ember list view
   self: Ember.computed -> @
 

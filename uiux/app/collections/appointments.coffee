@@ -25,8 +25,7 @@ processMacro = (params) ->
       params["dropoff"] = true
       params["both"] = true
     when "all"
-      params["fulfilled_at"] = true
-      params["cancelled_at"] = true
+      params["everything"] = true
     when "fulfilled"
       params["fulfilled_at"] = true
     when "future"

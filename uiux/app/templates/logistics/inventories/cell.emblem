@@ -1,13 +1,11 @@
-h2.modal-title
-  span.fa storage cell # 
-  span.fa= model.nameOrId
 
 .row
-  .col-xs-12
-    link-to "manager.inventories.index" (query-params active=model.id) class="btn btn-lg btn-default"
-      i.fa.fa-caret-left
-      span.fa.capitalize.prespace back to inventory
-.row.info
+  .col-xs-12.col-sm-12.col-md-6.col-lg-3
+    .btn-group.btn-group-justified
+      link-to "logistics.inventories.index" class="btn btn-default"
+        i.fa.fa-caret-left
+        span.fa.capitalize.prespace back to inventory
+.row
   .col-xs-12.col-sm-12.col-md-12.col-lg-6
     .panel.panel-default
       .panel-heading 
@@ -66,14 +64,8 @@ h2.modal-title
         .panel-body: span.fa No appointments found
 
       .panel-footer: span.fa {{num model.batchesCollection.uniqAppointments.length}} appointment(s) here
-
-
 .row
   each batch in model.batches
     each picture in batch.pictures
       .col-lg-4.col-md-4.col-sm-6.col-xs-6
-        img.thumbnail.bound src=picture.thumbnail  
-.actions
-  button.btn.btn-primary.close-button click="closeModal"
-    i.fa.fa-times
-    span.prespace.upcase dismiss
+        img.thumbnail.bound src=picture.normal
